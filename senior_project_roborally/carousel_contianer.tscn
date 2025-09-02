@@ -1,0 +1,77 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8i2ohpoyhl5k"]
+
+[ext_resource type="Script" uid="uid://cvxpvaf4i6r0p" path="res://carousel_contianer.gd" id="1_mq0ai"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mq0ai"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dhbjd"]
+bg_color = Color(0.945228, 0.0798428, 5.77569e-07, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p3ags"]
+bg_color = Color(0.859339, 0.500188, 1.92523e-07, 1)
+
+[node name="CarouselContianer" type="Node2D"]
+script = ExtResource("1_mq0ai")
+
+[node name="CarouselConatianer" type="Node2D" parent="." node_paths=PackedStringArray("position_offset_node")]
+position = Vector2(515, 312)
+script = ExtResource("1_mq0ai")
+position_offset_node = NodePath("Control")
+metadata/_custom_type_script = "uid://cvxpvaf4i6r0p"
+
+[node name="Control" type="Control" parent="CarouselConatianer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="CarouselConatianer/Control"]
+z_index = 1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+pivot_offset = Vector2(20, 20)
+theme_override_styles/panel = SubResource("StyleBoxFlat_mq0ai")
+
+[node name="Panel2" type="Panel" parent="CarouselConatianer/Control"]
+modulate = Color(1, 1, 1, 0.65)
+z_index = -1
+layout_mode = 0
+offset_left = 60.0
+offset_right = 100.0
+offset_bottom = 40.0
+scale = Vector2(0.75, 0.75)
+pivot_offset = Vector2(20, 20)
+theme_override_styles/panel = SubResource("StyleBoxFlat_dhbjd")
+
+[node name="Panel3" type="Panel" parent="CarouselConatianer/Control"]
+modulate = Color(1, 1, 1, 0.3)
+z_index = -2
+layout_mode = 0
+offset_left = 120.0
+offset_right = 160.0
+offset_bottom = 40.0
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(20, 20)
+theme_override_styles/panel = SubResource("StyleBoxFlat_p3ags")
+
+[node name="left" type="Button" parent="."]
+offset_left = 158.0
+offset_top = 507.0
+offset_right = 166.0
+offset_bottom = 515.0
+scale = Vector2(4.99999, 2.20001)
+text = "Left"
+
+[node name="right" type="Button" parent="."]
+offset_left = 754.0
+offset_top = 506.0
+offset_right = 792.0
+offset_bottom = 537.0
+scale = Vector2(4.99999, 2.20001)
+text = "Right"
+
+[connection signal="pressed" from="left" to="." method="_left"]
+[connection signal="pressed" from="right" to="." method="_right"]
