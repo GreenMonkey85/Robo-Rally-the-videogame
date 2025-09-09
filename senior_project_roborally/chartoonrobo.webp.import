@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwd2ja1pn1d5o"
-path="res://.godot/imported/arrow.png-b8379242275bceae0ccb95bdc82a638e.ctex"
+uid="uid://dlf5mh2dlys1l"
+path="res://.godot/imported/chartoonrobo.webp-1729ddd86c8149c90b52e7e95ec0ae5b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/arrow.png"
-dest_files=["res://.godot/imported/arrow.png-b8379242275bceae0ccb95bdc82a638e.ctex"]
+source_file="res://chartoonrobo.webp"
+dest_files=["res://.godot/imported/chartoonrobo.webp-1729ddd86c8149c90b52e7e95ec0ae5b.ctex"]
 
 [params]
 

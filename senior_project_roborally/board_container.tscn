@@ -1,10 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://c8i2ohpoyhl5k"]
+[gd_scene load_steps=22 format=3 uid="uid://b10y7fjdphs0x"]
 
-[ext_resource type="Script" uid="uid://cvxpvaf4i6r0p" path="res://carousel_contianer.gd" id="1_mq0ai"]
-[ext_resource type="Texture2D" uid="uid://dxiny0beuaqxw" path="res://factorybackround.jpg" id="2_dhbjd"]
+[ext_resource type="Script" uid="uid://cvxpvaf4i6r0p" path="res://carousel_contianer.gd" id="1_njhx4"]
+[ext_resource type="Script" uid="uid://c04o58vmqeptx" path="res://board_container.gd" id="1_uhclm"]
+[ext_resource type="Texture2D" uid="uid://dlf5mh2dlys1l" path="res://chartoonrobo.webp" id="2_njhx4"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p3ags"]
-texture = ExtResource("2_dhbjd")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ubrqx"]
+texture = ExtResource("2_njhx4")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mq0ai"]
 bg_color = Color(1, 1, 1, 1)
@@ -49,17 +50,18 @@ bg_color = Color(1, 0.694118, 0.145098, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d8yma"]
 
 [node name="CarouselConatianer" type="Node2D"]
-script = ExtResource("1_mq0ai")
+script = ExtResource("1_uhclm")
 
 [node name="Panel" type="Panel" parent="."]
-offset_top = 5.0
-offset_right = 1152.0
-offset_bottom = 650.0
-theme_override_styles/panel = SubResource("StyleBoxTexture_p3ags")
+offset_left = -37.0
+offset_top = -8.0
+offset_right = 1195.0
+offset_bottom = 660.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_ubrqx")
 
 [node name="CarouselConatianer" type="Node2D" parent="."]
 position = Vector2(515, 312)
-script = ExtResource("1_mq0ai")
+script = ExtResource("1_njhx4")
 metadata/_custom_type_script = "uid://cvxpvaf4i6r0p"
 
 [node name="Control" type="Control" parent="CarouselConatianer"]

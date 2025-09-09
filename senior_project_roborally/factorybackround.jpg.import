@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4shhuoww4x11"
-path="res://.godot/imported/roborallylogo.jpg-581ffad5d600ff07509486ec159dcde2.ctex"
+uid="uid://dxiny0beuaqxw"
+path="res://.godot/imported/factorybackround.jpg-27410779cd901b715d7749851c098864.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://roborallylogo.jpg"
-dest_files=["res://.godot/imported/roborallylogo.jpg-581ffad5d600ff07509486ec159dcde2.ctex"]
+source_file="res://factorybackround.jpg"
+dest_files=["res://.godot/imported/factorybackround.jpg-27410779cd901b715d7749851c098864.ctex"]
 
 [params]
 

@@ -1,4 +1,5 @@
 extends Node2D
+class_name CarouselContainer
 
 @export var panel_width: float = 500.0
 @export var spacing_between: float = 100.0
@@ -28,7 +29,7 @@ func _ready() -> void:
 
 	left_button = get_node_or_null("left")
 	right_button = get_node_or_null("right")
-	select_button = get_node_or_null("select")
+	select_button = get_node_or_null("select")  # Make sure this is the correct path
 
 	if not control:
 		push_error("No Control node found inside CarouselConatianer")
@@ -76,3 +77,4 @@ func _on_select_pressed() -> void:
 		print("Selected panel:", current_index, "->", panels[current_index].name)
 	else:
 		print("No panels found!")
+	

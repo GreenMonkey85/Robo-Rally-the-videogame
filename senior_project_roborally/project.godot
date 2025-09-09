@@ -14,3 +14,7 @@ config/name="Senior_Project_RoboRally"
 run/main_scene="uid://bdjrkre2u2ciq"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/stretch/mode="canvas_items"

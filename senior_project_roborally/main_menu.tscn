@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bdjrkre2u2ciq"]
+[gd_scene load_steps=15 format=3 uid="uid://bdjrkre2u2ciq"]
 
 [ext_resource type="Script" uid="uid://darw67xb5yfg" path="res://main_menu.gd" id="1_7vrkn"]
 [ext_resource type="Texture2D" uid="uid://e1gurhwmxsaw" path="res://roborallyboxart.jpg" id="2_7vrkn"]
@@ -32,15 +32,17 @@ corner_radius_bottom_left = 16
 shadow_color = Color(0, 0, 0, 0.203922)
 shadow_offset = Vector2(0, 3.5)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fu7sn"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7vrkn"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jix8l"]
-bg_color = Color(0.6, 0.6, 0.6, 0.6)
-border_color = Color(0.869293, 0.816996, 0.273609, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fu7sn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jix8l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_glbon"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nlkkf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qe12f"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -72,9 +74,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -185.0
-offset_top = -430.0
+offset_top = -325.0
 offset_right = 189.0
-offset_bottom = -189.0
+offset_bottom = -84.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 10
@@ -93,8 +95,8 @@ theme_override_icons/icon = SubResource("AtlasTexture_fu7sn")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_06t4h")
 theme_override_styles/hover = SubResource("StyleBoxFlat_06t4h")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_7vrkn")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_fu7sn")
-theme_override_styles/normal = SubResource("StyleBoxFlat_jix8l")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_7vrkn")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_fu7sn")
 text = "Play"
 
 [node name="settings" type="Button" parent="VBoxContainer"]
@@ -111,8 +113,8 @@ theme_override_icons/icon = SubResource("AtlasTexture_fu7sn")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_06t4h")
 theme_override_styles/hover = SubResource("StyleBoxFlat_06t4h")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_7vrkn")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_fu7sn")
-theme_override_styles/normal = SubResource("StyleBoxFlat_jix8l")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_jix8l")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_glbon")
 text = "Settings"
 
 [node name="quit" type="Button" parent="VBoxContainer"]
@@ -129,8 +131,8 @@ theme_override_icons/icon = SubResource("AtlasTexture_fu7sn")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_06t4h")
 theme_override_styles/hover = SubResource("StyleBoxFlat_06t4h")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_7vrkn")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_fu7sn")
-theme_override_styles/normal = SubResource("StyleBoxFlat_jix8l")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_nlkkf")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qe12f")
 text = "Quit"
 
 [connection signal="pressed" from="VBoxContainer/play" to="." method="_on_play_pressed"]
