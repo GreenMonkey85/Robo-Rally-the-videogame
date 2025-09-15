@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://b88gxysheppn4"]
+
+[ext_resource type="Script" uid="uid://bcbs1tsq42wd6" path="res://Scenes/UI/card.gd" id="1_02ykg"]
+[ext_resource type="Texture2D" uid="uid://b0e7lealwg2ug" path="res://Graphics/CardSprites/card_back.png" id="1_4rsfq"]
+
+[node name="Card" type="Panel"]
+custom_minimum_size = Vector2(200, 300)
+offset_right = 200.0
+offset_bottom = 300.0
+script = ExtResource("1_02ykg")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(200, 300)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 300)
+layout_mode = 2
+texture = ExtResource("1_4rsfq")
+expand_mode = 4

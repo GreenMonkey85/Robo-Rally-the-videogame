@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://86rwcugu5fj"
-path="res://.godot/imported/TilesetBoardElementsIsometric_Try7.png-15303ba8ce2e560222e154814d4e4def.ctex"
+path="res://.godot/imported/TilesetBoardElementsIsometric_Try7.png-ed44d968206f8668560dc18e2922953f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Worldbuilding Sprites/TilesetBoardElementsIsometric_Try7.png"
-dest_files=["res://.godot/imported/TilesetBoardElementsIsometric_Try7.png-15303ba8ce2e560222e154814d4e4def.ctex"]
+source_file="res://Graphics/BoardSprites/TilesetBoardElementsIsometric_Try7.png"
+dest_files=["res://.godot/imported/TilesetBoardElementsIsometric_Try7.png-ed44d968206f8668560dc18e2922953f.ctex"]
 
 [params]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://bdjrkre2u2ciq"]
 
-[ext_resource type="Script" uid="uid://dakbhxw855s6l" path="res://Scenes/main_menu.gd" id="1_7vrkn"]
+[ext_resource type="Script" uid="uid://dakbhxw855s6l" path="res://Scenes/Menu/title_menu/main_menu.gd" id="1_7vrkn"]
 [ext_resource type="Texture2D" uid="uid://gpl3o1tii2f8" path="res://Graphics/roborallyboxart.jpg" id="2_7vrkn"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7vrkn"]
