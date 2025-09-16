@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://c03cnuesiyn45"]
+
+[ext_resource type="Script" uid="uid://dmlhld3u2rbe5" path="res://Globals/card_data.gd" id="1_5hux4"]
+[ext_resource type="Texture2D" uid="uid://rifl2pltt2h5" path="res://Graphics/CardSprites/orange_cards/orange_move1_card.png" id="2_3vrjr"]
+
+[resource]
+script = ExtResource("1_5hux4")
+name = "Move1"
+color = "Orange"
+type = "Movement"
+action = "Forward"
+num_action = 1
+sprite = ExtResource("2_3vrjr")
+energy = 0
+metadata/_custom_type_script = "uid://dmlhld3u2rbe5"

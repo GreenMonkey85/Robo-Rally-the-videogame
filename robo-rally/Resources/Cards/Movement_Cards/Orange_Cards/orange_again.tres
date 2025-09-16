@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://rga7i5ouur8j"]
+
+[ext_resource type="Script" uid="uid://dmlhld3u2rbe5" path="res://Globals/card_data.gd" id="1_2xadv"]
+
+[resource]
+script = ExtResource("1_2xadv")
+name = ""
+color = ""
+type = ""
+action = ""
+num_action = 0
+energy = 0
+metadata/_custom_type_script = "uid://dmlhld3u2rbe5"

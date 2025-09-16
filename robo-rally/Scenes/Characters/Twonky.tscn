@@ -226,7 +226,7 @@ _data = {
 &"tr_walk": SubResource("Animation_xp3de")
 }
 
-[node name="Sprite2D" type="Sprite2D"]
+[node name="Twonky" type="Sprite2D"]
 texture = ExtResource("1_rxdkt")
 hframes = 28
 
