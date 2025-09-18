@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="Robo Rally"
-run/main_scene="uid://dp3tdhc38xfij"
+run/main_scene="uid://c1ti0b4ek3ejw"
 config/features=PackedStringArray("4.4", "Mobile")
-config/icon="res://icon.svg"
+config/icon="uid://deg2efx0kgia5"
 
 [rendering]
 

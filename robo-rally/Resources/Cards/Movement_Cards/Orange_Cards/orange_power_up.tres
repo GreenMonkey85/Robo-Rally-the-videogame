@@ -1,13 +1,15 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://bhnkdwfnb5tg3"]
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://bhnkdwfnb5tg3"]
 
 [ext_resource type="Script" uid="uid://dmlhld3u2rbe5" path="res://Globals/card_data.gd" id="1_lch6q"]
+[ext_resource type="Texture2D" uid="uid://cr5yvbtjb1nrg" path="res://Graphics/CardSprites/orange_cards/orange_power_up_card.png" id="2_pg080"]
 
 [resource]
 script = ExtResource("1_lch6q")
-name = ""
-color = ""
-type = ""
-action = ""
-num_action = 0
-energy = 0
+name = "PowerUp"
+color = "Orange"
+type = "Movement"
+action = "PowerUp"
+num_action = 1
+sprite = ExtResource("2_pg080")
+energy = 1
 metadata/_custom_type_script = "uid://dmlhld3u2rbe5"

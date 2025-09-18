@@ -1,0 +1,229 @@
+[gd_scene load_steps=21 format=3 uid="uid://b8y1gia6ev711"]
+
+[ext_resource type="Script" uid="uid://wxw4i73hnndl" path="res://Scenes/Menu/character_menu/carousel_contianer.gd" id="1_mq0ai"]
+[ext_resource type="Texture2D" uid="uid://u5n3bml6ta68" path="res://Graphics/MenuSprites/factorybackround.jpg" id="2_dhbjd"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p3ags"]
+texture = ExtResource("2_dhbjd")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mq0ai"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dhbjd"]
+bg_color = Color(0.89316, 0, 0.175868, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p3ags"]
+bg_color = Color(0.872116, 0.490276, 3.85046e-07, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kw21e"]
+bg_color = Color(0.328774, 0.704515, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d8yma"]
+bg_color = Color(0.271241, 0.604315, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_joojo"]
+bg_color = Color(0.802682, 0.361821, 1, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_mq0ai"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vjrjg"]
+bg_color = Color(1, 0.694118, 0.145098, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6o7ab"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mq0ai"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p3ags"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vjrjg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dpxb1"]
+bg_color = Color(1, 0.694118, 0.145098, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6o7ab"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dhbjd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kw21e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d8yma"]
+
+[node name="CarouselConatianer" type="Node2D"]
+script = ExtResource("1_mq0ai")
+
+[node name="Panel" type="Panel" parent="."]
+offset_top = 5.0
+offset_right = 1152.0
+offset_bottom = 650.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_p3ags")
+
+[node name="CarouselConatianer" type="Node2D" parent="."]
+position = Vector2(515, 312)
+script = ExtResource("1_mq0ai")
+metadata/_custom_type_script = "uid://cvxpvaf4i6r0p"
+
+[node name="Control" type="Control" parent="CarouselConatianer"]
+custom_minimum_size = Vector2(400, 300)
+layout_mode = 3
+anchors_preset = 0
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+
+[node name="white" type="Panel" parent="CarouselConatianer/Control"]
+z_index = 1
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -340.0
+offset_top = -265.0
+offset_right = 60.0
+offset_bottom = 135.0
+grow_horizontal = 2
+pivot_offset = Vector2(20, 20)
+theme_override_styles/panel = SubResource("StyleBoxFlat_mq0ai")
+
+[node name="red" type="Panel" parent="CarouselConatianer/Control"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -340.0
+offset_top = -265.0
+offset_right = 60.0
+offset_bottom = 135.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dhbjd")
+
+[node name="orange" type="Panel" parent="CarouselConatianer/Control"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -340.0
+offset_top = -265.0
+offset_right = 60.0
+offset_bottom = 135.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_p3ags")
+
+[node name="green" type="Panel" parent="CarouselConatianer/Control"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -340.0
+offset_top = -265.0
+offset_right = 60.0
+offset_bottom = 135.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kw21e")
+
+[node name="blue" type="Panel" parent="CarouselConatianer/Control"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -340.0
+offset_top = -265.0
+offset_right = 60.0
+offset_bottom = 135.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_d8yma")
+
+[node name="Purple" type="Panel" parent="CarouselConatianer/Control"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -340.0
+offset_top = -265.0
+offset_right = 60.0
+offset_bottom = 135.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_joojo")
+
+[node name="right" type="Button" parent="CarouselConatianer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 353.0
+offset_top = 204.0
+offset_right = 394.0
+offset_bottom = 235.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(4.99999, 2.20001)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 0.694118, 0.145098, 1)
+theme_override_colors/font_focus_color = Color(1, 0.694118, 0.145098, 1)
+theme_override_fonts/font = SubResource("SystemFont_mq0ai")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vjrjg")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6o7ab")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_mq0ai")
+text = "Right"
+
+[node name="left" type="Button" parent="CarouselConatianer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -423.0
+offset_top = 210.0
+offset_right = -385.0
+offset_bottom = 241.0
+grow_vertical = 0
+scale = Vector2(4.99999, 2.20001)
+size_flags_horizontal = 0
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 0.694118, 0.145098, 1)
+theme_override_colors/font_color = Color(1, 0.694118, 0.145098, 1)
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_p3ags")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_vjrjg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dpxb1")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_6o7ab")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_dhbjd")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_kw21e")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_d8yma")
+text = "Left"
+
+[node name="select" type="Button" parent="CarouselConatianer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -79.0
+offset_top = 214.0
+offset_right = -33.0
+offset_bottom = 245.0
+grow_vertical = 0
+scale = Vector2(4.99999, 2.20001)
+size_flags_horizontal = 0
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 0.694118, 0.145098, 1)
+theme_override_colors/font_color = Color(1, 0.694118, 0.145098, 1)
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_p3ags")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_vjrjg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dpxb1")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_6o7ab")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_dhbjd")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_kw21e")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_d8yma")
+text = "Select"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(577, 325)
+
+[connection signal="pressed" from="CarouselConatianer/right" to="." method="_on_right_pressed"]
+[connection signal="pressed" from="CarouselConatianer/left" to="." method="_on_left_pressed"]
+[connection signal="pressed" from="CarouselConatianer/select" to="." method="_on_select_pressed"]

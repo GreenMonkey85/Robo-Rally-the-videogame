@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gpl3o1tii2f8"
-path="res://.godot/imported/roborallyboxart.jpg-b44b65ed218e187efe85db64ac577512.ctex"
+uid="uid://u5n3bml6ta68"
+path="res://.godot/imported/factorybackround.jpg-56700ecddcee0e1d5a00d2d39ba90be1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/roborallyboxart.jpg"
-dest_files=["res://.godot/imported/roborallyboxart.jpg-b44b65ed218e187efe85db64ac577512.ctex"]
+source_file="res://Graphics/MenuSprites/factorybackround.jpg"
+dest_files=["res://.godot/imported/factorybackround.jpg-56700ecddcee0e1d5a00d2d39ba90be1.ctex"]
 
 [params]
 

@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=4 uid="uid://tusxfgxdb0vf"]
 
-[ext_resource type="Texture2D" uid="uid://86rwcugu5fj" path="res://Graphics/BoardSprites/TilesetBoardElementsIsometric_Try7.png" id="1_jx1ki"]
+[ext_resource type="Texture2D" uid="uid://86rwcugu5fj" path="res://Graphics/BoardSprites/TilesetBoardElementsIsometric_Try7.png" id="1_1q67b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4x5sb"]
-texture = ExtResource("1_jx1ki")
+texture = ExtResource("1_1q67b")
 texture_region_size = Vector2i(852, 426)
 0:0/0 = 0
 1:0/0 = 0
@@ -62,7 +62,7 @@ tile_size = Vector2i(852, 426)
 sources/1 = SubResource("TileSetAtlasSource_4x5sb")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_akdcu"]
-texture = ExtResource("1_jx1ki")
+texture = ExtResource("1_1q67b")
 texture_region_size = Vector2i(852, 426)
 0:0/0 = 0
 1:0/0 = 0
@@ -123,7 +123,7 @@ tile_size = Vector2i(852, 426)
 sources/1 = SubResource("TileSetAtlasSource_akdcu")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r6n7n"]
-texture = ExtResource("1_jx1ki")
+texture = ExtResource("1_1q67b")
 texture_region_size = Vector2i(852, 426)
 0:0/0 = 0
 1:0/0 = 0

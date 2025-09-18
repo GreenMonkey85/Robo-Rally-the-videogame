@@ -4,10 +4,10 @@
 
 [resource]
 script = ExtResource("1_1tvw1")
-name = ""
-color = ""
-type = ""
-action = ""
+name = "RotateLeft"
+color = "Orange"
+type = "Movement"
+action = "Rotate"
 num_action = 0
 energy = 0
 metadata/_custom_type_script = "uid://dmlhld3u2rbe5"
