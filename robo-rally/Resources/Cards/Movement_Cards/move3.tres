@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://fvahargm8mwj"]
+
+[ext_resource type="Script" uid="uid://dmlhld3u2rbe5" path="res://Globals/card_data.gd" id="1_x2np8"]
+
+[resource]
+script = ExtResource("1_x2np8")
+name = "move3"
+character = ""
+type = "Movement"
+action = "Move"
+num_action = 3
+energy = 0
+metadata/_custom_type_script = "uid://dmlhld3u2rbe5"

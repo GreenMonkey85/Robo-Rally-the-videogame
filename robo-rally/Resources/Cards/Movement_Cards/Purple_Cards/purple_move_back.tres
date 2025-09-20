@@ -1,15 +1,15 @@
 [gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://bu7gbh1h34b44"]
 
 [ext_resource type="Script" uid="uid://dmlhld3u2rbe5" path="res://Globals/card_data.gd" id="1_4ynfr"]
-[ext_resource type="Texture2D" uid="uid://ho02tsu2wfer" path="res://Graphics/CardSprites/orange_cards/orange_move_back_card.png" id="2_sivjc"]
+[ext_resource type="Texture2D" uid="uid://cf7tgj3q63ugn" path="res://Graphics/CardSprites/purple_cards/hammer_bot_move_back_card.png" id="2_8f8s1"]
 
 [resource]
 script = ExtResource("1_4ynfr")
 name = "MoveBack"
-color = "Orange"
+color = "Purple"
 type = "Movement"
 action = "MoveBack"
 num_action = 1
-sprite = ExtResource("2_sivjc")
+sprite = ExtResource("2_8f8s1")
 energy = 0
 metadata/_custom_type_script = "uid://dmlhld3u2rbe5"

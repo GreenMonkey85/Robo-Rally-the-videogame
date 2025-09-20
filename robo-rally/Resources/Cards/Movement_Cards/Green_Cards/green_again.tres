@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://di4e3312m573t"]
+
+[ext_resource type="Script" uid="uid://dmlhld3u2rbe5" path="res://Globals/card_data.gd" id="1_khhpx"]
+[ext_resource type="Texture2D" uid="uid://ckrfu4f0tgkdv" path="res://Graphics/CardSprites/green_cards/green_again_card.png" id="2_du4es"]
+
+[resource]
+script = ExtResource("1_khhpx")
+name = "Again"
+color = "Green"
+type = "Movement"
+action = "Again"
+num_action = 1
+sprite = ExtResource("2_du4es")
+energy = 0
+metadata/_custom_type_script = "uid://dmlhld3u2rbe5"

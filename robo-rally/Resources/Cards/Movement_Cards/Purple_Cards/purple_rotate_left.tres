@@ -1,13 +1,15 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://cww3ndhcwu537"]
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://cww3ndhcwu537"]
 
 [ext_resource type="Script" uid="uid://dmlhld3u2rbe5" path="res://Globals/card_data.gd" id="1_0yqh1"]
+[ext_resource type="Texture2D" uid="uid://dfgie607ii01p" path="res://Graphics/CardSprites/purple_cards/hammer_bot_rotate_left_card.png" id="2_3cmhe"]
 
 [resource]
 script = ExtResource("1_0yqh1")
 name = "RotateLeft"
-color = "Orange"
+color = "Purple"
 type = "Movement"
-action = ""
-num_action = 0
+action = "RotateLeft"
+num_action = 1
+sprite = ExtResource("2_3cmhe")
 energy = 0
 metadata/_custom_type_script = "uid://dmlhld3u2rbe5"

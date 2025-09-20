@@ -1,13 +1,15 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://dl5asemuukmke"]
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://dl5asemuukmke"]
 
-[ext_resource type="Script" uid="uid://dmlhld3u2rbe5" path="res://Globals/card_data.gd" id="1_gpkwg"]
+[ext_resource type="Script" uid="uid://dmlhld3u2rbe5" path="res://Globals/card_data.gd" id="1_slyir"]
+[ext_resource type="Texture2D" uid="uid://bg2fbrcm2yoj2" path="res://Graphics/CardSprites/purple_cards/hammer_bot_rotate_right_card.png" id="2_p6c31"]
 
 [resource]
-script = ExtResource("1_gpkwg")
-name = ""
-color = ""
-type = ""
-action = ""
-num_action = 0
+script = ExtResource("1_slyir")
+name = "RotateRight"
+color = "Purple"
+type = "Movement"
+action = "RotateRight"
+num_action = 1
+sprite = ExtResource("2_p6c31")
 energy = 0
 metadata/_custom_type_script = "uid://dmlhld3u2rbe5"

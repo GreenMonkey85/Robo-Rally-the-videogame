@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://d5lmivxwqpkv"]
+
+[ext_resource type="Script" uid="uid://dmlhld3u2rbe5" path="res://Globals/card_data.gd" id="1_mvvef"]
+
+[resource]
+script = ExtResource("1_mvvef")
+name = "Uturn"
+color = "Orange"
+type = "Movement"
+action = "Uturn"
+num_action = 1
+energy = 0
+metadata/_custom_type_script = "uid://dmlhld3u2rbe5"
