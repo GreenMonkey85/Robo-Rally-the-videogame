@@ -120,7 +120,6 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_ubrqx")
 [node name="CarouselConatianer" type="Node2D" parent="."]
 position = Vector2(515, 312)
 script = SubResource("GDScript_ydcld")
-metadata/_custom_type_script = "uid://cvxpvaf4i6r0p"
 
 [node name="Control" type="Control" parent="CarouselConatianer"]
 custom_minimum_size = Vector2(400, 300)

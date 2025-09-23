@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://bacph7mj1m8rk"]
+
+[ext_resource type="Texture2D" uid="uid://4lyfiah6i4db" path="res://Graphics/CharacterSprites/HammerBotCorrectColorDownLeftFullSizeIdle.png" id="1_bgy28"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_evnmb"]
+atlas = ExtResource("1_bgy28")
+region = Rect2(0, 0, 1600, 1600)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6ofv"]
+atlas = ExtResource("1_bgy28")
+region = Rect2(1600, 0, 1600, 1600)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5174c"]
+atlas = ExtResource("1_bgy28")
+region = Rect2(3200, 0, 1600, 1600)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_725y5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_evnmb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6ofv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5174c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6ofv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_evnmb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jt6lu"]
+size = Vector2(175, 99.625)
+
+[node name="HammerBot" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, -246)
+scale = Vector2(0.3075, 0.301562)
+sprite_frames = SubResource("SpriteFrames_725y5")
+autoplay = "default"
+frame = 1
+frame_progress = 0.501409
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -154)
+shape = SubResource("RectangleShape2D_jt6lu")
