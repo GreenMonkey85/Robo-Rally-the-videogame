@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c70j47u45lv2p"]
+
+[ext_resource type="Script" uid="uid://b58ym0bn4741x" path="res://card_holder.gd" id="1_vurfw"]
+[ext_resource type="Texture2D" uid="uid://e1gurhwmxsaw" path="res://roborallyboxart.jpg" id="2_5mu46"]
+
+[node name="Card" type="Container"]
+custom_minimum_size = Vector2(105, 136)
+offset_left = 4.0
+offset_top = 84.0
+offset_right = 109.0
+offset_bottom = 220.0
+script = ExtResource("1_vurfw")
+
+[node name="cardBacks" type="Sprite2D" parent="."]
+position = Vector2(-4, -84)
+scale = Vector2(0.0884375, 0.113437)
+texture = ExtResource("2_5mu46")

@@ -1,11 +1,29 @@
-extends Panel
+extends Container
 
-var color: String
-var type: String
-var sprite: String
+@onready var card = preload("res://cardHolder.tscn")
+var startPosition
+var cardHighlighted = false
 
-func setData(color: String, type: String, sprite: String) -> void:
-	self.color = color
-	self.type = type
-	self.sprite = sprite
-	
+func _on_mouse_entered() -> void:
+	$Anim.play("Select")
+	cardHighlighted = true
+
+func _on_mouse_exited() -> void:
+	$Anim.play("Deselect")
+	cardHighlighted = false
+
+func _on_gui_input(event):
+	if (event is InputEventMouseButton) and (event.button_index == 1):
+		if event.button_mask == 1:
+			# pressed down
+			if cardHighlighted:
+				var cardTemp = card.instantiate()
+				get_tree().get_root().get_node("Board/CardHolder").add_child(cardTemp)
+				Game.cardSelected = true
+				if cardHighlighted:
+					self.get_child(0).hide()
+		elif event.button_mask == 0:
+			# press up
+			if !Game.mouseOnPlacement:
+				cardHighlighted = false
+				self.get_child(0).show()

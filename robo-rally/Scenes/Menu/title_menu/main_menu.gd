@@ -1,7 +1,7 @@
 extends Control
 
 func _on_play_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/Menu/character_menu/carousel_contianer.tscn")
+	get_tree().change_scene_to_file("res://carousel_contianer.tscn")
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()

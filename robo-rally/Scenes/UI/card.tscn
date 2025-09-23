@@ -1,23 +1,78 @@
-[gd_scene load_steps=3 format=3 uid="uid://b88gxysheppn4"]
+[gd_scene load_steps=7 format=3 uid="uid://di3vi2051asm8"]
 
-[ext_resource type="Texture2D" uid="uid://b0e7lealwg2ug" path="res://Graphics/CardSprites/card_back.png" id="1_4rsfq"]
+[ext_resource type="Script" uid="uid://d2jwdy18u6bp4" path="res://card.gd" id="1_rjlel"]
+[ext_resource type="Texture2D" uid="uid://e1gurhwmxsaw" path="res://roborallyboxart.jpg" id="2_q5obu"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4rsfq"]
+[sub_resource type="Animation" id="Animation_1i5pp"]
+resource_name = "Deselect"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("cardBacks:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.0333333, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(53, 24), Vector2(53, 68)]
+}
 
-[node name="Card" type="Panel"]
-custom_minimum_size = Vector2(200, 300)
-offset_right = 200.0
-offset_bottom = 300.0
-theme_override_styles/panel = SubResource("StyleBoxTexture_4rsfq")
+[sub_resource type="Animation" id="Animation_fpac0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("cardBacks:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(53, 68)]
+}
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-custom_minimum_size = Vector2(200, 300)
-layout_mode = 0
+[sub_resource type="Animation" id="Animation_e484p"]
+resource_name = "Select"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("cardBacks:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(53, 68), Vector2(53, 24)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pjytt"]
+_data = {
+&"Deselect": SubResource("Animation_1i5pp"),
+&"RESET": SubResource("Animation_fpac0"),
+&"Select": SubResource("Animation_e484p")
+}
+
+[node name="Card" type="Container"]
+custom_minimum_size = Vector2(105, 136)
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_rjlel")
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
-custom_minimum_size = Vector2(200, 300)
-layout_mode = 2
-texture = ExtResource("1_4rsfq")
-expand_mode = 4
+[node name="cardBacks" type="Sprite2D" parent="."]
+position = Vector2(53, 68)
+scale = Vector2(0.0884375, 0.113437)
+texture = ExtResource("2_q5obu")
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_pjytt")
+}
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
