@@ -75,6 +75,5 @@ func _update_target() -> void:
 func _on_select_pressed() -> void:
 	if panels.size() > 0:
 		print("Selected panel:", current_index, "->", panels[current_index].name)
-	else:
-		print("No panels found!")
+	get_tree().change_scene_to_file("res://board.tscn")
 	

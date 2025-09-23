@@ -30,10 +30,6 @@ func _ready() -> void:
 	right_button = get_node_or_null("right")
 	select_button = get_node_or_null("select")
 
-	if not control:
-		push_error("No Control node found inside CarouselConatianer")
-		return
-
 	for child in control.get_children():
 		if child is Panel:
 			panels.append(child)
@@ -48,8 +44,6 @@ func _ready() -> void:
 		right_button.pressed.connect(_on_right_pressed)
 	if select_button:
 		select_button.pressed.connect(_on_select_pressed)
-	else:
-		push_warning("Select button not found! Make sure the node path is correct.")
 
 	_update_target()
 
@@ -74,5 +68,4 @@ func _update_target() -> void:
 func _on_select_pressed() -> void:
 	if panels.size() > 0:
 		print("Selected panel:", current_index, "->", panels[current_index].name)
-	else:
-		print("No panels found!")
+	get_tree().change_scene_to_file("res://board_container.tscn")
