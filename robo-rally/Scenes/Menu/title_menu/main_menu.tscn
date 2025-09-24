@@ -1,10 +1,10 @@
 [gd_scene load_steps=15 format=3 uid="uid://1vvkykahwxyj"]
 
-[ext_resource type="Script" uid="uid://darw67xb5yfg" path="res://main_menu.gd" id="1_7vrkn"]
-[ext_resource type="Texture2D" uid="uid://e1gurhwmxsaw" path="res://roborallyboxart.jpg" id="2_7vrkn"]
+[ext_resource type="Script" uid="uid://b4fic4p5jbrao" path="res://Scenes/Menu/title_menu/main_menu.gd" id="1_7vrkn"]
+[ext_resource type="Texture2D" uid="uid://b1ocw1i6g7v8d" path="res://roborallyboxart.jpg" id="2_e4soa"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7vrkn"]
-texture = ExtResource("2_7vrkn")
+texture = ExtResource("2_e4soa")
 modulate_color = Color(0.728822, 0.728822, 0.728822, 1)
 
 [sub_resource type="SystemFont" id="SystemFont_7vrkn"]

@@ -64,8 +64,12 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_p3ags")
 
 [node name="CarouselConatianer" type="Node2D" parent="."]
 position = Vector2(515, 312)
+<<<<<<< HEAD
 script = SubResource("Resource_hfscs")
 metadata/_custom_type_script = "uid://cvxpvaf4i6r0p"
+=======
+script = ExtResource("1_mq0ai")
+>>>>>>> 69f30243088f89988cde9e1c6423ec1e8a1cec25
 
 [node name="Control" type="Control" parent="CarouselConatianer"]
 custom_minimum_size = Vector2(400, 300)
