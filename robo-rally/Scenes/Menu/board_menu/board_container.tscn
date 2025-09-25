@@ -1,6 +1,6 @@
-[gd_scene load_steps=22 format=3 uid="uid://b10y7fjdphs0x"]
+[gd_scene load_steps=22 format=3 uid="uid://cmu8poddwf7is"]
 
-[ext_resource type="Script" uid="uid://yac7oyoo6ogg" path="res://Scenes/Menu/board_menu/board_container.gd" id="1_uhclm"]
+[ext_resource type="Script" uid="uid://ochlxeulupaf" path="res://Scenes/Menu/board_menu/board_container.gd" id="1_uhclm"]
 [ext_resource type="Texture2D" uid="uid://3pv4libs5la8" path="res://Graphics/MenuSprites/chartoonrobo.webp" id="2_njhx4"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ubrqx"]

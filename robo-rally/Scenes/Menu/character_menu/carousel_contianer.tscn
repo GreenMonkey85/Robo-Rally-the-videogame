@@ -1,24 +1,19 @@
-[gd_scene load_steps=22 format=3 uid="uid://b8y1gia6ev711"]
+[gd_scene load_steps=21 format=3 uid="uid://c8i2ohpoyhl5k"]
 
-[ext_resource type="Texture2D" uid="uid://dqlllys04c55f" path="res://factorybackround.jpg" id="1_ib10e"]
-
-[sub_resource type="Resource" id="Resource_cqqsx"]
-metadata/__load_path__ = "res://Scenes/Menu/carousel_contianer.gd"
+[ext_resource type="Script" uid="uid://d2hkj8x160dl7" path="res://Scenes/Menu/character_menu/carousel_contianer.gd" id="1_mq0ai"]
+[ext_resource type="Texture2D" uid="uid://dqlllys04c55f" path="res://factorybackround.jpg" id="2_dhbjd"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p3ags"]
-texture = ExtResource("1_ib10e")
-
-[sub_resource type="Resource" id="Resource_hfscs"]
-metadata/__load_path__ = "res://Scenes/Menu/carousel_contianer.gd"
+texture = ExtResource("2_dhbjd")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mq0ai"]
 bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dhbjd"]
-bg_color = Color(0.945228, 0.0798428, 5.77569e-07, 1)
+bg_color = Color(0.89316, 0, 0.175868, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p3ags"]
-bg_color = Color(0.859339, 0.500188, 1.92523e-07, 1)
+bg_color = Color(0.872116, 0.490276, 3.85046e-07, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kw21e"]
 bg_color = Color(0.328774, 0.704515, 0, 1)
@@ -54,7 +49,7 @@ bg_color = Color(1, 0.694118, 0.145098, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d8yma"]
 
 [node name="CarouselConatianer" type="Node2D"]
-script = SubResource("Resource_cqqsx")
+script = ExtResource("1_mq0ai")
 
 [node name="Panel" type="Panel" parent="."]
 offset_top = 5.0
@@ -64,12 +59,7 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_p3ags")
 
 [node name="CarouselConatianer" type="Node2D" parent="."]
 position = Vector2(515, 312)
-<<<<<<< HEAD
-script = SubResource("Resource_hfscs")
-metadata/_custom_type_script = "uid://cvxpvaf4i6r0p"
-=======
 script = ExtResource("1_mq0ai")
->>>>>>> 69f30243088f89988cde9e1c6423ec1e8a1cec25
 
 [node name="Control" type="Control" parent="CarouselConatianer"]
 custom_minimum_size = Vector2(400, 300)

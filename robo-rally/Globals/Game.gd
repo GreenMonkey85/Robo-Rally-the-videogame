@@ -1,5 +1,9 @@
 extends Node
 
+
+var cardSelected
+var mouseOnPlacement = false
+
 var player_order = []
 var damage_cards = []
 var damage_discards = []

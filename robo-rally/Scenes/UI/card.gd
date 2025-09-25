@@ -1,6 +1,6 @@
 extends Container
 
-@onready var card = preload("res://cardHolder.tscn")
+@onready var card = preload("res://Scenes/UI/cardHolder.tscn")
 var startPosition
 var cardHighlighted = false
 
@@ -13,17 +13,38 @@ func _on_mouse_exited() -> void:
 	cardHighlighted = false
 
 func _on_gui_input(event):
-	if (event is InputEventMouseButton) and (event.button_index == 1):
-		if event.button_mask == 1:
-			# pressed down
-			if cardHighlighted:
-				var cardTemp = card.instantiate()
-				get_tree().get_root().get_node("Board/CardHolder").add_child(cardTemp)
-				Game.cardSelected = true
-				if cardHighlighted:
-					self.get_child(0).hide()
-		elif event.button_mask == 0:
-			# press up
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		# Mouse down
+		if event.pressed and cardHighlighted and !Game.cardSelected:
+			var holder = get_tree().get_root().get_node("Board/CardHolder")
+
+			# Make sure holder is empty
+			for c in holder.get_children():
+				c.queue_free()
+
+			# Spawn one drag card
+			var dragCard = card.instantiate()
+			holder.add_child(dragCard)
+
+			Game.cardSelected = true
+			self.get_child(0).hide()  # hide card in hand
+
+		# Mouse up
+		elif !event.pressed and Game.cardSelected:
+			var holder = get_tree().get_root().get_node("Board/CardHolder")
+
 			if !Game.mouseOnPlacement:
-				cardHighlighted = false
+				# Not placed on board
+				for c in holder.get_children():
+					c.queue_free()
 				self.get_child(0).show()
+			else:
+				#place on board
+				self.queue_free()
+				get_node("../../CardPlacement").placeCard()
+				for i in get_tree().get_root().get_node("Board/CardHolder").get_child_count():
+					#does not work if cards are different
+					get_tree().get_root().get_node("Board/CardHolder").get_child(i).queue_free()
+					
+
+			Game.cardSelected = false

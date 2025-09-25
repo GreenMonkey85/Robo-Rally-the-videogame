@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dkj1iuptryte5"]
 
-[ext_resource type="Script" uid="uid://c13w2rbdiget4" path="res://card_register.gd" id="1_x33sn"]
+[ext_resource type="Script" uid="uid://ccqyc126bd6p5" path="res://Scenes/UI/card_register.gd" id="1_x33sn"]
 
 [node name="cardRegister" type="Control"]
 layout_mode = 3

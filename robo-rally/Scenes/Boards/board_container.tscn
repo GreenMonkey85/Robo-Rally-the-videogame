@@ -1,8 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://ckq48u62phkh2"]
+[gd_scene load_steps=22 format=3 uid="uid://btykp0yhh0smk"]
 
-[ext_resource type="Script" uid="uid://cvxpvaf4i6r0p" path="res://carousel_contianer.gd" id="1_njhx4"]
-[ext_resource type="Script" uid="uid://c04o58vmqeptx" path="res://board_container.gd" id="1_uhclm"]
-[ext_resource type="Texture2D" uid="uid://dlf5mh2dlys1l" path="res://chartoonrobo.webp" id="2_njhx4"]
+[ext_resource type="Script" uid="uid://d2hkj8x160dl7" path="res://Scenes/Menu/character_menu/carousel_contianer.gd" id="1_njhx4"]
+[ext_resource type="Script" uid="uid://ochlxeulupaf" path="res://Scenes/Menu/board_menu/board_container.gd" id="1_uhclm"]
+[ext_resource type="Texture2D" uid="uid://0sgeqg5maaad" path="res://chartoonrobo.webp" id="2_njhx4"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ubrqx"]
 texture = ExtResource("2_njhx4")
@@ -62,7 +62,6 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_ubrqx")
 [node name="CarouselConatianer" type="Node2D" parent="."]
 position = Vector2(515, 312)
 script = ExtResource("1_njhx4")
-metadata/_custom_type_script = "uid://cvxpvaf4i6r0p"
 
 [node name="Control" type="Control" parent="CarouselConatianer"]
 custom_minimum_size = Vector2(400, 300)

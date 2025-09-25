@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c70j47u45lv2p"]
 
-[ext_resource type="Script" uid="uid://b58ym0bn4741x" path="res://card_holder.gd" id="1_vurfw"]
-[ext_resource type="Texture2D" uid="uid://e1gurhwmxsaw" path="res://roborallyboxart.jpg" id="2_5mu46"]
+[ext_resource type="Script" uid="uid://ddvfcdlx6g74x" path="res://Scenes/UI/card_holder.gd" id="1_vurfw"]
+[ext_resource type="Texture2D" uid="uid://b1ocw1i6g7v8d" path="res://roborallyboxart.jpg" id="2_5mu46"]
 
 [node name="Card" type="Container"]
 custom_minimum_size = Vector2(105, 136)
