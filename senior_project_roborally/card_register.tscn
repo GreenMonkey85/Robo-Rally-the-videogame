@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c13w2rbdiget4" path="res://card_register.gd" id="1_x33sn"]
 
-[node name="cardRegister" type="Control"]
+[node name="CardPlacement" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

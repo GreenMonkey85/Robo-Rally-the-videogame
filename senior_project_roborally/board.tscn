@@ -8,35 +8,35 @@
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="cardContainer" type="HBoxContainer" parent="UI"]
-offset_left = 241.0
-offset_top = 497.0
-offset_right = 782.0
-offset_bottom = 633.0
+[node name="cardHolder" type="HBoxContainer" parent="UI"]
+offset_left = 206.0
+offset_top = 525.0
+offset_right = 747.0
+offset_bottom = 727.0
 script = ExtResource("2_jqgjh")
 
-[node name="Card" parent="UI/cardContainer" instance=ExtResource("3_vf5bc")]
+[node name="Card" parent="UI/cardHolder" instance=ExtResource("3_vf5bc")]
 layout_mode = 2
 
-[node name="Card2" parent="UI/cardContainer" instance=ExtResource("3_vf5bc")]
+[node name="Card2" parent="UI/cardHolder" instance=ExtResource("3_vf5bc")]
 layout_mode = 2
 
-[node name="Card3" parent="UI/cardContainer" instance=ExtResource("3_vf5bc")]
+[node name="Card3" parent="UI/cardHolder" instance=ExtResource("3_vf5bc")]
 layout_mode = 2
 
-[node name="Card4" parent="UI/cardContainer" instance=ExtResource("3_vf5bc")]
+[node name="Card4" parent="UI/cardHolder" instance=ExtResource("3_vf5bc")]
 layout_mode = 2
 
-[node name="Card5" parent="UI/cardContainer" instance=ExtResource("3_vf5bc")]
+[node name="Card5" parent="UI/cardHolder" instance=ExtResource("3_vf5bc")]
 layout_mode = 2
 
-[node name="cardRegister" parent="UI" instance=ExtResource("4_jqgjh")]
-offset_left = 217.0
-offset_top = 36.0
-offset_right = 290.0
-offset_bottom = 295.0
+[node name="CardPlacement" parent="UI" instance=ExtResource("4_jqgjh")]
+offset_left = 225.0
+offset_top = 48.0
+offset_right = 225.0
+offset_bottom = 48.0
 
 [node name="CardHolder" type="Node" parent="."]
 
-[connection signal="mouse_entered" from="UI/cardContainer" to="UI/cardContainer" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/cardContainer" to="UI/cardContainer" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/cardHolder" to="UI/cardHolder" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/cardHolder" to="UI/cardHolder" method="_on_mouse_exited"]
