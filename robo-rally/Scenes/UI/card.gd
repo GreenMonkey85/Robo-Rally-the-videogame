@@ -1,4 +1,4 @@
-extends Container
+extends Container 
 
 @onready var card = preload("res://Scenes/UI/cardHolder.tscn")
 var startPosition
@@ -18,18 +18,15 @@ func _on_gui_input(event):
 		if event.pressed and cardHighlighted and !Game.cardSelected:
 			var holder = get_tree().get_root().get_node("Board/CardHolder")
 
-			# Make sure holder is empty
 			for c in holder.get_children():
 				c.queue_free()
-
-			# Spawn one drag card
-			var dragCard = card.instantiate()
-			holder.add_child(dragCard)
+				
+			var cardTemp = card.instantiate()
+			holder.add_child(cardTemp)
 
 			Game.cardSelected = true
 			self.get_child(0).hide()  # hide card in hand
 
-		# Mouse up
 		elif !event.pressed and Game.cardSelected:
 			var holder = get_tree().get_root().get_node("Board/CardHolder")
 

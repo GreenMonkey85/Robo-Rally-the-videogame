@@ -1,6 +1,17 @@
 extends HBoxContainer
 
-@onready var card = preload("res://cardOnBoard.tscn")
+var startPosition
+var maxCardsAllowed = 9
+
+
+func _ready():
+	self.size.x = maxCardsAllowed*105
+	self.pivot_offset.x = maxCardsAllowed*52.5
+	var projectionResolution = ProjectSettings.get_setting("display/window/size/viewport_width")
+	var projectionResolutionHeight = ProjectSettings.get_setting("display/window/size/viewport_height")
+	self.global_position.x = projectionResolution/4
+	self.global_position.y = (projectionResolutionHeight) - 60
+	startPosition = self.position
 
 func _on_mouse_entered() -> void:
 	Game.mouseOnPlacement = true
@@ -9,10 +20,3 @@ func _on_mouse_entered() -> void:
 func _on_mouse_exited() -> void:
 	Game.mouseOnPlacement = false
 	
-
-func placeCard():
-	var cardTemp = card.card_instantiate()
-	var projectionResolution = ProjectSettings.get_setting("display/window/size/viewport_width")
-	var projectResolutionHeight = ProjectSettings.get_setting("display/window/size/viewport_height")
-	cardTemp.global_position = Vector2(projectionResolution/2, projectResolutionHeight/2) - self.position
-	add_child(cardTemp)

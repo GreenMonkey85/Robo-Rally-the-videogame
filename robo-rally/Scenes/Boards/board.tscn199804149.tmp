@@ -30,7 +30,7 @@ layout_mode = 2
 [node name="Card5" parent="UI/cardContainer" instance=ExtResource("3_vf5bc")]
 layout_mode = 2
 
-[node name="CardPlacement" parent="UI" instance=ExtResource("4_jqgjh")]
+[node name="cardPlacement" parent="UI" instance=ExtResource("4_jqgjh")]
 offset_left = 217.0
 offset_top = 36.0
 offset_right = 290.0
