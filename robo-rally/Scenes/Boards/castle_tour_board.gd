@@ -1,20 +1,122 @@
 extends Node2D
 
-
-#@onready var hammer : CharacterBody2D = $HammerBot
-#@onready var p1cam : Camera2D = $HammerBot/P1Camera
+@onready var robot : CharacterBody2D = $Robot
+@onready var p1cam : Camera2D = $Robot/P1Camera
 
 #startinglocation_x = (grid_x - grid_y) * (tile_width / 2)
 #startinglocation_y = (grid_x + grid_y) * (tile_height / 2)
-# number 1 on castle tour is (-3, -1) according to bottom left
+
+@onready var hammer_x = 0
+@onready var hammer_y = 0
+@onready var hammer_direction = "bl"
+@onready var hammer_shutdown = false
+
+@onready var hammer_animationPlayer : AnimationPlayer = $Robot/Sprite2D/AnimationPlayer
+
+@onready var walls = { # start space is (0,0). up is x-1,y-1. down is x+1,y+1. left is x-1,y+1. right is x+1,y-1.
+	'bl': [Vector2(-3,1), Vector2(1, 7), Vector2(-1,11), Vector2(-6,14), Vector2(-10, 8), Vector2(-8,4)],
+	'br': [Vector2(-1,-1), Vector2(0,-2), Vector2(1, -3), Vector2(-1,1), Vector2(3,3), Vector2(4,2), Vector2(5,1)],
+	'tl': [Vector2(0,0), Vector2(1,-1), Vector2(2,-2), Vector2(0,2), Vector2(4,4), Vector2(5,3), Vector2(6,2)],
+	'tr': [Vector2(-4,2), Vector2(0,8), Vector2(-2,12), Vector2(-7,13), Vector2(-11,9), Vector2(-9,5)],
+}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
-	#var tween = create_tween()
-	#tween.tween_property(hammer, "position", Vector2(-852, -1704), 1)
+	robot.position = move_hammer(hammer_x, hammer_y)
+	change_idle()
 
+func change_idle() -> void:
+	hammer_animationPlayer.play(hammer_direction + "_idle")
+
+# shuts down the robot: inputs will not work while shut down
+func shutdown() -> void:
+	if hammer_shutdown:
+		change_idle()
+		hammer_shutdown = false
+	else:
+		hammer_animationPlayer.play(hammer_direction + "_shutdown")
+		hammer_shutdown = true
+
+# uses current direction of robot and turn input to turn in the correct direction
+func turn_hammer(dir) -> void:
+	if dir == 'left':
+		match hammer_direction:
+			'bl':
+				hammer_direction = 'br'
+			'br':
+				hammer_direction = 'tr'
+			'tr':
+				hammer_direction = 'tl'
+			'tl':
+				hammer_direction = 'bl'
+			_:
+				print('BAD DIRECTION, NOT REAL')
+	else:
+		match hammer_direction:
+			'bl':
+				hammer_direction = 'tl'
+			'tl':
+				hammer_direction = 'tr'
+			'tr':
+				hammer_direction = 'br'
+			'br':
+				hammer_direction = 'bl'
+			_:
+				print('BAD DIRECTION, NOT REAL')
+	# restores idle
+	change_idle()
+
+# moves the hammerbot on the board, uses the arrow keys
+func move_hammer(x, y) -> Vector2:
+	hammer_x = x
+	var hammer_pixel_x = (x - 0) * (852 / 2)
+	hammer_y = y 
+	var hammer_pixel_y = (y + 0) * (426 / 2)
+	return Vector2(hammer_pixel_x, hammer_pixel_y)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+func _unhandled_input(event: InputEvent) -> void:
+	# For moving forward or backward from a card, can find the direction the robot
+	# is facing and do that movement. movement side to side is included for the 
+	# sake of the conveyor belts and pushing. My suggestion would be to have the 
+	# robot moving into the space triggers the robot already moving to move out of 
+	# the way, and if theres a wall blocking them then they never move at all.
+	
+	print("start on: " + str(hammer_x) + ", " + str(hammer_y))
+	# check if shutdown, if so then no input will work except to exit shutdown
+	if hammer_shutdown:
+		if event.is_action_pressed("ui-shutdown"):
+			shutdown()
+		return
+		
+	# MOVEMENT
+	if event.is_action_pressed("ui_up") && Vector2(hammer_x, hammer_y) not in walls['tl']:
+		var hammer_tween = create_tween()
+		hammer_tween.tween_property(robot, "position", move_hammer(hammer_x - 1, hammer_y - 1), 1)
+	elif event.is_action_pressed("ui_down") && Vector2(hammer_x, hammer_y) not in walls['br']:
+		var hammer_tween = create_tween()
+		hammer_tween.tween_property(robot, "position", move_hammer(hammer_x + 1, hammer_y + 1), 1)
+	elif event.is_action_pressed("ui_right") && Vector2(hammer_x, hammer_y) not in walls['tr']:
+		var hammer_tween = create_tween()
+		hammer_tween.tween_property(robot, "position", move_hammer(hammer_x + 1, hammer_y - 1), 1)
+	elif event.is_action_pressed("ui_left") && Vector2(hammer_x, hammer_y) not in walls['bl']:
+		var hammer_tween = create_tween()
+		hammer_tween.tween_property(robot, "position", move_hammer(hammer_x - 1, hammer_y + 1), 1)
+		
+	# TURNING
+	elif event.is_action_pressed("ui-turn-left"):
+		turn_hammer('left')
+	elif event.is_action_pressed("ui-turn-right"):
+		turn_hammer('right')
+		
+	# SHUTDOWN
+	elif event.is_action_pressed("ui-shutdown"):
+		shutdown()
+		
+	# FIRE LASER To be added
+	#elif event.is_action_pressed("ui-laser"):
+		#hammer_animationPlayer.play(hammer_direction + "_laser")
+	print("now on: " + str(hammer_x) + ", " + str(hammer_y))

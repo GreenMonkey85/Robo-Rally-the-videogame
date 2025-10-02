@@ -25,6 +25,7 @@ var current_temporary_upgrades = []
 var upgrades_in_hand = []
 var register = []
 
+
 func decision():
 	pass
 
