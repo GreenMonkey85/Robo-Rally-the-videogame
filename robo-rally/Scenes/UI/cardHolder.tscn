@@ -1,15 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c70j47u45lv2p"]
 
-[ext_resource type="Texture2D" uid="uid://e1gurhwmxsaw" path="res://roborallyboxart.jpg" id="2_5mu46"]
-
-[sub_resource type="GDScript" id="GDScript_2vurk"]
-script/source = "extends Container
-
-var cardHeld = \"\"
-
-func _process(delta):
-	self.global_position = get_global_mouse_position()
-"
+[ext_resource type="Script" uid="uid://ddvfcdlx6g74x" path="res://Scenes/UI/card_holder.gd" id="1_vurfw"]
+[ext_resource type="Texture2D" uid="uid://b1ocw1i6g7v8d" path="res://roborallyboxart.jpg" id="2_5mu46"]
 
 [node name="Card" type="Container"]
 custom_minimum_size = Vector2(105, 136)
@@ -17,7 +9,7 @@ offset_left = 4.0
 offset_top = 84.0
 offset_right = 109.0
 offset_bottom = 220.0
-script = SubResource("GDScript_2vurk")
+script = ExtResource("1_vurfw")
 
 [node name="cardBacks" type="Sprite2D" parent="."]
 position = Vector2(-4, -84)

@@ -1,7 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://b8y1gia6ev711"]
+[gd_scene load_steps=21 format=3 uid="uid://c8i2ohpoyhl5k"]
 
-[ext_resource type="Script" uid="uid://wxw4i73hnndl" path="res://Scenes/Menu/character_menu/carousel_contianer.gd" id="1_mq0ai"]
-[ext_resource type="Texture2D" uid="uid://u5n3bml6ta68" path="res://Graphics/MenuSprites/factorybackround.jpg" id="2_dhbjd"]
+[ext_resource type="Script" uid="uid://d2hkj8x160dl7" path="res://Scenes/Menu/character_menu/carousel_contianer.gd" id="1_mq0ai"]
+[ext_resource type="Texture2D" uid="uid://dqlllys04c55f" path="res://factorybackround.jpg" id="2_dhbjd"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p3ags"]
 texture = ExtResource("2_dhbjd")
@@ -52,7 +52,7 @@ bg_color = Color(1, 0.694118, 0.145098, 1)
 script = ExtResource("1_mq0ai")
 
 [node name="Panel" type="Panel" parent="."]
-offset_top = 5.0
+offset_left = -1.0
 offset_right = 1152.0
 offset_bottom = 650.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_p3ags")

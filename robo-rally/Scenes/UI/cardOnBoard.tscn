@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://di3vi2051asm8"]
+[gd_scene load_steps=6 format=3 uid="uid://7t6gd24tnoa5"]
 
-[ext_resource type="Script" uid="uid://ck5rbdkro4wwl" path="res://Scenes/UI/card.gd" id="1_rjlel"]
-[ext_resource type="Texture2D" uid="uid://b1ocw1i6g7v8d" path="res://roborallyboxart.jpg" id="2_q5obu"]
+[ext_resource type="Texture2D" uid="uid://b1ocw1i6g7v8d" path="res://roborallyboxart.jpg" id="2_11nir"]
 
 [sub_resource type="Animation" id="Animation_1i5pp"]
 resource_name = "Deselect"
@@ -61,18 +60,13 @@ _data = {
 custom_minimum_size = Vector2(105, 136)
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("1_rjlel")
 
 [node name="cardBacks" type="Sprite2D" parent="."]
 position = Vector2(53, 68)
 scale = Vector2(0.0884375, 0.113437)
-texture = ExtResource("2_q5obu")
+texture = ExtResource("2_11nir")
 
 [node name="Anim" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_pjytt")
 }
-
-[connection signal="gui_input" from="." to="." method="_on_gui_input"]
-[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

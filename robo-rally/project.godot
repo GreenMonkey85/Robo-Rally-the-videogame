@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Robo Rally"
-run/main_scene="uid://c1ti0b4ek3ejw"
+run/main_scene="uid://1vvkykahwxyj"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="uid://deg2efx0kgia5"
+
+[autoload]
+
+Game="*res://Globals/game.gd"
 
 [display]
 

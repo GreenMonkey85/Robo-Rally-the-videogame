@@ -5,3 +5,4 @@ class_name Deck
 
 func shuffle():
 	cards.shuffle()
+# UNUSED SCRIPT
