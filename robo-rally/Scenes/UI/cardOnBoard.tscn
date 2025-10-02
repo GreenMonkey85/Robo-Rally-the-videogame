@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://7t6gd24tnoa5"]
 
-[ext_resource type="Texture2D" uid="uid://e1gurhwmxsaw" path="res://roborallyboxart.jpg" id="2_11nir"]
+[ext_resource type="Texture2D" uid="uid://b1ocw1i6g7v8d" path="res://roborallyboxart.jpg" id="2_11nir"]
 
 [sub_resource type="Animation" id="Animation_1i5pp"]
 resource_name = "Deselect"
