@@ -1,34 +1,21 @@
 [gd_scene load_steps=4 format=3 uid="uid://dn5hupf8jy56y"]
 
-[ext_resource type="Script" uid="uid://dsdd02ifnfw2k" path="res://Scenes/UI/card_container.gd" id="2_jqgjh"]
-[ext_resource type="PackedScene" uid="uid://di3vi2051asm8" path="res://Scenes/UI/card.tscn" id="3_vf5bc"]
+[ext_resource type="Script" uid="uid://bg0u2i1ylq8m5" path="res://Scenes/Boards/board.gd" id="1_yw4va"]
+[ext_resource type="Script" uid="uid://ck5rbdkro4wwl" path="res://Scenes/UI/card.gd" id="2_lcf50"]
 [ext_resource type="PackedScene" uid="uid://dkj1iuptryte5" path="res://Scenes/UI/card_register.tscn" id="4_jqgjh"]
 
 [node name="Board" type="Node"]
+script = ExtResource("1_yw4va")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="cardContainer" type="HBoxContainer" parent="UI"]
-offset_left = 241.0
-offset_top = 497.0
-offset_right = 782.0
-offset_bottom = 633.0
-script = ExtResource("2_jqgjh")
-
-[node name="Card" parent="UI/cardContainer" instance=ExtResource("3_vf5bc")]
-layout_mode = 2
-
-[node name="Card2" parent="UI/cardContainer" instance=ExtResource("3_vf5bc")]
-layout_mode = 2
-
-[node name="Card3" parent="UI/cardContainer" instance=ExtResource("3_vf5bc")]
-layout_mode = 2
-
-[node name="Card4" parent="UI/cardContainer" instance=ExtResource("3_vf5bc")]
-layout_mode = 2
-
-[node name="Card5" parent="UI/cardContainer" instance=ExtResource("3_vf5bc")]
-layout_mode = 2
+[node name="cardHolder" type="HBoxContainer" parent="UI"]
+offset_left = 64.0
+offset_top = 508.0
+offset_right = 849.0
+offset_bottom = 644.0
+theme_override_constants/separation = -20
+script = ExtResource("2_lcf50")
 
 [node name="CardPlacement" parent="UI" instance=ExtResource("4_jqgjh")]
 offset_left = 217.0
@@ -36,7 +23,17 @@ offset_top = 36.0
 offset_right = 290.0
 offset_bottom = 295.0
 
+[node name="DrawPile" type="Button" parent="UI/CardPlacement"]
+layout_mode = 0
+offset_left = -412.73
+offset_top = 368.788
+offset_right = -326.73
+offset_bottom = 522.788
+text = "Draw
+Cards"
+
 [node name="CardHolder" type="Node" parent="."]
 
-[connection signal="mouse_entered" from="UI/cardContainer" to="UI/cardContainer" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/cardContainer" to="UI/cardContainer" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/cardHolder" to="UI/cardHolder" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/cardHolder" to="UI/cardHolder" method="_on_mouse_exited"]
+[connection signal="pressed" from="UI/CardPlacement/DrawPile" to="." method="_on_draw_button_pressed"]

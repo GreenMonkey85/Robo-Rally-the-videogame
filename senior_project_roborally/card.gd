@@ -46,5 +46,4 @@ func _on_gui_input(event):
 					#does not work if cards are different
 					get_tree().get_root().get_node("Board/CardHolder").get_child(i).queue_free()
 					
-
 			Game.cardSelected = false
