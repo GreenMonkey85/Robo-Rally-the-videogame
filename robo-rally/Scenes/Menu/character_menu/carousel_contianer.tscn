@@ -52,7 +52,7 @@ bg_color = Color(1, 0.694118, 0.145098, 1)
 script = ExtResource("1_mq0ai")
 
 [node name="Panel" type="Panel" parent="."]
-offset_top = 5.0
+offset_left = -1.0
 offset_right = 1152.0
 offset_bottom = 650.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_p3ags")

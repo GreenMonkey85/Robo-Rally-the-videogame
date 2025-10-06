@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dr7v28yqeqqfi"
-path="res://.godot/imported/HammerBotFullSizeSpriteSheet.png-937745560a9aa63884fb57fb31ef56c3.ctex"
+uid="uid://bv2gwim4b4g8y"
+path="res://.godot/imported/HammerBotFullSizeSpriteSheet-Try2.png-6fc608bc51ed3391091b9270f72a517d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/CharacterSprites/HammerBotFullSizeSpriteSheet.png"
-dest_files=["res://.godot/imported/HammerBotFullSizeSpriteSheet.png-937745560a9aa63884fb57fb31ef56c3.ctex"]
+source_file="res://Graphics/CharacterSprites/HammerBotFullSizeSpriteSheet-Try2.png"
+dest_files=["res://.godot/imported/HammerBotFullSizeSpriteSheet-Try2.png-6fc608bc51ed3391091b9270f72a517d.ctex"]
 
 [params]
 

@@ -3,4 +3,5 @@
 [ext_resource type="Script" uid="uid://bshxq2bxnfxr8" path="res://Scenes/Characters/robot.gd" id="1_t8ybn"]
 
 [node name="Robot" type="CharacterBody2D"]
+motion_mode = 1
 script = ExtResource("1_t8ybn")
