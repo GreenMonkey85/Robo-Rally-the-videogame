@@ -20,7 +20,7 @@ func action_round():
 		# loop through each player with respect to order
 		for j in range(len(player_order)):
 			# current player moves
-			player_order[j].call(registers[j][i].Action)
+			player_order[j].handle_action(registers[j][i], )
 		# double conveyers
 		# single conveyer
 		# push panels
@@ -53,9 +53,12 @@ func start_game(player_list, chosen_board):
 	player_order = player_list.shuffle()
 	for i in range(len(player_order)):
 		registers.append(null)
-
-
-
-
 	decision_round()
+
 	
+func draw_a_card(card_deck, card_discard):
+	if card_deck <= 0:
+		card_deck.append_array(card_discard)
+		card_discard.clear()
+		card_deck.shuffle()
+	return card_deck.pop_front()
