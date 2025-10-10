@@ -14,9 +14,18 @@ func _ready():
 	startPosition = self.position
 
 func _on_mouse_entered() -> void:
-	Game.mouseOnPlacement = true
+	var target_poition = startPosition + Vector2(0, -100)
+	var tween = get_tree().create_tween()
+	var tween2 = get_tree().create_tween()
+	tween.tween_property(self, "position", target_poition, 0.2)
+	tween2.tween_property(self, "scale", Vector2(1.3,1.3), 0.2)
 
 
 func _on_mouse_exited() -> void:
-	Game.mouseOnPlacement = false
+	if !Game.cardSelected:
+		var target_poition = startPosition + Vector2(0, -100)
+	var tween = get_tree().create_tween()
+	var tween2 = get_tree().create_tween()
+	tween.tween_property(self, "position", startPosition, 0.2)
+	tween2.tween_property(self, "scale", Vector2(1,1), 0.2)
 	
