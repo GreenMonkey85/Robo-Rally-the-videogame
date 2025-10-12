@@ -1,15 +1,21 @@
 extends Container
 
-@onready var card = preload("res://cardHolder.tscn")
+@onready var card = preload("res://Scenes/UI/cardHolder.tscn")
 var startPosition
 var cardHighlighted = false
+var anim: AnimationPlayer  # Add this variable to hold your AnimationPlayer
+
+func _ready():
+	anim = get_node("Anim")  # Cache the AnimationPlayer
 
 func _on_mouse_entered() -> void:
-	$Anim.play("Select")
+	if anim:
+		anim.play("Select")
 	cardHighlighted = true
 
 func _on_mouse_exited() -> void:
-	$Anim.play("Deselect")
+	if anim:
+		anim.play("Deselect")
 	cardHighlighted = false
 
 func _on_gui_input(event):
@@ -39,11 +45,10 @@ func _on_gui_input(event):
 					c.queue_free()
 				self.get_child(0).show()
 			else:
-				#place on board
+				# Place on board
 				self.queue_free()
 				get_node("../../CardPlacement").placeCard()
-				for i in get_tree().get_root().get_node("Board/CardHolder").get_child_count():
-					#does not work if cards are different
-					get_tree().get_root().get_node("Board/CardHolder").get_child(i).queue_free()
-					
+				for i in range(holder.get_child_count()):
+					holder.get_child(i).queue_free()
+
 			Game.cardSelected = false

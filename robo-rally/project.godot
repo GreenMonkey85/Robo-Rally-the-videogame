@@ -23,8 +23,6 @@ Game="*res://Globals/game.gd"
 
 window/stretch/mode="viewport"
 
-<<<<<<< HEAD
-=======
 [input]
 
 ui-turn-left={
@@ -43,7 +41,6 @@ ui-shutdown={
 ]
 }
 
->>>>>>> 08485a9281c96793c1cd54daa5e623f05d1e6fa1
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

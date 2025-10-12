@@ -2,6 +2,7 @@ extends Node
 
 var cardSelected
 var mouseOnPlacement = false
+var currentPlacement = null
 
 var player_order = []
 var damage_cards = []
