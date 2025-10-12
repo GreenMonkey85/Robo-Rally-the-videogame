@@ -51,6 +51,7 @@ func _on_all_decided(player, register):
 
 func start_game(player_list, chosen_board):
 	player_order = player_list.shuffle()
+	
 	for i in range(len(player_order)):
 		registers.append(null)
 	decision_round()
