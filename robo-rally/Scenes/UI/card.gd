@@ -1,9 +1,8 @@
 extends Container
 
 @onready var card = preload("res://Scenes/UI/cardHolder.tscn")
-var startPosition
 var cardHighlighted = false
-var anim: AnimationPlayer  # Add this variable to hold your AnimationPlayer
+var anim: AnimationPlayer
 
 func _ready():
 	anim = get_node("Anim")  # Cache the AnimationPlayer
@@ -20,10 +19,10 @@ func _on_mouse_exited() -> void:
 
 func _on_gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		var holder = get_tree().get_root().get_node("Board/CardHolder")
+
 		# Mouse down
 		if event.pressed and cardHighlighted and !Game.cardSelected:
-			var holder = get_tree().get_root().get_node("Board/CardHolder")
-
 			# Make sure holder is empty
 			for c in holder.get_children():
 				c.queue_free()
@@ -37,18 +36,19 @@ func _on_gui_input(event):
 
 		# Mouse up
 		elif !event.pressed and Game.cardSelected:
-			var holder = get_tree().get_root().get_node("Board/CardHolder")
-
-			if !Game.mouseOnPlacement:
-				# Not placed on board
+			# Check if the mouse is over a placement slot
+			if Game.currentPlacement != null and !Game.currentPlacement.occupied:
+				# Place card on the hovered CardPlacement
+				Game.currentPlacement.placeCard()
+				self.queue_free()  # remove the card from hand after placement
+			else:
+				# Return to hand if slot is occupied or not over a placement
 				for c in holder.get_children():
 					c.queue_free()
 				self.get_child(0).show()
-			else:
-				# Place on board
-				self.queue_free()
-				get_node("../../CardPlacement").placeCard()
-				for i in range(holder.get_child_count()):
-					holder.get_child(i).queue_free()
+
+			# Clear drag card
+			for c in holder.get_children():
+				c.queue_free()
 
 			Game.cardSelected = false

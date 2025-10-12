@@ -9,7 +9,7 @@ func _ready():
 	self.pivot_offset.x = maxCardsAllowed*52.5
 	var projectionResolution = ProjectSettings.get_setting("display/window/size/viewport_width")
 	var projectionResolutionHeight = ProjectSettings.get_setting("display/window/size/viewport_height")
-	self.global_position.x = projectionResolution/12
+	self.global_position.x = projectionResolution/8
 	self.global_position.y = (projectionResolutionHeight) - 60
 	startPosition = self.position
 
