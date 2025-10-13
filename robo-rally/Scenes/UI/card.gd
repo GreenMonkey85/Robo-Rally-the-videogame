@@ -6,6 +6,7 @@ var anim: AnimationPlayer
 
 func _ready():
 	anim = get_node("Anim")  # Cache the AnimationPlayer
+	
 
 func _on_mouse_entered() -> void:
 	if anim:

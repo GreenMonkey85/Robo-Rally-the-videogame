@@ -3,6 +3,8 @@ extends CharacterBody2D
 var player: String
 var character: String
 
+var UI;
+
 signal player_decision_end
 
 var energy = 3
@@ -33,6 +35,7 @@ func decision_start():
 			discard.clear()
 			deck.shuffle()
 		cards_in_hand.append(deck.pop_front())
+		
 	cards_in_hand.sort()
 	
 func decision_end():
@@ -67,7 +70,9 @@ func PowerUp(num_actions):
 
 
 func _ready() -> void:
-	#
+	
+	UI = get_node("res://Scenes/UI/board.tscn")
+	
 	player_decision_end.connect(Callable(self, "_on_all_decided"))
 	
 	# Create deck of cards for specific characterand set correct sprite for each

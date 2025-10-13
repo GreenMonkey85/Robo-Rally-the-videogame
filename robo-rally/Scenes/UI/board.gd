@@ -32,6 +32,10 @@ func _ready() -> void:
 	card_container.mouse_entered.connect(_on_mouse_entered)
 	card_container.mouse_exited.connect(_on_mouse_exited)
 
+func draw_animation(card: CardData):
+	var new_card: Object = CARD_SCENE.instantiate()
+	new_card.get_node("Sprite").texture = card.sprite
+	card_container.add_child(new_card)
 
 func _on_draw_button_pressed() -> void:
 	if not CARD_SCENE or not card_container:
@@ -43,7 +47,6 @@ func _on_draw_button_pressed() -> void:
 	for i in range(max_cards_allowed):
 		var new_card = CARD_SCENE.instantiate()
 		card_container.add_child(new_card)
-
 
 func _on_mouse_entered() -> void:
 	var tween = get_tree().create_tween()
