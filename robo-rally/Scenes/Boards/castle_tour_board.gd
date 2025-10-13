@@ -69,9 +69,9 @@ func turn_hammer(dir) -> void:
 # moves the hammerbot on the board, uses the arrow keys
 func move_hammer(x, y) -> Vector2:
 	hammer_x = x
-	var hammer_pixel_x = (x - 0) * (852 / 2)
+	var hammer_pixel_x = x * (852 / 2)
 	hammer_y = y 
-	var hammer_pixel_y = (y + 0) * (426 / 2)
+	var hammer_pixel_y = y * (426 / 2)
 	return Vector2(hammer_pixel_x, hammer_pixel_y)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
