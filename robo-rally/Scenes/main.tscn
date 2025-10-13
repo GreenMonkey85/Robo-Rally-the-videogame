@@ -7,4 +7,4 @@
 
 [node name="CastleTourBoard" parent="." instance=ExtResource("1_bo1nx")]
 
-[node name="UI" parent="." instance=ExtResource("2_8gbba")]
+[node name="Board" parent="." instance=ExtResource("2_8gbba")]
