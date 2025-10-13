@@ -1,20 +1,17 @@
 [gd_scene load_steps=6 format=3 uid="uid://dn5hupf8jy56y"]
-[gd_scene load_steps=6 format=3 uid="uid://dn5hupf8jy56y"]
 
 [ext_resource type="Script" uid="uid://dsdd02ifnfw2k" path="res://Scenes/UI/card_container.gd" id="1_uh3b8"]
 [ext_resource type="Script" uid="uid://bg0u2i1ylq8m5" path="res://Scenes/UI/board.gd" id="1_yw4va"]
+[ext_resource type="Script" uid="uid://ck5rbdkro4wwl" path="res://Scenes/UI/card.gd" id="2_lcf50"]
+[ext_resource type="PackedScene" uid="uid://di3vi2051asm8" path="res://Scenes/UI/card.tscn" id="2_shhme"]
 [ext_resource type="PackedScene" uid="uid://dkj1iuptryte5" path="res://Scenes/UI/card_register.tscn" id="3_s4i1f"]
-[ext_resource type="Texture2D" uid="uid://c5fyodtfexbbk" path="res://Scenes/Menu/board_menu/Screenshot 2025-10-11 151015.png" id="4_shhme"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s4i1f"]
-texture = ExtResource("4_shhme")
 
 [node name="Board" type="Node"]
 script = ExtResource("1_yw4va")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="cardHolder" type="HBoxContainer" parent="UI"]
+[node name="cardContainer" type="HBoxContainer" parent="UI"]
 offset_left = 241.0
 offset_top = 497.0
 offset_right = 782.0
@@ -42,12 +39,16 @@ offset_right = 144.0
 offset_bottom = -106.0
 scale = Vector2(0.164765, 0.33996)
 
-[node name="CardPlacement4" parent="UI" instance=ExtResource("3_s4i1f")]
-offset_left = 625.0
-offset_top = 37.0
-offset_right = 294.0
-offset_bottom = -106.0
-scale = Vector2(0.164765, 0.33996)
+[node name="Card5" parent="UI/cardContainer" instance=ExtResource("2_shhme")]
+layout_mode = 2
+
+[node name="cardHolder" type="HBoxContainer" parent="UI"]
+offset_left = 64.0
+offset_top = 508.0
+offset_right = 849.0
+offset_bottom = 644.0
+theme_override_constants/separation = -20
+script = ExtResource("2_lcf50")
 
 [node name="CardPlacement5" parent="UI" instance=ExtResource("3_s4i1f")]
 offset_left = 774.0
