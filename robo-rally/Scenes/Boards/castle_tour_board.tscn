@@ -216,7 +216,3 @@ scale = Vector2(0.356563, 0.3225)
 position = Vector2(1229.25, -1635.25)
 scale = Vector2(0.356563, 0.3225)
 shape = SubResource("RectangleShape2D_cy5jx")
-
-[node name="P1Camera" type="Camera2D" parent="."]
-position = Vector2(-251, -430)
-zoom = Vector2(0.1, 0.1)

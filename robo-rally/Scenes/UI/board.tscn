@@ -8,10 +8,13 @@
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s4i1f"]
 texture = ExtResource("4_shhme")
 
-[node name="Board" type="Node"]
+[node name="Board" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_yw4va")
 
 [node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("1_yw4va")
 
 [node name="cardHolder" type="HBoxContainer" parent="UI"]
 offset_left = 241.0
@@ -64,15 +67,15 @@ scale = Vector2(1, 1.03509)
 text = "Draw
 Cards"
 
-[node name="CardHolder" type="Node" parent="."]
-
-[node name="Panel" type="Panel" parent="."]
+[node name="Register" type="Panel" parent="."]
 offset_left = 165.0
 offset_top = 4.0
 offset_right = 205.0
 offset_bottom = 44.0
 scale = Vector2(18.7723, 2.42443)
 theme_override_styles/panel = SubResource("StyleBoxTexture_s4i1f")
+
+[node name="CardHolder" type="Node" parent="."]
 
 [node name="Confirm" type="Button" parent="."]
 offset_left = 954.0
@@ -82,10 +85,5 @@ offset_bottom = 51.0
 scale = Vector2(2.0969, 2.16005)
 text = "Confirm"
 
-[connection signal="gui_input" from="UI/CardPlacement1" to="." method="_on_gui_input"]
-[connection signal="gui_input" from="UI/CardPlacement2" to="." method="_on_gui_input"]
-[connection signal="gui_input" from="UI/CardPlacement3" to="." method="_on_gui_input"]
-[connection signal="gui_input" from="UI/CardPlacement4" to="." method="_on_gui_input"]
-[connection signal="gui_input" from="UI/CardPlacement5" to="." method="_on_gui_input"]
 [connection signal="pressed" from="UI/DrawPile" to="." method="_on_draw_button_pressed"]
 [connection signal="pressed" from="Confirm" to="." method="_on_confirm_pressed"]

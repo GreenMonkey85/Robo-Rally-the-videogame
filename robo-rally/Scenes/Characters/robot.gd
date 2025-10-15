@@ -13,8 +13,6 @@ var direction = "bl"
 var x_dir_mult = -1
 var y_dir_mult = 1
 
-var UI;
-
 signal player_decision_end
 
 var energy = 3
@@ -138,9 +136,7 @@ func change_xy_dir():
 			y_dir_mult = -1
 
 func _ready() -> void:
-	
-	UI = get_node("res://Scenes/UI/board.tscn")
-	
+		
 	player_decision_end.connect(Callable(self, "_on_all_decided"))
 	
 	# Create deck of cards for specific characterand set correct sprite for each
