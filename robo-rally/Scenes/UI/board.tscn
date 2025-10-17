@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dn5hupf8jy56y"]
+[gd_scene load_steps=6 format=3 uid="uid://d2d1me4p3bnlg"]
 
 [ext_resource type="Script" uid="uid://dsdd02ifnfw2k" path="res://Scenes/UI/card_container.gd" id="1_uh3b8"]
 [ext_resource type="Script" uid="uid://bg0u2i1ylq8m5" path="res://Scenes/UI/board.gd" id="1_yw4va"]
@@ -14,7 +14,6 @@ anchors_preset = 0
 script = ExtResource("1_yw4va")
 
 [node name="UI" type="CanvasLayer" parent="."]
-script = ExtResource("1_yw4va")
 
 [node name="cardHolder" type="HBoxContainer" parent="UI"]
 offset_left = 241.0
@@ -68,6 +67,7 @@ text = "Draw
 Cards"
 
 [node name="Register" type="Panel" parent="."]
+layout_mode = 0
 offset_left = 165.0
 offset_top = 4.0
 offset_right = 205.0
@@ -78,6 +78,7 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_s4i1f")
 [node name="CardHolder" type="Node" parent="."]
 
 [node name="Confirm" type="Button" parent="."]
+layout_mode = 0
 offset_left = 954.0
 offset_top = 20.0
 offset_right = 1025.0

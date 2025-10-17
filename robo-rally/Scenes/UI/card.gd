@@ -7,7 +7,6 @@ var holder = null
 
 func _ready():
 	anim = get_node("Anim")  # Cache the AnimationPlayer
-	
 
 func _on_mouse_entered() -> void:
 	if anim:
@@ -21,9 +20,9 @@ func _on_mouse_exited() -> void:
 
 func _on_gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+
 		# Mouse down
 		if event.pressed and cardHighlighted and !Game.cardSelected:
-			
 			# Make sure holder is empty
 			for c in holder.get_children():
 				c.queue_free()

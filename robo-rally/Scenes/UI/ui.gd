@@ -1,10 +1,10 @@
-extends CanvasLayer
+extends Control
 
 const CARD_SCENE: PackedScene = preload("res://Scenes/UI/Card.tscn")
 
-@onready var draw_button: Button = $DrawPile
-@onready var confirm_button: Button = $Confirm
-@onready var card_container: HBoxContainer = $cardHolder
+@onready var draw_button: Button = $UI/DrawPile
+@onready var confirm_button: Button = $UI/Confirm
+@onready var card_container: HBoxContainer = $UI/cardHolder
 
 var max_cards_allowed: int = 9
 var start_position: Vector2
@@ -35,7 +35,6 @@ func _ready() -> void:
 func draw_animation(card: CardData):
 	var new_card: Object = CARD_SCENE.instantiate()
 	new_card.get_node("Sprite").texture = card.sprite
-	new_card.holder = $cardHolder
 	card_container.add_child(new_card)
 
 func _on_draw_button_pressed() -> void:
@@ -44,28 +43,26 @@ func _on_draw_button_pressed() -> void:
 
 	for c in card_container.get_children():
 		c.queue_free()
-	
+
 	for i in range(max_cards_allowed):
 		var new_card = CARD_SCENE.instantiate()
-		new_card.holder = $cardHolder
+		new_card.holder = $UI/CardHolder
 		card_container.add_child(new_card)
-	print("Card Drawn")
 
 func _on_mouse_entered() -> void:
-	var tween = $cardHolder.create_tween()
+	var tween = get_tree().create_tween()
 	tween.tween_property(card_container, "position", start_position + Vector2(0, -100), 0.2)
 	tween.tween_property(card_container, "scale", Vector2(1.1, 1.1), 0.2)
 
-
 func _on_mouse_exited() -> void:
 	if not (Engine.has_singleton("Game") and Game.cardSelected):
-		var tween = $cardHolder.create_tween()
+		var tween = get_tree().create_tween()
 		tween.tween_property(card_container, "position", start_position, 0.2)
 		tween.tween_property(card_container, "scale", Vector2(1, 1), 0.2)
-
 
 func _on_confirm_pressed() -> void:
 	if not card_container:
 		return
 	for card in card_container.get_children():
 		card.queue_free()
+		$UI/Register.visible = false

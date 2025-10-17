@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dp3tdhc38xfij"]
 
 [ext_resource type="PackedScene" uid="uid://tusxfgxdb0vf" path="res://Scenes/Boards/castle_tour_board.tscn" id="1_bo1nx"]
-[ext_resource type="PackedScene" uid="uid://cceyy4ctq7vij" path="res://Scenes/UI/ui.tscn" id="2_bo1nx"]
+[ext_resource type="PackedScene" uid="uid://db43epk154m7p" path="res://Scenes/UI/ui.tscn" id="2_bo1nx"]
 
 [node name="Main" type="Node2D"]
 

@@ -234,3 +234,4 @@ hframes = 28
 libraries = {
 &"": SubResource("AnimationLibrary_lxs48")
 }
+autoplay = "bl_idle"

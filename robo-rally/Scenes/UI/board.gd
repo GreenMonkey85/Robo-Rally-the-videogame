@@ -2,7 +2,7 @@ extends Node
 
 const CARD_SCENE: PackedScene = preload("res://Scenes/UI/Card.tscn")
 
-@onready var draw_button: Button = $UI/CardPlacement/DrawPile
+@onready var draw_button: Button = $UI/DrawPile
 @onready var confirm_button: Button = $UI/ConfirmButton
 @onready var card_container: HBoxContainer = $UI/cardHolder
 
@@ -38,7 +38,6 @@ func draw_animation(card: CardData):
 	card_container.add_child(new_card)
 
 func _on_draw_button_pressed() -> void:
-	print(not CARD_SCENE or not card_container)
 	if not CARD_SCENE or not card_container:
 		return
 
@@ -47,7 +46,7 @@ func _on_draw_button_pressed() -> void:
 
 	for i in range(max_cards_allowed):
 		var new_card = CARD_SCENE.instantiate()
-		new_card.holder = $UI/cardHolder
+		new_card.holder = $CardHolder
 		card_container.add_child(new_card)
 
 func _on_mouse_entered() -> void:
