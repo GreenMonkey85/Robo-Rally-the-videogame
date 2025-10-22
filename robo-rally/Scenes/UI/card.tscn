@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://di3vi2051asm8"]
 
-[ext_resource type="Script" uid="uid://ck5rbdkro4wwl" path="res://Scenes/UI/card.gd" id="1_rjlel"]
+[ext_resource type="Script" uid="uid://brrvggirhrj8g" path="res://Scenes/UI/card.gd" id="1_rjlel"]
 [ext_resource type="Texture2D" uid="uid://b1ocw1i6g7v8d" path="res://roborallyboxart.jpg" id="2_q5obu"]
 
 [sub_resource type="Animation" id="Animation_1i5pp"]
@@ -9,7 +9,7 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("cardBacks:position")
+tracks/0/path = NodePath("Sprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -24,7 +24,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("cardBacks:position")
+tracks/0/path = NodePath("Sprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -40,7 +40,7 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("cardBacks:position")
+tracks/0/path = NodePath("Sprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -63,7 +63,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_rjlel")
 
-[node name="cardBacks" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(53, 68)
 scale = Vector2(0.0884375, 0.113437)
 texture = ExtResource("2_q5obu")

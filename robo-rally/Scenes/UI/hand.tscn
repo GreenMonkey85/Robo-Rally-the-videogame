@@ -1,5 +1,56 @@
-[gd_scene format=3 uid="uid://3yymu7jwv37y"]
+[gd_scene load_steps=5 format=3 uid="uid://dn5g76c0xgiqs"]
 
-[node name="Hand" type="HBoxContainer"]
-offset_right = 1150.0
-offset_bottom = 164.0
+[ext_resource type="Script" uid="uid://dsdd02ifnfw2k" path="res://Scenes/UI/card_container.gd" id="1_uib2b"]
+[ext_resource type="PackedScene" uid="uid://di3vi2051asm8" path="res://Scenes/UI/card.tscn" id="2_lbc2q"]
+[ext_resource type="Script" uid="uid://brrvggirhrj8g" path="res://Scenes/UI/card.gd" id="3_qt4c8"]
+[ext_resource type="PackedScene" uid="uid://dkj1iuptryte5" path="res://Scenes/UI/card_register.tscn" id="4_oyywm"]
+
+[node name="UI" type="CanvasLayer"]
+
+[node name="cardContainer" type="HBoxContainer" parent="."]
+offset_left = 241.0
+offset_top = 497.0
+offset_right = 782.0
+offset_bottom = 633.0
+script = ExtResource("1_uib2b")
+
+[node name="Card" parent="cardContainer" instance=ExtResource("2_lbc2q")]
+layout_mode = 2
+
+[node name="Card2" parent="cardContainer" instance=ExtResource("2_lbc2q")]
+layout_mode = 2
+
+[node name="Card3" parent="cardContainer" instance=ExtResource("2_lbc2q")]
+layout_mode = 2
+
+[node name="Card4" parent="cardContainer" instance=ExtResource("2_lbc2q")]
+layout_mode = 2
+
+[node name="Card5" parent="cardContainer" instance=ExtResource("2_lbc2q")]
+layout_mode = 2
+
+[node name="cardHolder" type="HBoxContainer" parent="."]
+offset_left = 64.0
+offset_top = 508.0
+offset_right = 849.0
+offset_bottom = 644.0
+theme_override_constants/separation = -20
+script = ExtResource("3_qt4c8")
+
+[node name="CardPlacement" parent="." instance=ExtResource("4_oyywm")]
+offset_left = 217.0
+offset_top = 36.0
+offset_right = 290.0
+offset_bottom = 295.0
+
+[node name="DrawPile" type="Button" parent="CardPlacement"]
+layout_mode = 0
+offset_left = -412.73
+offset_top = 368.788
+offset_right = -326.73
+offset_bottom = 522.788
+text = "Draw
+Cards"
+
+[connection signal="mouse_entered" from="cardHolder" to="cardHolder" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="cardHolder" to="cardHolder" method="_on_mouse_exited"]

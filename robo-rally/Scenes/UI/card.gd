@@ -3,6 +3,7 @@ extends Container
 @onready var card = preload("res://Scenes/UI/cardHolder.tscn")
 var cardHighlighted = false
 var anim: AnimationPlayer
+var holder = null
 
 func _ready():
 	anim = get_node("Anim")  # Cache the AnimationPlayer
@@ -19,7 +20,6 @@ func _on_mouse_exited() -> void:
 
 func _on_gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		var holder = get_tree().get_root().get_node("Board/CardHolder")
 
 		# Mouse down
 		if event.pressed and cardHighlighted and !Game.cardSelected:

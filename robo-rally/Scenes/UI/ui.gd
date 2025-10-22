@@ -1,9 +1,9 @@
-extends Node
+extends Control
 
 const CARD_SCENE: PackedScene = preload("res://Scenes/UI/Card.tscn")
 
 @onready var draw_button: Button = $UI/DrawPile
-@onready var confirm_button: Button = $UI/ConfirmButton
+@onready var confirm_button: Button = $UI/Confirm
 @onready var card_container: HBoxContainer = $UI/cardHolder
 
 var max_cards_allowed: int = 9
@@ -46,7 +46,7 @@ func _on_draw_button_pressed() -> void:
 
 	for i in range(max_cards_allowed):
 		var new_card = CARD_SCENE.instantiate()
-		new_card.holder = $CardHolder
+		new_card.holder = $UI/CardHolder
 		card_container.add_child(new_card)
 
 func _on_mouse_entered() -> void:
@@ -65,3 +65,4 @@ func _on_confirm_pressed() -> void:
 		return
 	for card in card_container.get_children():
 		card.queue_free()
+		$UI/Register.visible = false

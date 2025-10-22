@@ -1,10 +1,18 @@
-[gd_scene load_steps=21 format=3 uid="uid://c8i2ohpoyhl5k"]
+[gd_scene load_steps=23 format=3 uid="uid://c8i2ohpoyhl5k"]
 
 [ext_resource type="Script" uid="uid://d2hkj8x160dl7" path="res://Scenes/Menu/character_menu/carousel_contianer.gd" id="1_mq0ai"]
 [ext_resource type="Texture2D" uid="uid://dqlllys04c55f" path="res://factorybackround.jpg" id="2_dhbjd"]
+[ext_resource type="PackedScene" uid="uid://dbd46rq7u3tct" path="res://Scenes/Characters/Twonky.tscn" id="3_hfscs"]
+[ext_resource type="PackedScene" uid="uid://dvxw10jolhqca" path="res://Scenes/Characters/HammerBot.tscn" id="4_ut2ur"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p3ags"]
 texture = ExtResource("2_dhbjd")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d8yma"]
+bg_color = Color(0.271241, 0.604315, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p3ags"]
+bg_color = Color(0.872116, 0.490276, 3.85046e-07, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mq0ai"]
 bg_color = Color(1, 1, 1, 1)
@@ -12,14 +20,8 @@ bg_color = Color(1, 1, 1, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dhbjd"]
 bg_color = Color(0.89316, 0, 0.175868, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p3ags"]
-bg_color = Color(0.872116, 0.490276, 3.85046e-07, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kw21e"]
 bg_color = Color(0.328774, 0.704515, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d8yma"]
-bg_color = Color(0.271241, 0.604315, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_joojo"]
 bg_color = Color(0.802682, 0.361821, 1, 1)
@@ -69,6 +71,40 @@ offset_left = -20.0
 offset_right = 20.0
 offset_bottom = 40.0
 
+[node name="blue" type="Panel" parent="CarouselConatianer/Control"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -340.0
+offset_top = -265.0
+offset_right = 60.0
+offset_bottom = 135.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_d8yma")
+
+[node name="Twonky" parent="CarouselConatianer/Control/blue" instance=ExtResource("3_hfscs")]
+position = Vector2(199, 198)
+scale = Vector2(0.3, 0.3)
+
+[node name="orange" type="Panel" parent="CarouselConatianer/Control"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -340.0
+offset_top = -265.0
+offset_right = 60.0
+offset_bottom = 135.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_p3ags")
+
+[node name="Sprite2D" parent="CarouselConatianer/Control/orange" instance=ExtResource("4_ut2ur")]
+position = Vector2(196, 194)
+scale = Vector2(0.2, 0.2)
+
 [node name="white" type="Panel" parent="CarouselConatianer/Control"]
 z_index = 1
 custom_minimum_size = Vector2(200, 200)
@@ -97,19 +133,6 @@ offset_bottom = 135.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_dhbjd")
 
-[node name="orange" type="Panel" parent="CarouselConatianer/Control"]
-custom_minimum_size = Vector2(200, 200)
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -340.0
-offset_top = -265.0
-offset_right = 60.0
-offset_bottom = 135.0
-grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_p3ags")
-
 [node name="green" type="Panel" parent="CarouselConatianer/Control"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 1
@@ -122,19 +145,6 @@ offset_right = 60.0
 offset_bottom = 135.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_kw21e")
-
-[node name="blue" type="Panel" parent="CarouselConatianer/Control"]
-custom_minimum_size = Vector2(200, 200)
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -340.0
-offset_top = -265.0
-offset_right = 60.0
-offset_bottom = 135.0
-grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_d8yma")
 
 [node name="Purple" type="Panel" parent="CarouselConatianer/Control"]
 custom_minimum_size = Vector2(200, 200)
