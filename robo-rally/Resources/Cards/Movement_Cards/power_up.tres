@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://b05guxi3jk0wm"]
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://b05guxi3jk0wm"]
 
 [ext_resource type="Script" uid="uid://dmlhld3u2rbe5" path="res://Globals/card_data.gd" id="1_g5uin"]
+[ext_resource type="Texture2D" uid="uid://bfet2w1ki6845" path="res://Graphics/CardSprites/robby_cards/robby_power_up_card.png" id="2_4cxap"]
 
 [resource]
 script = ExtResource("1_g5uin")
@@ -9,5 +10,6 @@ character = ""
 type = "Movement"
 action = "PowerUp"
 num_action = 1
+sprite = ExtResource("2_4cxap")
 energy = 1
 metadata/_custom_type_script = "uid://dmlhld3u2rbe5"

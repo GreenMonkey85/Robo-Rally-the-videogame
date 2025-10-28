@@ -67,8 +67,7 @@ func Move(num_actions):
 	new_pos.tween_property(self, "position", Vector2(pos_x * PIXEL_X, pos_y * PIXEL_Y), 1)
 
 func Again(num_actions):
-	for i in range(num_actions):
-		call(last_move, num_actions)
+	call(last_move, num_actions)
 
 func Rotate(num_actions):
 	if num_actions == 0:

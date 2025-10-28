@@ -4,6 +4,7 @@ extends Container
 var cardHighlighted = false
 var anim: AnimationPlayer
 var holder = null
+var cardData: CardData = null
 
 func _ready():
 	anim = get_node("Anim")  # Cache the AnimationPlayer

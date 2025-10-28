@@ -6,6 +6,8 @@ const CARD_SCENE: PackedScene = preload("res://Scenes/UI/Card.tscn")
 @onready var confirm_button: Button = $UI/Confirm
 @onready var card_container: HBoxContainer = $UI/cardHolder
 
+var robot = preload("res://Scenes/Characters/robot.tscn")
+
 var max_cards_allowed: int = 9
 var start_position: Vector2
 
@@ -34,6 +36,7 @@ func _ready() -> void:
 
 func draw_animation(card: CardData):
 	var new_card: Object = CARD_SCENE.instantiate()
+	new_card.holder = $UI/CardHolder
 	new_card.get_node("Sprite").texture = card.sprite
 	card_container.add_child(new_card)
 
