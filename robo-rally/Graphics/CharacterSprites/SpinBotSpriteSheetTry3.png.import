@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccbjrufr5bd4f"
-path="res://.godot/imported/SpinBotSpriteSheetFullSize.png-8ce0427415102d4687f9692e0dc751f6.ctex"
+uid="uid://btvtj0u0n5dnp"
+path="res://.godot/imported/SpinBotSpriteSheetTry3.png-2d5663382a30ef10faedbcc9d2d24089.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/CharacterSprites/SpinBotSpriteSheetFullSize.png"
-dest_files=["res://.godot/imported/SpinBotSpriteSheetFullSize.png-8ce0427415102d4687f9692e0dc751f6.ctex"]
+source_file="res://Graphics/CharacterSprites/SpinBotSpriteSheetTry3.png"
+dest_files=["res://.godot/imported/SpinBotSpriteSheetTry3.png-2d5663382a30ef10faedbcc9d2d24089.ctex"]
 
 [params]
 
