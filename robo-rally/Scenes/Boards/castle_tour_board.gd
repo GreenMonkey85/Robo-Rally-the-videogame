@@ -21,9 +21,9 @@ extends Node2D
 }
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	robot.position = move_hammer(hammer_x, hammer_y)
-	change_idle()
+#func _ready() -> void:
+	#robot.position = move_hammer(hammer_x, hammer_y)
+	#change_idle()
 
 func change_idle() -> void:
 	hammer_animationPlayer.play(hammer_direction + "_idle")

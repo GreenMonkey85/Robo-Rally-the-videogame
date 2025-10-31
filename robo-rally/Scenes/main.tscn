@@ -1,14 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://dp3tdhc38xfij"]
 
+[ext_resource type="Script" uid="uid://cfh7gxcdobvus" path="res://Scenes/main.gd" id="1_8gbba"]
 [ext_resource type="PackedScene" uid="uid://tusxfgxdb0vf" path="res://Scenes/Boards/castle_tour_board.tscn" id="1_bo1nx"]
-[ext_resource type="PackedScene" uid="uid://db43epk154m7p" path="res://Scenes/UI/ui.tscn" id="2_bo1nx"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_8gbba")
 
 [node name="CastleTourBoard" parent="." instance=ExtResource("1_bo1nx")]
 
 [node name="P1Camera" type="Camera2D" parent="."]
 position = Vector2(-251, -430)
 zoom = Vector2(0.1, 0.1)
-
-[node name="UI" parent="." instance=ExtResource("2_bo1nx")]

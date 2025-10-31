@@ -44,11 +44,15 @@ func decision_start():
 			deck = discard
 			discard.clear()
 			deck.shuffle()
-		cards_in_hand.append(deck.pop_front())
+		var new_card = deck.pop_front()
+		cards_in_hand.append(new_card)
+		$UI.draw_animation(new_card)
 		
 	cards_in_hand.sort()
 
 func decision_end():
+	for i in $UI/Register.get_children():
+		pass
 	for i in cards_in_hand:
 		if i.Type == "Movement":
 			discard.append(cards_in_hand.pop_at(i))
@@ -133,6 +137,15 @@ func change_xy_dir():
 		"tr":
 			x_dir_mult = 1
 			y_dir_mult = -1
+			
+func set_character(character):
+	self.character = character
+	for card: CardData in deck:
+		card.character = character
+		card.sprite = load("res://Graphics/CardSprites/%s_cards/%s_%s_card.png"
+							 % [character.to_lower(), character.to_lower(), card.name])
+	var sprite = load("res://Scenes/Characters/%s.tscn" % [character]).instantiate()
+	add_child(sprite)
 
 func _ready() -> void:
 		
@@ -145,4 +158,4 @@ func _ready() -> void:
 							 % [character.to_lower(), character.to_lower(), card.name])
 
 	# Shuffle cards
-	deck.shuffle()
+	deck.shuffle() 

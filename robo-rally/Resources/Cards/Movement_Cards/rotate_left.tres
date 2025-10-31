@@ -1,7 +1,6 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://lk0d6lgnia8f"]
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://lk0d6lgnia8f"]
 
 [ext_resource type="Script" uid="uid://dmlhld3u2rbe5" path="res://Globals/card_data.gd" id="1_gpn2h"]
-[ext_resource type="Texture2D" uid="uid://sjhy2koddmmc" path="res://Graphics/CardSprites/robby_cards/robby_rotate_left_card.png" id="2_ie1x5"]
 
 [resource]
 script = ExtResource("1_gpn2h")
@@ -10,6 +9,5 @@ character = ""
 type = "Movement"
 action = "RotateLeft"
 num_action = 1
-sprite = ExtResource("2_ie1x5")
 energy = 0
 metadata/_custom_type_script = "uid://dmlhld3u2rbe5"

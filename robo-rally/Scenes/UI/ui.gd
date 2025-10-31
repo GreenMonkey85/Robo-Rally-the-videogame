@@ -6,8 +6,6 @@ const CARD_SCENE: PackedScene = preload("res://Scenes/UI/Card.tscn")
 @onready var confirm_button: Button = $UI/Confirm
 @onready var card_container: HBoxContainer = $UI/cardHolder
 
-var robot = preload("res://Scenes/Characters/robot.tscn")
-
 var max_cards_allowed: int = 9
 var start_position: Vector2
 

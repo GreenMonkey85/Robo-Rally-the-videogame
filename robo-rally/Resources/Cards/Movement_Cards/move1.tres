@@ -1,7 +1,6 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://bproe4u16rtyu"]
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://bproe4u16rtyu"]
 
 [ext_resource type="Script" uid="uid://dmlhld3u2rbe5" path="res://Globals/card_data.gd" id="1_u1uqg"]
-[ext_resource type="Texture2D" uid="uid://bamcaohl41g72" path="res://Graphics/CardSprites/robby_cards/robby_move1_card.png" id="2_5hux4"]
 
 [resource]
 script = ExtResource("1_u1uqg")
@@ -10,6 +9,5 @@ character = ""
 type = "Movement"
 action = "Move"
 num_action = 1
-sprite = ExtResource("2_5hux4")
 energy = 0
 metadata/_custom_type_script = "uid://dmlhld3u2rbe5"

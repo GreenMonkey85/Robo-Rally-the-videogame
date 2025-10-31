@@ -1,5 +1,11 @@
 extends Node
 
+const TITLE_MENU = preload("res://Scenes/Menu/title_menu/main_menu.tscn")
+const CHARACTER_MENU = preload("res://Scenes/Menu/character_menu/carousel_contianer.tscn")
+const BOARD_MENU = preload("res://Scenes/Menu/board_menu/board_container.tscn")
+
+
+
 var cardSelected
 var mouseOnPlacement = false
 var currentPlacement = null
@@ -56,7 +62,6 @@ func start_game(player_list, chosen_board):
 	for i in range(len(player_order)):
 		registers.append(null)
 	decision_round()
-
 	
 func draw_a_card(card_deck, card_discard):
 	if card_deck <= 0:
