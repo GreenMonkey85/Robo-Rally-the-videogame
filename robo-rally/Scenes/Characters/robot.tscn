@@ -11,8 +11,7 @@ motion_mode = 1
 script = ExtResource("1_t8ybn")
 
 [node name="RobotCollision" type="CollisionShape2D" parent="."]
-position = Vector2(1229.25, -1635.25)
-scale = Vector2(0.356563, 0.3225)
+scale = Vector2(0.3, 0.3)
 shape = SubResource("RectangleShape2D_w6gft")
 
 [node name="UI" parent="." instance=ExtResource("2_67qda")]

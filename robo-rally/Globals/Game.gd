@@ -4,6 +4,7 @@ const TITLE_MENU = preload("res://Scenes/Menu/title_menu/main_menu.tscn")
 const CHARACTER_MENU = preload("res://Scenes/Menu/character_menu/carousel_contianer.tscn")
 const BOARD_MENU = preload("res://Scenes/Menu/board_menu/board_container.tscn")
 
+var current_board = null
 
 
 var cardSelected
@@ -40,7 +41,7 @@ func action_round():
 
 func decision_round():
 	for player in player_order:
-		player.decision()
+		player.decision_start()
 	timer.start(60.0)
 
 func _on_all_decided(player, register):

@@ -1,5 +1,13 @@
 extends Node2D
 
+const WORLD_POS_ORIGIN = Vector2(1235.0, -1650.0)
+const PIXEL_X = (852 / 2)
+const PIXEL_Y = (426 / 2)
+
+const SPRITE_SCALE = {"Twonky" : 0.3,
+					  "HammerBot" : 0.4}
+
+
 @onready var robot : CharacterBody2D = $Robot
 @onready var p1cam : Camera2D = $Robot/P1Camera
 
@@ -69,9 +77,9 @@ func turn_hammer(dir) -> void:
 # moves the hammerbot on the board, uses the arrow keys
 func move_hammer(x, y) -> Vector2:
 	hammer_x = x
-	var hammer_pixel_x = x * (852 / 2)
+	var hammer_pixel_x = x * (852 / 2) + WORLD_POS_ORIGIN.x
 	hammer_y = y 
-	var hammer_pixel_y = y * (426 / 2)
+	var hammer_pixel_y = y * (426 / 2) + WORLD_POS_ORIGIN.y
 	return Vector2(hammer_pixel_x, hammer_pixel_y)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

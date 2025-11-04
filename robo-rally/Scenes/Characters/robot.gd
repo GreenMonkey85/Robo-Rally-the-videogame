@@ -40,7 +40,7 @@ var last_move = "Spam"
 
 func decision_start():
 	while cards_in_hand.size() <= 9:
-		if deck <= 0:
+		if len(deck) <= 0:
 			deck = discard
 			discard.clear()
 			deck.shuffle()

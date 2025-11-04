@@ -6,6 +6,9 @@ var anim: AnimationPlayer
 var holder = null
 var cardData: CardData = null
 
+func set_sprite():
+	$Sprite.texture = cardData.sprite
+
 func _ready():
 	anim = get_node("Anim")  # Cache the AnimationPlayer
 
