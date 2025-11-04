@@ -8,6 +8,7 @@ const CARD_SCENE: PackedScene = preload("res://Scenes/UI/Card.tscn")
 
 var max_cards_allowed: int = 9
 var start_position: Vector2
+var register_slots = []
 
 func _ready() -> void:
 	if draw_button:
@@ -32,22 +33,34 @@ func _ready() -> void:
 	card_container.mouse_entered.connect(_on_mouse_entered)
 	card_container.mouse_exited.connect(_on_mouse_exited)
 
-func draw_animation(card: CardData):
-	var new_card: Object = CARD_SCENE.instantiate()
-	new_card.get_node("Sprite").texture = card.sprite
-	card_container.add_child(new_card)
+	# Cache register slots
+	register_slots = [
+		$UI/CardPlacement,
+		$UI/CardPlacement2,
+		$UI/CardPlacement3,
+		$UI/CardPlacement4,
+		$UI/CardPlacement5
+	]
 
 func _on_draw_button_pressed() -> void:
 	if not CARD_SCENE or not card_container:
 		return
 
+	# Clear existing hand
 	for c in card_container.get_children():
 		c.queue_free()
 
+	# Draw new cards
 	for i in range(max_cards_allowed):
 		var new_card = CARD_SCENE.instantiate()
-		new_card.holder = $CardHolder
+		new_card.holder = card_container
 		card_container.add_child(new_card)
+
+func _on_confirm_pressed() -> void:
+	if not card_container:
+		return
+	for card in card_container.get_children():
+		card.queue_free()
 
 func _on_mouse_entered() -> void:
 	var tween = get_tree().create_tween()
@@ -59,9 +72,3 @@ func _on_mouse_exited() -> void:
 		var tween = get_tree().create_tween()
 		tween.tween_property(card_container, "position", start_position, 0.2)
 		tween.tween_property(card_container, "scale", Vector2(1, 1), 0.2)
-
-func _on_confirm_pressed() -> void:
-	if not card_container:
-		return
-	for card in card_container.get_children():
-		card.queue_free()
