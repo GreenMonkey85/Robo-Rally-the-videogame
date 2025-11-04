@@ -41,6 +41,7 @@ animations = [{
 size = Vector2(175, 99.625)
 
 [node name="HammerBot" type="CharacterBody2D"]
+position = Vector2(0, -250)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(2, -246)

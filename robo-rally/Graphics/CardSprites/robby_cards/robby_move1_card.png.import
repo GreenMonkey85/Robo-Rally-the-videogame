@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://by560xw5fmn67"
-path="res://.godot/imported/SpinBotSpriteSheetFullSize.png-8ce0427415102d4687f9692e0dc751f6.ctex"
+uid="uid://bamcaohl41g72"
+path="res://.godot/imported/robby_move1_card.png-f5569141e2192ade773e7806a1c77a9f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/CharacterSprites/SpinBotSpriteSheetFullSize.png"
-dest_files=["res://.godot/imported/SpinBotSpriteSheetFullSize.png-8ce0427415102d4687f9692e0dc751f6.ctex"]
+source_file="res://Graphics/CardSprites/robby_cards/robby_move1_card.png"
+dest_files=["res://.godot/imported/robby_move1_card.png-f5569141e2192ade773e7806a1c77a9f.ctex"]
 
 [params]
 

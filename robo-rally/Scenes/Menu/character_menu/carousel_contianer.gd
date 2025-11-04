@@ -68,4 +68,7 @@ func _update_target() -> void:
 func _on_select_pressed() -> void:
 	if panels.size() > 0:
 		print("Selected panel:", current_index, "->", panels[current_index].name)
-	get_tree().change_scene_to_file("res://Scenes/Menu/board_menu/board_container.tscn")
+	var robot = preload("res://Scenes/Characters/robot.tscn").instantiate()
+	robot.set_character(panels[current_index].name)
+	Game.player_order.append(robot)
+	get_tree().change_scene_to_packed(Game.BOARD_MENU)

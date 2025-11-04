@@ -4,9 +4,21 @@ extends Container
 var cardHighlighted = false
 var anim: AnimationPlayer
 var holder = null
+var cardData: CardData = null
+
+func set_sprite():
+	$Sprite.texture = cardData.sprite
+	
+var dragging := false
+var drag_offset := Vector2.ZERO  # Mouse-to-card offset
 
 func _ready():
-	anim = get_node("Anim")  # Cache the AnimationPlayer
+	anim = get_node("Anim")
+
+func _process(delta):
+	if dragging and Game.cardSelected:
+		var mouse_pos = get_viewport().get_mouse_position()
+		global_position = mouse_pos + drag_offset
 
 func _on_mouse_entered() -> void:
 	if anim:
@@ -23,32 +35,29 @@ func _on_gui_input(event):
 
 		# Mouse down
 		if event.pressed and cardHighlighted and !Game.cardSelected:
-			# Make sure holder is empty
-			for c in holder.get_children():
-				c.queue_free()
-
-			# Spawn one drag card
-			var dragCard = card.instantiate()
-			holder.add_child(dragCard)
-
 			Game.cardSelected = true
-			self.get_child(0).hide()  # hide card in hand
+			dragging = true
+			var mouse_pos = get_viewport().get_mouse_position()
+			drag_offset = global_position - mouse_pos  # Center drag
+
+			# Release this card from its current slot
+			if holder != null and holder.has_method("removePlacedCard"):
+				holder.removePlacedCard()
+				holder = null  # Clear holder so it can go back to same slot
+
+			if get_child_count() > 0:
+				get_child(0).show()
 
 		# Mouse up
 		elif !event.pressed and Game.cardSelected:
-			# Check if the mouse is over a placement slot
-			if Game.currentPlacement != null and !Game.currentPlacement.occupied:
-				# Place card on the hovered CardPlacement
-				Game.currentPlacement.placeCard()
-				self.queue_free()  # remove the card from hand after placement
-			else:
-				# Return to hand if slot is occupied or not over a placement
-				for c in holder.get_children():
-					c.queue_free()
-				self.get_child(0).show()
+			dragging = false
 
-			# Clear drag card
-			for c in holder.get_children():
-				c.queue_free()
+			# Place in current placement slot if hovering
+			if Game.currentPlacement != null:
+				Game.currentPlacement.placeCard(self)
+			else:
+				# Return to hand if not over a slot
+				if holder != null:
+					global_position = holder.global_position
 
 			Game.cardSelected = false

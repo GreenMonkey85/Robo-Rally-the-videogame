@@ -33,9 +33,13 @@ func _ready() -> void:
 	card_container.mouse_exited.connect(_on_mouse_exited)
 
 func draw_animation(card: CardData):
-	var new_card: Object = CARD_SCENE.instantiate()
-	new_card.get_node("Sprite").texture = card.sprite
+	var new_card = CARD_SCENE.instantiate()
+	new_card.holder = $UI/CardHolder
+	new_card.cardData = card
+	new_card.set_sprite()
 	card_container.add_child(new_card)
+	print(card.sprite)
+	
 
 func _on_draw_button_pressed() -> void:
 	if not CARD_SCENE or not card_container:

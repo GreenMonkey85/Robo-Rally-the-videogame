@@ -43,7 +43,10 @@ offset_bottom = 51.0
 scale = Vector2(2.0969, 2.16005)
 text = "Confirm"
 
-[node name="CardHolder" type="Node" parent="UI"]
+[node name="CardHolder" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
 
 [node name="Register" type="Control" parent="UI"]
 layout_mode = 3
@@ -51,19 +54,19 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -163.0
-offset_top = 1.0
 offset_right = -163.0
-offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
 [node name="RegisterTexture" type="Panel" parent="UI/Register"]
+z_index = -1
 layout_mode = 0
 offset_left = 166.0
 offset_right = 206.0
 offset_bottom = 40.0
 scale = Vector2(18.7723, 2.42443)
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_fo61o")
 
 [node name="CardPlacement1" parent="UI/Register" instance=ExtResource("3_1c2ca")]

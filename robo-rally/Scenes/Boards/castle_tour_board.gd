@@ -1,7 +1,15 @@
 extends Node2D
 
-#@onready var robot : CharacterBody2D = $Robot
-#@onready var p1cam : Camera2D = $Robot/P1Camera
+const WORLD_POS_ORIGIN = Vector2(1235.0, -1650.0)
+const PIXEL_X = (852 / 2)
+const PIXEL_Y = (426 / 2)
+
+const SPRITE_SCALE = {"Twonky" : 0.3,
+					  "HammerBot" : 0.4}
+
+
+@onready var robot : CharacterBody2D = $Robot
+@onready var p1cam : Camera2D = $Robot/P1Camera
 
 #startinglocation_x = (grid_x - grid_y) * (tile_width / 2)
 #startinglocation_y = (grid_x + grid_y) * (tile_height / 2)

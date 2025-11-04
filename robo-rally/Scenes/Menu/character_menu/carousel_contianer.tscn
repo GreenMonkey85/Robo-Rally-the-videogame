@@ -27,6 +27,7 @@ bg_color = Color(0.328774, 0.704515, 0, 1)
 bg_color = Color(0.802682, 0.361821, 1, 1)
 
 [sub_resource type="SystemFont" id="SystemFont_mq0ai"]
+subpixel_positioning = 0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vjrjg"]
 bg_color = Color(1, 0.694118, 0.145098, 1)
@@ -71,7 +72,7 @@ offset_left = -20.0
 offset_right = 20.0
 offset_bottom = 40.0
 
-[node name="blue" type="Panel" parent="CarouselConatianer/Control"]
+[node name="Twonky" type="Panel" parent="CarouselConatianer/Control"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 1
 anchors_preset = 5
@@ -84,11 +85,10 @@ offset_bottom = 135.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_d8yma")
 
-[node name="Twonky" parent="CarouselConatianer/Control/blue" instance=ExtResource("3_hfscs")]
+[node name="Twonky" parent="CarouselConatianer/Control/Twonky" instance=ExtResource("3_hfscs")]
 position = Vector2(199, 198)
-scale = Vector2(0.3, 0.3)
 
-[node name="orange" type="Panel" parent="CarouselConatianer/Control"]
+[node name="HammerBot" type="Panel" parent="CarouselConatianer/Control"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 1
 anchors_preset = 5
@@ -101,7 +101,7 @@ offset_bottom = 135.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_p3ags")
 
-[node name="Sprite2D" parent="CarouselConatianer/Control/orange" instance=ExtResource("4_ut2ur")]
+[node name="HammerBot" parent="CarouselConatianer/Control/HammerBot" instance=ExtResource("4_ut2ur")]
 position = Vector2(196, 194)
 scale = Vector2(0.2, 0.2)
 

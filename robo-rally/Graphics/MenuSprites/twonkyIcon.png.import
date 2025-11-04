@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://by560xw5fmn67"
-path="res://.godot/imported/SpinBotSpriteSheetFullSize.png-8ce0427415102d4687f9692e0dc751f6.ctex"
+uid="uid://ikk7o5j10gdl"
+path="res://.godot/imported/twonkyIcon.png-ce7b4148353e132a54ccdbc7c70ae2fd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/CharacterSprites/SpinBotSpriteSheetFullSize.png"
-dest_files=["res://.godot/imported/SpinBotSpriteSheetFullSize.png-8ce0427415102d4687f9692e0dc751f6.ctex"]
+source_file="res://Graphics/MenuSprites/twonkyIcon.png"
+dest_files=["res://.godot/imported/twonkyIcon.png-ce7b4148353e132a54ccdbc7c70ae2fd.ctex"]
 
 [params]
 

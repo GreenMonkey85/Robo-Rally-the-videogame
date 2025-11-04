@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://by560xw5fmn67"
-path="res://.godot/imported/SpinBotSpriteSheetFullSize.png-8ce0427415102d4687f9692e0dc751f6.ctex"
+uid="uid://bg2fbrcm2yoj2"
+path="res://.godot/imported/hammerbot_rotate_right_card.png-9ab2da108b4da90e8bbcc63c9a9708dd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/CharacterSprites/SpinBotSpriteSheetFullSize.png"
-dest_files=["res://.godot/imported/SpinBotSpriteSheetFullSize.png-8ce0427415102d4687f9692e0dc751f6.ctex"]
+source_file="res://Graphics/CardSprites/hammerbot_cards/hammerbot_rotate_right_card.png"
+dest_files=["res://.godot/imported/hammerbot_rotate_right_card.png-9ab2da108b4da90e8bbcc63c9a9708dd.ctex"]
 
 [params]
 
