@@ -8,6 +8,7 @@ var cardData: CardData = null
 
 func set_sprite():
 	$Sprite.texture = cardData.sprite
+	
 var dragging := false
 var drag_offset := Vector2.ZERO  # Mouse-to-card offset
 

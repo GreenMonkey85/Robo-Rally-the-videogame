@@ -5,7 +5,7 @@ var placed_card: Node = null
 func _on_mouse_entered() -> void:
 	Game.mouseOnPlacement = true
 	Game.currentPlacement = self
-
+	
 func _on_mouse_exited() -> void:
 	Game.mouseOnPlacement = false
 	Game.currentPlacement = null

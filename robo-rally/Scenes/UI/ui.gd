@@ -39,6 +39,7 @@ func draw_animation(card: CardData):
 	new_card.set_sprite()
 	card_container.add_child(new_card)
 	print(card.sprite)
+	
 
 func _on_draw_button_pressed() -> void:
 	if not CARD_SCENE or not card_container:

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bg2fbrcm2yoj2"
-path="res://.godot/imported/hammer_bot_rotate_right_card.png-6cec75e0bb7b996ba630e1e9ddb01cf0.ctex"
+uid="uid://pmj2v8ifm1dl"
+path="res://.godot/imported/hammerbot_power_up_card.png-1ecc55db212c598759f6d89414dfbc70.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/CardSprites/purple_cards/hammer_bot_rotate_right_card.png"
-dest_files=["res://.godot/imported/hammer_bot_rotate_right_card.png-6cec75e0bb7b996ba630e1e9ddb01cf0.ctex"]
+source_file="res://Graphics/CardSprites/hammerbot_cards/hammerbot_power_up_card.png"
+dest_files=["res://.godot/imported/hammerbot_power_up_card.png-1ecc55db212c598759f6d89414dfbc70.ctex"]
 
 [params]
 
