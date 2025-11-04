@@ -1,10 +1,9 @@
-[gd_scene load_steps=13 format=4 uid="uid://tusxfgxdb0vf"]
+[gd_scene load_steps=12 format=4 uid="uid://tusxfgxdb0vf"]
 
 [ext_resource type="Texture2D" uid="uid://86rwcugu5fj" path="res://Graphics/BoardSprites/TilesetBoardElementsIsometric_Try7.png" id="1_1q67b"]
 [ext_resource type="Script" uid="uid://djou3dmb0ej0x" path="res://Scenes/Boards/castle_tour_board.gd" id="1_sphnk"]
 [ext_resource type="PackedScene" uid="uid://cl1vpwnqpmbr4" path="res://Scenes/Characters/robot.tscn" id="2_tfynt"]
 [ext_resource type="PackedScene" uid="uid://dvxw10jolhqca" path="res://Scenes/Characters/HammerBot.tscn" id="3_sphnk"]
-[ext_resource type="PackedScene" uid="uid://crq1jkrf27su0" path="res://Checkpoint.tscn" id="5_cy5jx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4x5sb"]
 texture = ExtResource("1_1q67b")
@@ -202,11 +201,10 @@ tile_map_data = PackedByteArray("AAD7/wEAAQAAAAAAAAD8/wEAAQAAAAAAAAD9/wEAAQAAAAA
 tile_set = SubResource("TileSet_cwcfu")
 
 [node name="HigherElements" type="TileMapLayer" parent="Floor/LowerElements"]
-tile_map_data = PackedByteArray("AAD9////AAAAAAMAAAD+////AAABAAMAAAD/////AAACAAMAAAAAAP//AAADAAMAAAD8////AAAGAAUAAAD8//7/AAAGAAUAAAD8//3/AAAGAAUAAAABAP//AAAGAAYAAAABAP7/AAAGAAYAAAABAP3/AAAGAAYAAAD8/wgAAAAFAAIAAAD8/wcAAAAGAAIAAAD8/wYAAAAGAAIAAAD8/wUAAAAGAAIAAAD8/wQAAAAGAAIAAAD8/wMAAAAGAAIAAAD8/wIAAAAGAAYAABD8/wkAAAAGAAYAABD+/wcAAAAEAAIAADD//wQAAAAEAAIAADAEAAcAAAAEAAIAADABAAMAAAAFAAIAADABAAIAAAAFAAUAAAABAAkAAAAFAAUAAAABAAgAAAAGAAIAAAABAAcAAAAGAAIAAAABAAYAAAAGAAIAAAABAAUAAAAGAAIAAAABAAQAAAAGAAIAAAD9/wAAAAAGAAUAAAA=")
+tile_map_data = PackedByteArray("AAD9////AAAAAAMAAAD+////AAABAAMAAAD/////AAACAAMAAAAAAP//AAADAAMAAAD8////AAAGAAUAAAD8//7/AAAGAAUAAAD8//3/AAAGAAUAAAABAP//AAAGAAYAAAABAP7/AAAGAAYAAAABAP3/AAAGAAYAAAD9/wAAAAAGAAUAAAD8/wgAAAAFAAIAAAD8/wcAAAAGAAIAAAD8/wYAAAAGAAIAAAD8/wUAAAAGAAIAAAD8/wQAAAAGAAIAAAD8/wMAAAAGAAIAAAD8/wIAAAAGAAYAABD8/wkAAAAGAAYAABD+/wcAAAAEAAIAADD//wQAAAAEAAIAADAEAAcAAAAEAAIAADABAAMAAAAFAAIAADABAAIAAAAFAAUAAAABAAkAAAAFAAUAAAA=")
 tile_set = SubResource("TileSet_87l0l")
 
 [node name="Robot" parent="." instance=ExtResource("2_tfynt")]
-z_index = 1
 position = Vector2(430, 626)
 
 [node name="Sprite2D" parent="Robot" instance=ExtResource("3_sphnk")]
@@ -217,9 +215,3 @@ scale = Vector2(0.356563, 0.3225)
 position = Vector2(1229.25, -1635.25)
 scale = Vector2(0.356563, 0.3225)
 shape = SubResource("RectangleShape2D_cy5jx")
-
-[node name="Checkpoint 1" parent="." instance=ExtResource("5_cy5jx")]
-position = Vector2(-1746, 1128)
-
-[node name="Checkpoint 2" parent="." instance=ExtResource("5_cy5jx")]
-position = Vector2(-45, -1003)

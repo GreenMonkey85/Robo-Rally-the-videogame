@@ -38,6 +38,47 @@ var register = [null,null,null,null,null]
 
 var last_move = "Spam"
 
+
+
+# TESTING 
+@onready var robot_x = 0
+@onready var robot_y = 0
+@onready var robot_direction = "bl"
+@onready var robot_shutdown = false
+
+@onready var robot_animationPlayer : AnimationPlayer = $Sprite2D/AnimationPlayer
+
+#@onready var robot : CharacterBody2D = $"." Use self.___() or ___()
+#@onready var p1cam : Camera2D = $P1Camera
+
+
+
+# moves the robot on the board, uses the arrow keys
+func move_robot(x, y) -> Vector2:
+	robot_x = x
+	var robot_pixel_x = x * (852 / 2)
+	robot_y = y 
+	var robot_pixel_y = y * (426 / 2)
+	return Vector2(robot_pixel_x, robot_pixel_y)
+
+func handle_card(dir):
+	if dir == 'tl' && Vector2(robot_x, robot_y) not in get_parent().walls['tl']:
+		var robot_tween = create_tween()
+		robot_tween.tween_property(self, "position", move_robot(robot_x - 1, robot_y - 1), 1)
+	elif dir == 'br' && Vector2(robot_x, robot_y) not in get_parent().walls['br']:
+		var robot_tween = create_tween()
+		robot_tween.tween_property(self, "position", move_robot(robot_x + 1, robot_y + 1), 1)
+	elif dir == 'tr' && Vector2(robot_x, robot_y) not in get_parent().walls['tr']:
+		var robot_tween = create_tween()
+		robot_tween.tween_property(self, "position", move_robot(robot_x + 1, robot_y - 1), 1)
+	elif dir == 'bl' && Vector2(robot_x, robot_y) not in get_parent().walls['bl']:
+		var robot_tween = create_tween()
+		robot_tween.tween_property(self, "position", move_robot(robot_x - 1, robot_y + 1), 1)
+	
+# END TESTING
+
+
+
 func decision_start():
 	while cards_in_hand.size() <= 9:
 		if deck <= 0:
@@ -50,8 +91,9 @@ func decision_start():
 
 func decision_end():
 	for i in cards_in_hand:
-		if i.Type == "Movement":
+		if i.Type == "Movement": 
 			discard.append(cards_in_hand.pop_at(i))
+			handle_card(robot_direction)
 	player_decision_end.emit(player, register)
 
 func handle_action(card: CardData, register_index):
@@ -141,9 +183,106 @@ func _ready() -> void:
 	
 	# Create deck of cards for specific characterand set correct sprite for each
 	for card in deck:
+		
 		card.character = character
 		card.sprite = load("res://Graphics/CardSprites/%s_cards/%s_%s_card.png"
 							 % [character.to_lower(), character.to_lower(), card.name])
 
 	# Shuffle cards
 	deck.shuffle()
+	
+	# TESTING
+	position = move_robot(robot_x, robot_y)
+	change_idle()
+	# END TESTING
+
+
+# TESTING
+func change_idle() -> void:
+	robot_animationPlayer.play(robot_direction + "_idle")
+
+# shuts down the robot: inputs will not work while shut down
+func shutdown() -> void:
+	if robot_shutdown:
+		change_idle()
+		robot_shutdown = false
+	else:
+		robot_animationPlayer.play(robot_direction + "_shutdown")
+		robot_shutdown = true
+
+# uses current direction of robot and turn input to turn in the correct direction
+func turn_hammer(dir) -> void:
+	if dir == 'left':
+		match robot_direction:
+			'bl':
+				robot_direction = 'br'
+			'br':
+				robot_direction = 'tr'
+			'tr':
+				robot_direction = 'tl'
+			'tl':
+				robot_direction = 'bl'
+			_:
+				print('BAD DIRECTION, NOT REAL')
+	else:
+		match robot_direction:
+			'bl':
+				robot_direction = 'tl'
+			'tl':
+				robot_direction = 'tr'
+			'tr':
+				robot_direction = 'br'
+			'br':
+				robot_direction = 'bl'
+			_:
+				print('BAD DIRECTION, NOT REAL')
+	# restores idle
+	change_idle()
+
+func _unhandled_input(event: InputEvent) -> void:
+	# For moving forward or backward from a card, can find the direction the robot
+	# is facing and do that movement. movement side to side is included for the 
+	# sake of the conveyor belts and pushing. My suggestion would be to have the 
+	# robot moving into the space triggers the robot already moving to move out of 
+	# the way, and if theres a wall blocking them then they never move at all.
+	
+	print("start on: " + str(robot_x) + ", " + str(robot_y))
+	# check if shutdown, if so then no input will work except to exit shutdown
+	if robot_shutdown:
+		if event.is_action_pressed("ui-shutdown"):
+			shutdown()
+		return
+		
+	# MOVEMENT
+	if event.is_action_pressed("ui_up") && Vector2(robot_x, robot_y) not in get_parent().walls['tl']:
+		var robot_tween = create_tween()
+		robot_tween.tween_property(self, "position", move_robot(robot_x - 1, robot_y - 1), 1)
+	elif event.is_action_pressed("ui_down") && Vector2(robot_x, robot_y) not in get_parent().walls['br']:
+		var robot_tween = create_tween()
+		robot_tween.tween_property(self, "position", move_robot(robot_x + 1, robot_y + 1), 1)
+	elif event.is_action_pressed("ui_right") && Vector2(robot_x, robot_y) not in get_parent().walls['tr']:
+		var robot_tween = create_tween()
+		robot_tween.tween_property(self, "position", move_robot(robot_x + 1, robot_y - 1), 1)
+	elif event.is_action_pressed("ui_left") && Vector2(robot_x, robot_y) not in get_parent().walls['bl']:
+		var robot_tween = create_tween()
+		robot_tween.tween_property(self, "position", move_robot(robot_x - 1, robot_y + 1), 1)	
+		
+	get_parent().checking_checkpoint()
+		
+	# TURNING
+	if event.is_action_pressed("ui-turn-left"):
+		turn_hammer('left')
+	elif event.is_action_pressed("ui-turn-right"):
+		turn_hammer('right')
+		
+	# SHUTDOWN
+	elif event.is_action_pressed("ui-shutdown"):
+		shutdown()
+		
+	# FIRE LASER To be added
+	#elif event.is_action_pressed("ui-laser"):
+		#hammer_animationPlayer.play(hammer_direction + "_laser")
+	print("now on: " + str(robot_x) + ", " + str(robot_y))
+
+
+# END TESTING
