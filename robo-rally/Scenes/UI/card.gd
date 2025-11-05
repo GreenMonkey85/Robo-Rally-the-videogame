@@ -23,32 +23,32 @@ func set_sprite():
 	else:
 		$Sprite.scale = Vector2(1, 1)
 
-# Initializes the card, getting the AnimationPlayer node
 func _ready():
 	anim = get_node("Anim")
 
-# Updates the card's position while dragging
 func _process(delta):
 	if dragging and Game.cardSelected:
 		var mouse_pos = get_viewport().get_mouse_position()
 		global_position = mouse_pos + drag_offset
 
-# Handles mouse hover entering, plays selection animation
+# Helper function: returns true if the card is in the hand container
+func _is_in_hand() -> bool:
+	return get_parent() != null and get_parent().name == "cardHolder"
+
 func _on_mouse_entered() -> void:
-	if anim:
+	# Only play hover animations if card is in the hand (not in a register slot)
+	if _is_in_hand() and anim:
 		anim.play("Select")
 	cardHighlighted = true
 
-# Handles mouse hover exiting, plays deselection animation
 func _on_mouse_exited() -> void:
-	if anim:
+	if _is_in_hand() and anim:
 		anim.play("Deselect")
 	cardHighlighted = false
 
-# Handles mouse input for dragging and placing the card
 func _on_gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		# Mouse button pressed: start dragging
+
 		if event.pressed and cardHighlighted and !Game.cardSelected:
 			Game.cardSelected = true
 			dragging = true
@@ -56,20 +56,27 @@ func _on_gui_input(event):
 			drag_offset = global_position - mouse_pos
 			original_parent = get_parent()
 			original_position = global_position
+
+			# Detach from slot if it had one
 			if holder != null and holder.has_method("removePlacedCard"):
 				holder.removePlacedCard()
 				holder = null
+
 			if get_child_count() > 0:
 				get_child(0).show()
-		# Mouse button released: stop dragging and place card
+
 		elif !event.pressed and Game.cardSelected:
 			dragging = false
+
+			# Place in current placement slot if hovering
 			if Game.currentPlacement != null:
 				Game.currentPlacement.placeCard(self)
 			else:
+				# Return to hand if not over a slot
 				if original_parent != null:
 					if get_parent() != original_parent:
 						get_parent().remove_child(self)
 						original_parent.add_child(self)
 					global_position = original_position
+
 			Game.cardSelected = false
