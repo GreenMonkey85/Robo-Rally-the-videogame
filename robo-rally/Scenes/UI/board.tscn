@@ -57,15 +57,6 @@ offset_right = 443.0
 offset_bottom = -106.0
 scale = Vector2(0.164765, 0.33996)
 
-[node name="DrawPile" type="Button" parent="UI"]
-offset_left = 4.0
-offset_top = 259.0
-offset_right = 90.0
-offset_bottom = 413.0
-scale = Vector2(1, 1.03509)
-text = "Draw
-Cards"
-
 [node name="Register" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 165.0
@@ -86,5 +77,4 @@ offset_bottom = 51.0
 scale = Vector2(2.0969, 2.16005)
 text = "Confirm"
 
-[connection signal="pressed" from="UI/DrawPile" to="." method="_on_draw_button_pressed"]
 [connection signal="pressed" from="Confirm" to="." method="_on_confirm_pressed"]
