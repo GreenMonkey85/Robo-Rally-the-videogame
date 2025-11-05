@@ -10,8 +10,6 @@ var max_cards_allowed: int = 9
 var start_position: Vector2
 
 func _ready() -> void:
-	if draw_button:
-		draw_button.pressed.connect(_on_draw_button_pressed)
 	if confirm_button:
 		confirm_button.pressed.connect(_on_confirm_pressed)
 
@@ -40,18 +38,6 @@ func draw_animation(card: CardData):
 	card_container.add_child(new_card)
 	print(card.sprite)
 	
-
-func _on_draw_button_pressed() -> void:
-	if not CARD_SCENE or not card_container:
-		return
-
-	for c in card_container.get_children():
-		c.queue_free()
-
-	for i in range(max_cards_allowed):
-		var new_card = CARD_SCENE.instantiate()
-		new_card.holder = $UI/CardHolder
-		card_container.add_child(new_card)
 
 func _on_mouse_entered() -> void:
 	var tween = get_tree().create_tween()
