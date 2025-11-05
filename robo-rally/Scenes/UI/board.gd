@@ -11,8 +11,6 @@ var start_position: Vector2
 var register_slots = []
 
 func _ready() -> void:
-	if draw_button:
-		draw_button.pressed.connect(_on_draw_button_pressed)
 	if confirm_button:
 		confirm_button.pressed.connect(_on_confirm_pressed)
 
@@ -41,20 +39,6 @@ func _ready() -> void:
 		$UI/CardPlacement4,
 		$UI/CardPlacement5
 	]
-
-func _on_draw_button_pressed() -> void:
-	if not CARD_SCENE or not card_container:
-		return
-
-	# Clear existing hand
-	for c in card_container.get_children():
-		c.queue_free()
-
-	# Draw new cards
-	for i in range(max_cards_allowed):
-		var new_card = CARD_SCENE.instantiate()
-		new_card.holder = card_container
-		card_container.add_child(new_card)
 
 func _on_confirm_pressed() -> void:
 	if not card_container:

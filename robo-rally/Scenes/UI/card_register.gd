@@ -15,37 +15,33 @@ func placeCard(card_instance: Node) -> void:
 		Game.cardSelected = false
 		return
 
-	# If the card is already here, keep it (allows re-placement)
+	# If the same card is already placed here
 	if placed_card == card_instance:
 		Game.cardSelected = false
 		return
 
-	# Remove any other card in this slot
+	# Remove the current card in this slot if there is one
 	if placed_card != null:
 		placed_card.holder = null
 		placed_card.queue_free()
 		placed_card = null
 
-	# Reparent card to this slot
+	# Reparent the new card to this slot
 	if card_instance.get_parent() != null:
 		card_instance.get_parent().remove_child(card_instance)
 	add_child(card_instance)
 	card_instance.position = Vector2.ZERO
 
-	# Scale to fit
+	# 🔧 FIXED SCALING: smaller and centered
 	if card_instance is Control:
-		var placement_size = self.size
-		var card_size = card_instance.size
-		if card_size.x != 0 and card_size.y != 0:
-			card_instance.scale = placement_size / card_size
+		card_instance.scale = Vector2(0.6, 0.6)  # Adjust 0.6 as needed
+		card_instance.position = (self.size - (card_instance.size * card_instance.scale)) / 2
 
-	# Update holder reference
 	card_instance.holder = self
 	placed_card = card_instance
 	Game.cardSelected = false
 
 func removePlacedCard() -> void:
-	# Detach card for dragging
 	if placed_card != null and is_instance_valid(placed_card):
 		var card = placed_card
 		card.holder = null
