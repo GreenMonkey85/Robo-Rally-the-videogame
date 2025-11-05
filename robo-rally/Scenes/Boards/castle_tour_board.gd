@@ -57,7 +57,6 @@ const SPRITE_SCALE = {"Twonky" : 0.3,
 func _ready() -> void:
 	checkpoints['check1'][1].play('idle_1')
 	checkpoints['check2'][1].play('idle_2')
-	pass
 	#robot.position = move_hammer(hammer_x, hammer_y)
 	#change_idle()
 

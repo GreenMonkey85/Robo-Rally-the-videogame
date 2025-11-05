@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=4 uid="uid://tusxfgxdb0vf"]
+[gd_scene load_steps=13 format=4 uid="uid://tusxfgxdb0vf"]
 
 [ext_resource type="Texture2D" uid="uid://86rwcugu5fj" path="res://Graphics/BoardSprites/TilesetBoardElementsIsometric_Try7.png" id="1_1q67b"]
 [ext_resource type="Script" uid="uid://djou3dmb0ej0x" path="res://Scenes/Boards/castle_tour_board.gd" id="1_sphnk"]
 [ext_resource type="Texture2D" uid="uid://1qu5n72tiix7" path="res://Graphics/BoardSprites/TilesetBoardElementsIsometric_Try8.png" id="2_tfynt"]
+[ext_resource type="PackedScene" uid="uid://crq1jkrf27su0" path="res://Checkpoint.tscn" id="4_sphnk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sphnk"]
 texture = ExtResource("2_tfynt")
@@ -276,5 +277,12 @@ tile_map_data = PackedByteArray("AAD8/wgAAAAGAAIAAAD8/wcAAAAGAAIAAAD8/wYAAAAGAAI
 tile_set = SubResource("TileSet_87l0l")
 
 [node name="Walls" type="TileMapLayer" parent="Floor/LowerElements/HigherElements"]
+z_index = 1
 tile_map_data = PackedByteArray("AAABAAIAAQAFAAUAAAD8/wkAAQAGAAYAABD8/wIAAQAGAAYAABABAAkAAQAFAAUAAAD9/wAAAQAGAAUAAAD8////AQAGAAUAAAD8//7/AQAGAAUAAAD8//3/AQAGAAUAAAABAP3/AQAGAAYAAAABAP7/AQAGAAYAAAABAP//AQAGAAYAAAA=")
 tile_set = SubResource("TileSet_02vqm")
+
+[node name="Checkpoint 1" parent="." instance=ExtResource("4_sphnk")]
+position = Vector2(-1764, 1003)
+
+[node name="Checkpoint 2" parent="." instance=ExtResource("4_sphnk")]
+position = Vector2(1218, -1325)
