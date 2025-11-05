@@ -4,8 +4,8 @@ const WORLD_POS_ORIGIN = Vector2(1235.0, -1650.0)
 const PIXEL_X = (852 / 2)
 const PIXEL_Y = (426 / 2)
 
-const SPRITE_SCALE = {"Twonky" : 0.3,
-					  "HammerBot" : 0.4}
+const SPRITE_SCALE = {"Twonky" : 0.4,
+					  "HammerBot" : 0.3}
 
 
 @onready var robot : CharacterBody2D = $Robot

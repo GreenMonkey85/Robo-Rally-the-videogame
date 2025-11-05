@@ -69,4 +69,5 @@ func _on_confirm_pressed() -> void:
 		return
 	for card in card_container.get_children():
 		card.queue_free()
-		$UI/Register.visible = false
+	$UI/Register.visible = false
+	get_parent().decision_end()

@@ -28,7 +28,7 @@ func action_round():
 		# loop through each player with respect to order
 		for j in range(len(player_order)):
 			# current player moves
-			player_order[j].handle_action(registers[j][i], )
+			await player_order[j].handle_action(registers[j][i], i)
 		# double conveyers
 		# single conveyer
 		# push panels
@@ -44,7 +44,7 @@ func decision_round():
 		player.decision_start()
 	timer.start(60.0)
 
-func _on_all_decided(player, register):
+func on_all_decided(player, register):
 	
 	if player not in players_decided:
 		players_decided.append(player)
