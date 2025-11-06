@@ -42,6 +42,9 @@ var last_move = "Spam"
 
 
 
+signal finished_movement
+signal robot_spawned(robot)
+
 # TESTING 
 #@onready var robot_x = 0
 #@onready var robot_y = 0
@@ -111,6 +114,7 @@ func decision_end():
 func handle_action(card: CardData, register_index):
 	if card.type == "Movement":
 		await call(card.action, card.num_action)
+		emit_signal("finished_movement")
 	elif card.type == "Damage":
 		await call(card.action, card.num_action, register_index)
 	last_move = card.action

@@ -51,7 +51,7 @@ const SPRITE_SCALE = {"Twonky" : 0.4,
 	'check2' : [Vector2(-3,3), $"Checkpoint 2/AnimationPlayer"]
 }
 
-@onready var robot1 = $Robot
+var robot1 : Sprite2D = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -59,8 +59,11 @@ func _ready() -> void:
 	checkpoints['check2'][1].play('idle_2')
 	#robot.position = move_hammer(hammer_x, hammer_y)
 	#change_idle()
+	
+	
 
 func checking_checkpoint() -> void:
+	print("checking checkpoint now!!!!")
 	var robot_pos = Vector2(robot1.robot_x, robot1.robot_y)
 	
 	if robot_pos == checkpoints['check1'][0]:
@@ -81,6 +84,9 @@ func checking_checkpoint() -> void:
 		checkpoints['check1'][1].play("idle_1")
 		checkpoints['check2'][1].play("idle_2")
 
+
+func _on_robot_spawned(robot):
+	robot1 = robot
 
 #func change_idle() -> void:
 	#hammer_animationPlayer.play(hammer_direction + "_idle")
@@ -133,7 +139,13 @@ func checking_checkpoint() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if robot1 == null:
+		var maybe_robot = get_node_or_null("../Players/Robot")
+		if maybe_robot != null:
+			robot1 = maybe_robot
+			print("Robot found!")
+	else:
+		$Robot.connect("finished_movement", Callable(self, "checking_checkpoint"))
 
 #func _unhandled_input(event: InputEvent) -> void:
 	## For moving forward or backward from a card, can find the direction the robot
