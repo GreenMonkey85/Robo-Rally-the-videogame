@@ -2,9 +2,9 @@ extends Control
 
 const CARD_SCENE: PackedScene = preload("res://Scenes/UI/Card.tscn")
 
-@onready var draw_button: Button = $UI/DrawPile
-@onready var confirm_button: Button = $UI/Confirm
-@onready var card_container: HBoxContainer = $UI/cardHolder
+#@onready var draw_button: Button = $UI/DrawPile
+@onready var confirm_button: Button = $CanvasLayer/Confirm
+@onready var card_container: HBoxContainer = $CanvasLayer/cardHolder
 
 var max_cards_allowed: int = 9
 var start_position: Vector2
@@ -32,11 +32,11 @@ func _ready() -> void:
 
 func draw_animation(card: CardData):
 	var new_card = CARD_SCENE.instantiate()
-	new_card.holder = $UI/CardHolder
+	new_card.holder = $CanvasLayer/CardHolder
 	new_card.cardData = card
-	new_card.set_sprite()
+	#new_card.set_sprite()
 	card_container.add_child(new_card)
-	print(card.sprite)
+	#print(card.sprite)
 	
 
 func _on_mouse_entered() -> void:
@@ -55,5 +55,5 @@ func _on_confirm_pressed() -> void:
 		return
 	for card in card_container.get_children():
 		card.queue_free()
-	$UI/Register.visible = false
-	get_parent().decision_end()
+	$CanvasLayer/Register.visible = false
+	await get_parent().decision_end()

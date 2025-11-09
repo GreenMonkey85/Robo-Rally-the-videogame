@@ -1,12 +1,12 @@
 extends Node2D
 
-const WORLD_POS_ORIGIN = Vector2(1235.0, -1650.0)
+const ORIGIN = Vector2(1235.0, -1650.0)
 const PIXEL_X = (852 / 2)
 const PIXEL_Y = (426 / 2)
+const STARTING_POSITIONS = [Vector2(0,0), Vector2(1,1), Vector2(2,2), Vector2(3,3)]
 
-const SPRITE_SCALE = {"Twonky" : 0.4,
-					  "HammerBot" : 0.3}
-
+const SPRITE_SCALE = {"Twonky" : Vector2(0.4,0.4),
+					  "HammerBot" : Vector2(0.3,0.3)}
 
 @onready var robot : CharacterBody2D = $Robot
 @onready var p1cam : Camera2D = $Robot/P1Camera
@@ -77,9 +77,9 @@ func turn_hammer(dir) -> void:
 # moves the hammerbot on the board, uses the arrow keys
 func move_hammer(x, y) -> Vector2:
 	hammer_x = x
-	var hammer_pixel_x = x * (852 / 2) + WORLD_POS_ORIGIN.x
+	var hammer_pixel_x = x * (852 / 2) + ORIGIN.x
 	hammer_y = y 
-	var hammer_pixel_y = y * (426 / 2) + WORLD_POS_ORIGIN.y
+	var hammer_pixel_y = y * (426 / 2) + ORIGIN.y
 	return Vector2(hammer_pixel_x, hammer_pixel_y)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -93,7 +93,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	# robot moving into the space triggers the robot already moving to move out of 
 	# the way, and if theres a wall blocking them then they never move at all.
 	
-	print("start on: " + str(hammer_x) + ", " + str(hammer_y))
+	#print("start on: " + str(hammer_x) + ", " + str(hammer_y))
 	# check if shutdown, if so then no input will work except to exit shutdown
 	if hammer_shutdown:
 		if event.is_action_pressed("ui-shutdown"):
@@ -127,4 +127,4 @@ func _unhandled_input(event: InputEvent) -> void:
 	# FIRE LASER To be added
 	#elif event.is_action_pressed("ui-laser"):
 		#hammer_animationPlayer.play(hammer_direction + "_laser")
-	print("now on: " + str(hammer_x) + ", " + str(hammer_y))
+	#print("now on: " + str(hammer_x) + ", " + str(hammer_y))

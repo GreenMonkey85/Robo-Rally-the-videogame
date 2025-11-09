@@ -17,16 +17,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fo61o")
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="cardHolder" type="HBoxContainer" parent="UI"]
+[node name="cardHolder" type="HBoxContainer" parent="CanvasLayer"]
 offset_left = 241.0
 offset_top = 497.0
 offset_right = 782.0
 offset_bottom = 633.0
 script = ExtResource("2_alcrr")
 
-[node name="Confirm" type="Button" parent="UI"]
+[node name="Confirm" type="Button" parent="CanvasLayer"]
 offset_left = 954.0
 offset_top = 20.0
 offset_right = 1025.0
@@ -34,12 +34,12 @@ offset_bottom = 51.0
 scale = Vector2(2.0969, 2.16005)
 text = "Confirm"
 
-[node name="CardHolder" type="Control" parent="UI"]
+[node name="CardHolder" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 2
 
-[node name="Register" type="Control" parent="UI"]
+[node name="Register" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -50,7 +50,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="RegisterTexture" type="Panel" parent="UI/Register"]
+[node name="RegisterTexture" type="Panel" parent="CanvasLayer/Register"]
 z_index = -1
 layout_mode = 0
 offset_left = 166.0
@@ -60,7 +60,7 @@ scale = Vector2(18.7723, 2.42443)
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_fo61o")
 
-[node name="CardPlacement1" parent="UI/Register" instance=ExtResource("3_1c2ca")]
+[node name="CardPlacement1" parent="CanvasLayer/Register" instance=ExtResource("3_1c2ca")]
 layout_mode = 1
 offset_left = 176.0
 offset_top = 37.0
@@ -68,7 +68,7 @@ offset_right = -155.0
 offset_bottom = -106.0
 scale = Vector2(0.164765, 0.33996)
 
-[node name="CardPlacement2" parent="UI/Register" instance=ExtResource("3_1c2ca")]
+[node name="CardPlacement2" parent="CanvasLayer/Register" instance=ExtResource("3_1c2ca")]
 layout_mode = 1
 offset_left = 327.0
 offset_top = 37.0
@@ -76,7 +76,7 @@ offset_right = -4.0
 offset_bottom = -106.0
 scale = Vector2(0.164765, 0.33996)
 
-[node name="CardPlacement3" parent="UI/Register" instance=ExtResource("3_1c2ca")]
+[node name="CardPlacement3" parent="CanvasLayer/Register" instance=ExtResource("3_1c2ca")]
 layout_mode = 1
 offset_left = 475.0
 offset_top = 37.0
@@ -84,7 +84,7 @@ offset_right = 144.0
 offset_bottom = -106.0
 scale = Vector2(0.164765, 0.33996)
 
-[node name="CardPlacement4" parent="UI/Register" instance=ExtResource("3_1c2ca")]
+[node name="CardPlacement4" parent="CanvasLayer/Register" instance=ExtResource("3_1c2ca")]
 layout_mode = 1
 offset_left = 625.0
 offset_top = 37.0
@@ -92,7 +92,7 @@ offset_right = 294.0
 offset_bottom = -106.0
 scale = Vector2(0.164765, 0.33996)
 
-[node name="CardPlacement5" parent="UI/Register" instance=ExtResource("3_1c2ca")]
+[node name="CardPlacement5" parent="CanvasLayer/Register" instance=ExtResource("3_1c2ca")]
 layout_mode = 1
 offset_left = 774.0
 offset_top = 37.0
