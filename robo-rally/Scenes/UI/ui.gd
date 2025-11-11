@@ -9,7 +9,11 @@ const CARD_SCENE: PackedScene = preload("res://Scenes/UI/Card.tscn")
 var max_cards_allowed: int = 9
 var start_position: Vector2
 
+var _confirming = false
+
 func _ready() -> void:
+	$CanvasLayer.visible = false
+	
 	if confirm_button:
 		confirm_button.pressed.connect(_on_confirm_pressed)
 
@@ -34,7 +38,7 @@ func draw_animation(card: CardData):
 	var new_card = CARD_SCENE.instantiate()
 	new_card.holder = $CanvasLayer/CardHolder
 	new_card.cardData = card
-	#new_card.set_sprite()
+	new_card.set_sprite()
 	card_container.add_child(new_card)
 	#print(card.sprite)
 	
@@ -51,9 +55,12 @@ func _on_mouse_exited() -> void:
 		tween.tween_property(card_container, "scale", Vector2(1, 1), 0.2)
 
 func _on_confirm_pressed() -> void:
+	if _confirming:
+		return
+	_confirming = true
+		
 	if not card_container:
 		return
 	for card in card_container.get_children():
 		card.queue_free()
-	$CanvasLayer/Register.visible = false
 	await get_parent().decision_end()
