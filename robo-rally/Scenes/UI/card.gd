@@ -16,6 +16,7 @@ var hand_target_size := Vector2(100, 150)
 
 # Sets the sprite for this card and scales it based on hand_target_size
 func set_sprite():
+	print(cardData)
 	$Sprite.texture = cardData.sprite
 	if $Sprite.texture != null:
 		var tex_size = $Sprite.texture.get_size()
