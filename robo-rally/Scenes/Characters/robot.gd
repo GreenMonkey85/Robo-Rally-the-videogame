@@ -92,14 +92,16 @@ func decision_start():
 			deck.shuffle()
 		var new_card = deck.pop_front()
 		cards_in_hand.append(new_card)
-		#$UI.draw_animation(new_card)
+		$UI.draw_animation(new_card)
 		print("DECISION START", len(deck), len(discard), len(cards_in_hand))
 	print("DECISION START", deck, discard, cards_in_hand)
-		
-	
+	$UI/CanvasLayer.visible = true
+	$UI._confirming = false
 	#print(deck, discard, cards_in_hand)
 
 func decision_end():
+	$UI/CanvasLayer.visible = false
+	
 	var register_list = $UI/CanvasLayer/Register.get_children()
 	register_list.pop_front()
 
@@ -108,6 +110,7 @@ func decision_end():
 			register[i] = register_list[i].placed_card.cardData
 			cards_in_hand.erase(register[i])
 		print("REGISTER LIST", deck, discard, cards_in_hand)
+		register_list[i].clear_register()
 	for i in range(cards_in_hand.size() - 1, -1, -1):
 		var card = cards_in_hand[i]
 		if card.type == "Movement":
@@ -127,29 +130,38 @@ func handle_action(card: CardData, register_index):
 	else:
 		await call("Spam", register_index)
 		last_move = "Spam"
-	
 
 func action_end():
 	for i in range(len(register)):
-		discard.append(register[i])
+		if register[i] != null:
+			discard.append(register[i])
 		register[i] = null
 		print("ACTION END", deck, discard, cards_in_hand)
 
+func can_move(x1, y1, x2, y2, num_actions):
+	pass
+
 func Move(num_actions):
+	print("Robot at: " + str(pos_x) + "," + str(pos_y))
+	var new_x
+	var new_y
 	for i in range(abs(num_actions)):
 		if num_actions < 0:
-			pos_x -=  x_dir_mult
-			pos_y -=  y_dir_mult
+			new_x = pos_x - x_dir_mult
+			new_y = pos_y - y_dir_mult
 		else:
-			pos_x +=  x_dir_mult
-			pos_y +=  y_dir_mult
+			new_x = pos_x + x_dir_mult
+			new_y = pos_y + y_dir_mult
 		var new_pos = create_tween()
-		new_pos.tween_property(self, "position", Vector2(pos_x * Game.current_board.PIXEL_X,
-														 pos_y * Game.current_board.PIXEL_Y)
+		new_pos.tween_property(self, "position", Vector2(new_x * Game.current_board.PIXEL_X,
+														 new_y * Game.current_board.PIXEL_Y)
 														+ Game.current_board.ORIGIN, 1)
 		anim_player.play(direction + "_walk")
 		await new_pos.finished
 		anim_player.play(direction + "_idle")
+		pos_x = new_x
+		pos_y = new_y
+		checking_checkpoint()
 
 func Again(num_actions):
 	await call(last_move, num_actions)
@@ -211,7 +223,6 @@ func Spam(register_index):
 		Game.damage_discards.append(register[register_index])
 	register[register_index] = card
 	await call(card.action, card.num_action)
-
 
 func change_xy_dir():
 	match direction:

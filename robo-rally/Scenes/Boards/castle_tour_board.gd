@@ -29,11 +29,11 @@ const SPRITE_SCALE = {"Twonky" : Vector2(0.4,0.4),
 }
 
 @onready var gears = {
-	'left': [Vector2(1,-1), Vector2(-5,-1)],
-	'right': [Vector2(-2,2), Vector2(-2,-4)],
+	'left': [],
+	'right': [],
 }
 
-@onready var batteries = [Vector2(5,-1), Vector2(-2,6), Vector2(-9,-1), Vector2(-2,-8)]
+@onready var batteries = []
 
 @onready var conveyors = {
 	'bl': [],
@@ -67,15 +67,13 @@ const SPRITE_SCALE = {"Twonky" : Vector2(0.4,0.4),
 
 @onready var lasers = []
 
-@onready var starts = {
-	
-}
+@onready var starts = [Vector2(0.0,0.0), Vector2(1.0,1.0), Vector2(2.0,2.0), Vector2(3.0,3.0)]
 
-@onready var pitfalls = [Vector2(0,-2), Vector2(-4,0), Vector2(2,6), Vector2(-6,-8)]
+@onready var pitfalls = []
 
 @onready var checkpoints = {
-	'check1' : [Vector2(-4,4), $"Checkpoint 1/AnimationPlayer"],
-	'check2' : [Vector2(3, -7), $"Checkpoint 2/AnimationPlayer"]
+	'check1' : [Vector2(-7.0,13.0), $"Checkpoint 1/AnimationPlayer"],
+	'check2' : [Vector2(0.0,2.0), $"Checkpoint 2/AnimationPlayer"]
 }
 
 var robot1 : Sprite2D = null

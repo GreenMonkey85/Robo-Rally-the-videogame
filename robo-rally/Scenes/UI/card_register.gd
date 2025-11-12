@@ -52,3 +52,9 @@ func removePlacedCard() -> void:
 		placed_card = null
 		get_tree().current_scene.add_child(card)
 		card.global_position = global_position
+
+func clear_register():
+	placed_card = null
+	var register_child = self.get_children()
+	if len(register_child) != 0:
+		register_child[0].queue_free()
