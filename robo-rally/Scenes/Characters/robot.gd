@@ -68,6 +68,9 @@ func decision_end():
 	Game.on_all_decided(self, register)
 
 func handle_action(card: CardData, register_index):
+	# Show preview at top-left
+	$UI.show_card_preview(card)
+	
 	if card.type == "Movement":
 		await call(card.action, card.num_action)
 	elif card.type == "Damage":
