@@ -66,8 +66,8 @@ func _update_target() -> void:
 	target_offset = float(current_index * (panel_width + spacing_between))
 
 func _on_select_pressed() -> void:
-	if panels.size() > 0:
-		print("Selected panel:", current_index, "->", panels[current_index].name)
+	#if panels.size() > 0:
+		#print("Selected panel:", current_index, "->", panels[current_index].name)
 	var robot = preload("res://Scenes/Characters/robot.tscn").instantiate()
 	robot.set_character(panels[current_index].name)
 	Game.player_order.append(robot)

@@ -73,7 +73,7 @@ func _update_target() -> void:
 	target_offset = float(current_index * (panel_width + spacing_between))
 
 func _on_select_pressed() -> void:
-	if panels.size() > 0:
-		print("Selected panel:", current_index, "->", panels[current_index].name)
-	Game.current_board = "res://Scenes/Boards/castle_tour_board.tscn"
+	#if panels.size() > 0:
+		#print("Selected panel:", current_index, "->", panels[current_index].name)
+	Game.current_board = preload("res://Scenes/Boards/castle_tour_board.tscn").instantiate()
 	get_tree().change_scene_to_file("res://Scenes/main.tscn")

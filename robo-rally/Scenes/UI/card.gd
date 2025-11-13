@@ -17,6 +17,7 @@ func _ready():
 	pass  # anim is already assigned via @onready
 
 func set_sprite():
+	print(cardData)
 	$Sprite.texture = cardData.sprite
 	if $Sprite.texture != null:
 		var tex_size = $Sprite.texture.get_size()

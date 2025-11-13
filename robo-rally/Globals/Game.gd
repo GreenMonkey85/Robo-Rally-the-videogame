@@ -6,7 +6,6 @@ const BOARD_MENU = preload("res://Scenes/Menu/board_menu/board_container.tscn")
 
 var current_board = null
 
-
 var cardSelected
 var mouseOnPlacement = false
 var currentPlacement = null
@@ -37,6 +36,10 @@ func action_round():
 		# robot lasers
 		# battery
 		# check flags
+		
+	for i in player_order:
+		i.action_end()
+	player_order.append(player_order.pop_front())
 	decision_round()
 
 func decision_round():
