@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c8i2ohpoyhl5k"]
+[gd_scene load_steps=23 format=3 uid="uid://c8i2ohpoyhl5k"]
 
 [ext_resource type="Script" uid="uid://d2hkj8x160dl7" path="res://Scenes/Menu/character_menu/carousel_contianer.gd" id="1_mq0ai"]
 [ext_resource type="Texture2D" uid="uid://dqlllys04c55f" path="res://factorybackround.jpg" id="2_dhbjd"]
@@ -13,6 +13,18 @@ bg_color = Color(0.271241, 0.604315, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p3ags"]
 bg_color = Color(0.872116, 0.490276, 3.85046e-07, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mq0ai"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dhbjd"]
+bg_color = Color(0.89316, 0, 0.175868, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kw21e"]
+bg_color = Color(0.328774, 0.704515, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_joojo"]
+bg_color = Color(0.802682, 0.361821, 1, 1)
 
 [sub_resource type="SystemFont" id="SystemFont_mq0ai"]
 subpixel_positioning = 0
@@ -93,6 +105,60 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_p3ags")
 position = Vector2(196, 194)
 scale = Vector2(0.2, 0.2)
 
+[node name="white" type="Panel" parent="CarouselConatianer/Control"]
+z_index = 1
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -340.0
+offset_top = -265.0
+offset_right = 60.0
+offset_bottom = 135.0
+grow_horizontal = 2
+pivot_offset = Vector2(20, 20)
+theme_override_styles/panel = SubResource("StyleBoxFlat_mq0ai")
+
+[node name="red" type="Panel" parent="CarouselConatianer/Control"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -340.0
+offset_top = -265.0
+offset_right = 60.0
+offset_bottom = 135.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dhbjd")
+
+[node name="green" type="Panel" parent="CarouselConatianer/Control"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -340.0
+offset_top = -265.0
+offset_right = 60.0
+offset_bottom = 135.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kw21e")
+
+[node name="Purple" type="Panel" parent="CarouselConatianer/Control"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -340.0
+offset_top = -265.0
+offset_right = 60.0
+offset_bottom = 135.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_joojo")
+
 [node name="right" type="Button" parent="CarouselConatianer"]
 anchors_preset = 3
 anchor_left = 1.0
@@ -163,6 +229,9 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_dhbjd")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_kw21e")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_d8yma")
 text = "Select"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(577, 325)
 
 [connection signal="pressed" from="CarouselConatianer/right" to="." method="_on_right_pressed"]
 [connection signal="pressed" from="CarouselConatianer/left" to="." method="_on_left_pressed"]

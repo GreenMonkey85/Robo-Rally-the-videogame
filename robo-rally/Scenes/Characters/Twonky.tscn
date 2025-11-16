@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://dbd46rq7u3tct"]
 
-[ext_resource type="Texture2D" uid="uid://vwtv6nf3y3n7" path="res://Graphics/CharacterSprites/pixilart-sprite (5).png" id="1_rxdkt"]
+[ext_resource type="Texture2D" uid="uid://b23psdcv0ocer" path="res://Graphics/CharacterSprites/attempt3twonkyspritesheet.png" id="1_rxdkt"]
 
 [sub_resource type="Animation" id="Animation_rpwaf"]
 length = 0.001
@@ -230,7 +230,8 @@ _data = {
 position = Vector2(0, -100)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("1_rxdkt")
-hframes = 28
+hframes = 7
+vframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
