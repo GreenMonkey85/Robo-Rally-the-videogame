@@ -1,18 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://dsekgt7krlys8"]
+[gd_scene load_steps=4 format=3 uid="uid://dsekgt7krlys8"]
 
+[ext_resource type="Script" uid="uid://bpu3kyjmpaceg" path="res://Scenes/UI/victory.gd" id="1_5a3c2"]
 [ext_resource type="Texture2D" uid="uid://8e3poq3yuoy8" path="res://Resources/VictoryBackground.jpg" id="1_dur2o"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dur2o"]
 texture = ExtResource("1_dur2o")
 
 [node name="Victory" type="Node2D"]
+script = ExtResource("1_5a3c2")
 
 [node name="Panel" type="Panel" parent="."]
 offset_right = 1153.0
 offset_bottom = 650.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_dur2o")
 
-[node name="Label" type="Label" parent="Panel"]
+[node name="victory" type="Label" parent="Panel"]
 layout_mode = 0
 offset_left = 157.0
 offset_top = 60.0
@@ -24,7 +26,7 @@ theme_override_colors/font_shadow_color = Color(0.464099, 0.247821, 0.0102433, 1
 theme_override_font_sizes/font_size = 35
 text = "Congratulations! You won!"
 
-[node name="Button" type="Button" parent="Panel"]
+[node name="main" type="Button" parent="Panel"]
 layout_mode = 0
 offset_left = 395.0
 offset_top = 476.0
@@ -37,3 +39,12 @@ theme_override_colors/font_focus_color = Color(0.972549, 0.552941, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 35
 text = "Return to Main Menu"
+
+[node name="WinnerSprite" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_left = 562.0
+offset_top = 282.0
+offset_right = 602.0
+offset_bottom = 322.0
+
+[connection signal="pressed" from="Panel/main" to="." method="_on_main_pressed"]

@@ -3,6 +3,7 @@ extends Node
 const TITLE_MENU = preload("res://Scenes/Menu/title_menu/main_menu.tscn")
 const CHARACTER_MENU = preload("res://Scenes/Menu/character_menu/carousel_contianer.tscn")
 const BOARD_MENU = preload("res://Scenes/Menu/board_menu/board_container.tscn")
+const VICTORY = "res://Scenes/UI/victory.tscn"
 
 var current_board = null
 
@@ -21,6 +22,33 @@ var registers = []
 
 var timer = Timer.new()
 
+var winner_name = ""
+
+var reset_request = false
+
+func reset():
+	player_order.clear()
+	registers.clear()
+	players_decided.clear()
+	damage_cards.clear()
+	damage_discards.clear()
+	upgrade_cards.clear()
+	upgrade_discards.clear()
+	#current_board = null
+	
+	for robot in get_all_robots():
+		if robot != null:
+			if robot.is_connected("robot_won", robot._on_robot_won):
+				robot.disconnect("robot_won", robot._on_robot_won)
+
+func get_all_robots():
+	# Return a list of robot instances still in memory
+	var robots = []
+	for r in player_order:
+		if r != null:
+			robots.append(r)
+	return robots
+
 func action_round():
 	# loop through each register slot
 	for i in range(len(registers[0])):
@@ -36,6 +64,9 @@ func action_round():
 		# robot lasers
 		# battery
 		# check flags
+		for rob in player_order:
+			rob.checking_checkpoint()
+		
 		
 	for i in player_order:
 		i.action_end()

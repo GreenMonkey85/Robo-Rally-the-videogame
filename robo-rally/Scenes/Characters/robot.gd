@@ -16,6 +16,8 @@ var y_dir_mult = 1
 
 signal player_decision_end
 
+signal robot_won(name)
+
 var energy = 3
 var checkpoints = 0
 
@@ -142,6 +144,7 @@ func can_move(x1, y1, x2, y2, num_actions):
 	pass
 
 func Move(num_actions):
+	print(character)
 	print("Robot at: " + str(pos_x) + "," + str(pos_y))
 	var new_x
 	var new_y
@@ -161,7 +164,7 @@ func Move(num_actions):
 		anim_player.play(direction + "_idle")
 		pos_x = new_x
 		pos_y = new_y
-		checking_checkpoint()
+		
 
 func Again(num_actions):
 	await call(last_move, num_actions)
@@ -298,18 +301,25 @@ func checking_checkpoint() -> void:
 			checkpoints += 1
 			print(character)
 			print("new checkpoint reached! This robot has reached " + str(checkpoints) + " checkpoint(s)")
-			boardScript.checkpoints['check1'][1].play("hammerbot_check_1")
+			boardScript.checkpoints['check1'][1].play(character.to_lower() + "_check_1")
 			
 	elif robot_pos == boardScript.checkpoints['check2'][0]:
 		if checkpoints == 1:
 			checkpoints += 1
 			print("new checkpoint reached! This robot has reached " + str(checkpoints) + " checkpoint(s)")
 			print(character)
-			boardScript.checkpoints['check2'][1].play("hammerbot_check_2")
+			boardScript.checkpoints['check2'][1].play(character.to_lower() + "_check_2")
 			
 	else:
 		boardScript.checkpoints['check1'][1].play("idle_1")
 		boardScript.checkpoints['check2'][1].play("idle_2")
+	
+	
+	if checkpoints == len(boardScript.checkpoints):
+		#get_tree().change_scene_to_packed(Game.VICTORY)
+		print("reached all checkpoints")
+		print("emitting from robot: ", self, " at ", self.get_path())
+		emit_signal("robot_won", character)
 		
 		
 

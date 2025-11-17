@@ -17,7 +17,7 @@ config/icon="uid://deg2efx0kgia5"
 
 [autoload]
 
-Game="*res://Globals/game.gd"
+Game="*res://Globals/Game.gd"
 
 [display]
 
