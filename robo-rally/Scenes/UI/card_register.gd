@@ -49,14 +49,11 @@ func removePlacedCard() -> void:
 	if placed_card != null and is_instance_valid(placed_card):
 		placed_card.holder = null
 		placed_card = null
-<<<<<<< HEAD
-=======
-		get_tree().current_scene.add_child(card)
-		card.global_position = global_position
+		get_tree().current_scene.add_child(placed_card)
+		placed_card.global_position = global_position
 
 func clear_register():
 	placed_card = null
 	var register_child = self.get_children()
 	if len(register_child) != 0:
 		register_child[0].queue_free()
->>>>>>> 824d29f5b128e80d204c74952aa53990fad470f5

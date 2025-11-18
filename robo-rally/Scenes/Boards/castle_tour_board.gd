@@ -1,12 +1,12 @@
 extends Node2D
 
-const ORIGIN = Vector2(1235.0, -1650.0)
+const ORIGIN = Vector2(1235.0, -1750.0)
 const PIXEL_X = (852 / 2)
 const PIXEL_Y = (426 / 2)
 const STARTING_POSITIONS = [Vector2(0,0), Vector2(1,1), Vector2(2,2), Vector2(3,3)]
 
-const SPRITE_SCALE = {"Twonky" : Vector2(0.4,0.4),
-					  "HammerBot" : Vector2(0.3,0.3)}
+const SPRITE_SCALE = {"Twonky" : Vector2(1.0,1.0),
+					  "HammerBot" : Vector2(0.8,0.8)}
 
 @onready var robot : CharacterBody2D = $Robot
 @onready var p1cam : Camera2D = $Robot/P1Camera

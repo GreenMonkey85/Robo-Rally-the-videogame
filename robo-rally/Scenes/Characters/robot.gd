@@ -122,16 +122,8 @@ func decision_end():
 	player_decision_end.emit()
 
 func handle_action(card: CardData, register_index):
-<<<<<<< HEAD
 	# Show preview at top-left
 	$UI.show_card_preview(card)
-	
-	if card.type == "Movement":
-		await call(card.action, card.num_action)
-	elif card.type == "Damage":
-		await call(card.action, card.num_action, register_index)
-	last_move = card.action
-=======
 	if card != null:
 		if card.type == "Movement":
 			await call(card.action, card.num_action)

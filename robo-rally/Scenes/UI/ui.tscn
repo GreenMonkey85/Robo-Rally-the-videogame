@@ -34,36 +34,12 @@ offset_bottom = 51.0
 scale = Vector2(2.0969, 2.16005)
 text = "Confirm"
 
-<<<<<<< HEAD
-[node name="Clear" type="Button" parent="UI"]
-offset_left = 789.0
-offset_top = 20.0
-offset_right = 860.0
-offset_bottom = 51.0
-scale = Vector2(2.0969, 2.16005)
-text = "Clear"
-
-[node name="CardHolder" type="Control" parent="UI"]
-=======
 [node name="CardHolder" type="Control" parent="CanvasLayer"]
->>>>>>> 824d29f5b128e80d204c74952aa53990fad470f5
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 2
 
-<<<<<<< HEAD
-[node name="CardPreview" parent="UI" instance=ExtResource("3_1c2ca")]
-offset_left = 13.0
-offset_top = 50.0
-offset_right = -132.0
-offset_bottom = 105.0
-scale = Vector2(0.164765, 0.33996)
-script = null
-
-[node name="Register" type="Control" parent="UI"]
-=======
 [node name="Register" type="Control" parent="CanvasLayer"]
->>>>>>> 824d29f5b128e80d204c74952aa53990fad470f5
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -123,5 +99,3 @@ offset_top = 50.0
 offset_right = 443.0
 offset_bottom = -93.0
 scale = Vector2(0.164765, 0.33996)
-
-[connection signal="pressed" from="UI/Clear" to="." method="_on_clear_pressed"]
