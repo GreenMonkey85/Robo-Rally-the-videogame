@@ -12,7 +12,7 @@ func _ready():
 		robot.position = Game.current_board.ORIGIN + (starting_position * Vector2(Game.current_board.PIXEL_X,
 													 Game.current_board.PIXEL_Y))
 		print(robot.pos_x, robot.pos_y)
-		robot.scale = Vector2(1.3,1.3)
+		#robot.scale = Vector2(1.3,1.3)
 		
 	$Map.add_child(Game.current_board)
 	
@@ -52,4 +52,5 @@ func _on_robot_won(name):
 	call_deferred("_go_to_victory")
 
 func _go_to_victory():
-	get_tree().change_scene_to_file(Game.VICTORY)
+	print("Game.VICTORY =", Game.VICTORY)
+	get_tree().change_scene_to_packed(Game.VICTORY)

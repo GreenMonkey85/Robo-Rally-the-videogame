@@ -96,9 +96,9 @@ func decision_start():
 		cards_in_hand.append(new_card)
 		$UI.draw_animation(new_card)
 		print("DECISION START", len(deck), len(discard), len(cards_in_hand))
-	print("DECISION START", deck, discard, cards_in_hand)
 	$UI/CanvasLayer.visible = true
 	$UI._confirming = false
+	
 	#print(deck, discard, cards_in_hand)
 
 func decision_end():
@@ -111,18 +111,21 @@ func decision_end():
 		if register_list[i].placed_card != null:
 			register[i] = register_list[i].placed_card.cardData
 			cards_in_hand.erase(register[i])
-		print("REGISTER LIST", deck, discard, cards_in_hand)
+		print("REGISTER LIST", len(deck), len(discard), len(cards_in_hand))
 		register_list[i].clear_register()
 	for i in range(cards_in_hand.size() - 1, -1, -1):
 		var card = cards_in_hand[i]
 		if card.type == "Movement":
 			self.discard.append(card)
 			cards_in_hand.remove_at(i)
-		print("CARDS IN HAND", deck, discard, cards_in_hand)
+		print("CARDS IN HAND", len(deck), len(discard), len(cards_in_hand))
 	
 	Game.on_all_decided(self, register)
+	player_decision_end.emit()
 
 func handle_action(card: CardData, register_index):
+	# Show preview at top-left
+	$UI.show_card_preview(card)
 	if card != null:
 		if card.type == "Movement":
 			await call(card.action, card.num_action)
@@ -138,10 +141,28 @@ func action_end():
 		if register[i] != null:
 			discard.append(register[i])
 		register[i] = null
-		print("ACTION END", deck, discard, cards_in_hand)
+		print("ACTION END", len(deck), len(discard), len(cards_in_hand))
 
-func can_move(x1, y1, x2, y2, num_actions):
-	pass
+func can_move(x1, y1, x2, y2):
+	# check if wall is in the way
+	if Game.current_board.walls.has(Game.wall_key(Vector2(x1,y1),Vector2(x2,y2))):
+		return false
+	# check for players in front of new spot
+	for i in Game.player_order:
+		# if player in new spot and player isnt self
+		if Vector2(i.pos_x, i.pos_y) == Vector2(x2, y2) and i != self:
+			var new_x = i.pos_x + (x2-x1)
+			var new_y = i.pos_y + (y2-y1)
+			# check if this iteration's robot can move
+			if not i.can_move(i.pos_x, i.pos_y, new_x, new_y):
+				return false
+			i.pos_x = new_x
+			i.pos_y = new_y
+			create_tween().tween_property(i, "position", Vector2(new_x * Game.current_board.PIXEL_X,
+														 new_y * Game.current_board.PIXEL_Y)
+														 + Game.current_board.ORIGIN, 1)
+	return true
+
 
 func Move(num_actions):
 	print(character)
@@ -155,21 +176,24 @@ func Move(num_actions):
 		else:
 			new_x = pos_x + x_dir_mult
 			new_y = pos_y + y_dir_mult
-		var new_pos = create_tween()
-		new_pos.tween_property(self, "position", Vector2(new_x * Game.current_board.PIXEL_X,
-														 new_y * Game.current_board.PIXEL_Y)
-														+ Game.current_board.ORIGIN, 1)
-		anim_player.play(direction + "_walk")
-		await new_pos.finished
-		anim_player.play(direction + "_idle")
-		pos_x = new_x
-		pos_y = new_y
-		
+			
+		if can_move(pos_x, pos_y, new_x, new_y):
+			var new_pos = create_tween()
+			new_pos.tween_property(self, "position", Vector2(new_x * Game.current_board.PIXEL_X,
+															 new_y * Game.current_board.PIXEL_Y)
+															 + Game.current_board.ORIGIN, 1)
+			anim_player.play(direction + "_walk")
+			await new_pos.finished
+			anim_player.play(direction + "_idle")
+			pos_x = new_x
+			pos_y = new_y
+		checking_checkpoint()
 
 func Again(num_actions):
 	await call(last_move, num_actions)
 
 func Rotate(num_actions):
+	await get_tree().create_timer(0.5).timeout
 	if num_actions == 0:
 		match direction:
 					'bl':
@@ -212,6 +236,7 @@ func Rotate(num_actions):
 						print('BAD DIRECTION, NOT REAL')
 	change_xy_dir()
 	anim_player.play(direction + "_idle")
+	await get_tree().create_timer(0.5).timeout
 
 func PowerUp(num_actions):
 	energy += num_actions

@@ -1,12 +1,12 @@
 extends Node2D
 
-const ORIGIN = Vector2(1235.0, -1650.0)
+const ORIGIN = Vector2(1235.0, -1750.0)
 const PIXEL_X = (852 / 2)
 const PIXEL_Y = (426 / 2)
 const STARTING_POSITIONS = [Vector2(0,0), Vector2(1,1), Vector2(2,2), Vector2(3,3)]
 
-const SPRITE_SCALE = {"Twonky" : Vector2(0.4,0.4),
-					  "HammerBot" : Vector2(0.3,0.3)}
+const SPRITE_SCALE = {"Twonky" : Vector2(1.0,1.0),
+					  "HammerBot" : Vector2(0.8,0.8)}
 
 @onready var robot : CharacterBody2D = $Robot
 @onready var p1cam : Camera2D = $Robot/P1Camera
@@ -21,12 +21,19 @@ const SPRITE_SCALE = {"Twonky" : Vector2(0.4,0.4),
 #
 #@onready var hammer_animationPlayer : AnimationPlayer = $Robot/Sprite2D/AnimationPlayer
 
-@onready var walls = { # start space is (0,0). up is x-1,y-1. down is x+1,y+1. left is x-1,y+1. right is x+1,y-1.
-	'bl': [],
-	'br': [],
-	'tl': [],
-	'tr': [],
-}
+#@onready var walls = { # start space is (0,0). up is x-1,y-1. down is x+1,y+1. left is x-1,y+1. right is x+1,y-1.
+	#'bl': [Vector2(-3,1), Vector2(1, 7), Vector2(-1,11), Vector2(-6,14), Vector2(-10, 8), Vector2(-8,4)],
+	#'br': [Vector2(-1,-1), Vector2(0,-2), Vector2(1,-3), Vector2(-1,1), Vector2(3,3), Vector2(4,2), Vector2(5,1)],
+	#'tl': [Vector2(0,0), Vector2(1,-1), Vector2(2,-2), Vector2(0,2), Vector2(4,4), Vector2(5,3), Vector2(6,2)],
+	#'tr': [Vector2(-4,2), Vector2(0,8), Vector2(-2,12), Vector2(-7,13), Vector2(-11,9), Vector2(-9,5)],
+#}
+
+@onready var walls = {Game.wall_key(Vector2(-3,1),Vector2(-4,-2)):true,Game.wall_key(Vector2(1,7),Vector2(0,8)):true,
+					  Game.wall_key(Vector2(-1,11),Vector2(-2,12)):true,Game.wall_key(Vector2(-6,14),Vector2(-7,13)):true,
+					  Game.wall_key(Vector2(-1,-1),Vector2(0,0)):true,Game.wall_key(Vector2(0,-2),Vector2(1,-1)):true,
+					  Game.wall_key(Vector2(1,-3),Vector2(2,-2)):true,Game.wall_key(Vector2(-1,1),Vector2(0,2)):true,
+					  Game.wall_key(Vector2(3,3),Vector2(4,4)):true,Game.wall_key(Vector2(4,2),Vector2(5,3)):true,
+					  Game.wall_key(Vector2(5,1),Vector2(6,2)):true}
 
 @onready var gears = {
 	'left': [],
@@ -84,6 +91,14 @@ func _ready() -> void:
 	checkpoints['check2'][1].play('idle_2')
 	#robot.position = move_hammer(hammer_x, hammer_y)
 	#change_idle()
+#
+#func wall_key(a: Vector2, b: Vector2) -> String:
+	## Convert to a format like "x1,y1|x2,y2" and sort so order doesn't matter
+	#var A = "%s,%s" % [a.x, a.y]
+	#var B = "%s,%s" % [b.x, b.y]
+	#return A + "|" + B if A < B else B + "|" + A
+
+
 
 
 func _on_robot_spawned(robot):

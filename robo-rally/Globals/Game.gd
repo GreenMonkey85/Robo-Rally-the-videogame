@@ -3,7 +3,9 @@ extends Node
 const TITLE_MENU = preload("res://Scenes/Menu/title_menu/main_menu.tscn")
 const CHARACTER_MENU = preload("res://Scenes/Menu/character_menu/carousel_contianer.tscn")
 const BOARD_MENU = preload("res://Scenes/Menu/board_menu/board_container.tscn")
-const VICTORY = "res://Scenes/UI/victory.tscn"
+const VICTORY = preload("res://Scenes/UI/victory.tscn")
+
+const ALL_ROBOTS = ["Twonky", "HammerBot"]
 
 var current_board = null
 
@@ -76,7 +78,8 @@ func action_round():
 func decision_round():
 	for player in player_order:
 		player.decision_start()
-	timer.start(60.0)
+		await player.player_decision_end
+
 
 func on_all_decided(player, register):
 	
@@ -104,3 +107,9 @@ func draw_a_card(card_deck, card_discard):
 		card_discard.clear()
 		card_deck.shuffle()
 	return card_deck.pop_front()
+
+func wall_key(a: Vector2, b: Vector2) -> String:
+	# Convert to a format like "x1,y1|x2,y2" and sort so order doesn't matter
+	var A = "%s,%s" % [a.x, a.y]
+	var B = "%s,%s" % [b.x, b.y]
+	return A + "|" + B if a.x < b.x else B + "|" + A

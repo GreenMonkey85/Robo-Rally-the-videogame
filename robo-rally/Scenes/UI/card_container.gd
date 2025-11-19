@@ -2,7 +2,7 @@ extends HBoxContainer
 
 var startPosition := Vector2.ZERO
 var card_width := 100
-var hand_target_spacing := 10  # spacing between cards
+var hand_target_spacing := 10
 
 func _ready():
 	self.mouse_filter = Control.MOUSE_FILTER_STOP
