@@ -277,6 +277,21 @@ func set_character(character):
 	anim_player = sprite.get_node("AnimationPlayer")
 	add_child(sprite)
 
+func laser_attack():
+	# start at current player space
+	# some kind of loop (for 20 spaces maybe, so that it wont check forever since edges of map arent walls yet)
+		# check if wall at current space
+		# if Game.current_board.walls.has(Game.wall_key(Vector2(x1,y1),Vector2(x2,y2))):
+		# if so then break loop, laser never fires
+		# if not then count one space forward
+		# now check if theres another player there
+		# if so then will fire laser
+			# trigger player animation for firing laser in that direction
+			# and create Line2D (or Sprite 2D) for the laser itself
+			# after firing, trigger damage card for hit player
+		# if not, then go to next iteration of the loop
+	pass
+
 func _ready() -> void:
 		
 	player_decision_end.connect(Callable(self, "_on_all_decided"))
