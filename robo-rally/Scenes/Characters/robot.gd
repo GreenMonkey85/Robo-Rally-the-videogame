@@ -16,6 +16,8 @@ var y_dir_mult = 1
 
 signal player_decision_end
 
+signal robot_won(name)
+
 var energy = 3
 var checkpoints = 0
 
@@ -166,6 +168,7 @@ func can_move(x1, y1, x2, y2):
 
 
 func Move(num_actions):
+	print(character)
 	print("Robot at: " + str(pos_x) + "," + str(pos_y))
 	var new_x
 	var new_y
@@ -280,6 +283,21 @@ func set_character(character):
 	anim_player = sprite.get_node("AnimationPlayer")
 	add_child(sprite)
 
+func laser_attack():
+	# start at current player space
+	# some kind of loop (for 20 spaces maybe, so that it wont check forever since edges of map arent walls yet)
+		# check if wall at current space
+		# if Game.current_board.walls.has(Game.wall_key(Vector2(x1,y1),Vector2(x2,y2))):
+		# if so then break loop, laser never fires
+		# if not then count one space forward
+		# now check if theres another player there
+		# if so then will fire laser
+			# trigger player animation for firing laser in that direction
+			# and create Line2D (or Sprite 2D) for the laser itself
+			# after firing, trigger damage card for hit player
+		# if not, then go to next iteration of the loop
+	pass
+
 func _ready() -> void:
 		
 	player_decision_end.connect(Callable(self, "_on_all_decided"))
@@ -329,14 +347,14 @@ func checking_checkpoint() -> void:
 			checkpoints += 1
 			print(character)
 			print("new checkpoint reached! This robot has reached " + str(checkpoints) + " checkpoint(s)")
-			boardScript.checkpoints['check1'][1].play("hammerbot_check_1")
+			boardScript.checkpoints['check1'][1].play(character.to_lower() + "_check_1")
 			
 	elif robot_pos == boardScript.checkpoints['check2'][0]:
 		if checkpoints == 1:
 			checkpoints += 1
 			print("new checkpoint reached! This robot has reached " + str(checkpoints) + " checkpoint(s)")
 			print(character)
-			boardScript.checkpoints['check2'][1].play("hammerbot_check_2")
+			boardScript.checkpoints['check2'][1].play(character.to_lower() + "_check_2")
 			
 	else:
 		boardScript.checkpoints[0][1].play("idle_1")
