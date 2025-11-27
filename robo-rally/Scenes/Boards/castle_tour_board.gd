@@ -74,21 +74,18 @@ const SPRITE_SCALE = {"Twonky" : Vector2(1.0,1.0),
 
 @onready var lasers = []
 
-@onready var starts = [Vector2(0.0,0.0), Vector2(1.0,1.0), Vector2(2.0,2.0), Vector2(3.0,3.0)]
-
 @onready var pitfalls = []
 
-@onready var checkpoints = {
-	'check1' : [Vector2(-7.0,13.0), $"Checkpoint 1/AnimationPlayer"],
-	'check2' : [Vector2(0.0,2.0), $"Checkpoint 2/AnimationPlayer"]
-}
+@onready var checkpoints = [[Vector2(-7.0,13.0), $"Checkpoint 1/AnimationPlayer"],
+							[Vector2(0.0,2.0), $"Checkpoint 2/AnimationPlayer"]]
+
 
 var robot1 : Sprite2D = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	checkpoints['check1'][1].play('idle_1')
-	checkpoints['check2'][1].play('idle_2')
+	checkpoints[0][1].play('idle_1')
+	checkpoints[1][1].play('idle_2')
 	#robot.position = move_hammer(hammer_x, hammer_y)
 	#change_idle()
 #
@@ -145,13 +142,14 @@ func _on_robot_spawned(robot):
 	## restores idle
 	#change_idle()
 
+
 # moves the hammerbot on the board, uses the arrow keys
-#func move_hammer(x, y) -> Vector2:
-	#hammer_x = x
-	#var hammer_pixel_x = x * (852 / 2) + ORIGIN.x
-	#hammer_y = y 
-	#var hammer_pixel_y = y * (426 / 2) + ORIGIN.y
-	#return Vector2(hammer_pixel_x, hammer_pixel_y)
+# func move_hammer(x, y) -> Vector2:
+	# hammer_x = x
+	# var hammer_pixel_x = x * (852 / 2) + ORIGIN.x
+	# hammer_y = y 
+	# var hammer_pixel_y = y * (426 / 2) + ORIGIN.y
+	# return Vector2(hammer_pixel_x, hammer_pixel_y)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

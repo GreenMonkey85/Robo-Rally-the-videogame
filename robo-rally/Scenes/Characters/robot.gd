@@ -3,7 +3,7 @@ extends CharacterBody2D
 const PIXEL_X = 852 / 2
 const PIXEL_Y = 426 / 2
 
-var player: String
+var player: String = "Player"
 var character: String
 var anim_player: AnimationPlayer
 
@@ -37,7 +37,7 @@ var current_temporary_upgrades = []
 var upgrades_in_hand = []
 var register = [null,null,null,null,null]
 
-var last_move = "Spam"
+var last_move = null
 
 @onready var boardScript = null
 
@@ -92,19 +92,21 @@ func decision_start():
 			deck.shuffle()
 		var new_card = deck.pop_front()
 		cards_in_hand.append(new_card)
-		$UI.draw_animation(new_card)
+		if player == "Player":
+			$UI.draw_animation(new_card)
 		print("DECISION START", len(deck), len(discard), len(cards_in_hand))
-	$UI/CanvasLayer.visible = true
-	$UI._confirming = false
+	if player == "Player":
+		$UI/CanvasLayer.visible = true
+		$UI._confirming = false
+	else:
+		
+		AI.call(player, Vector2(pos_x,pos_y), Vector2(0,0), cards_in_hand, direction)
 	
 	#print(deck, discard, cards_in_hand)
 
-func decision_end():
+func decision_end(register_list):
 	$UI/CanvasLayer.visible = false
 	
-	var register_list = $UI/CanvasLayer/Register.get_children()
-	register_list.pop_front()
-
 	for i in range(len(register_list)):
 		if register_list[i].placed_card != null:
 			register[i] = register_list[i].placed_card.cardData
@@ -129,7 +131,7 @@ func handle_action(card: CardData, register_index):
 			await call(card.action, card.num_action)
 		elif card.type == "Damage":
 			await call(card.action, register_index)
-		last_move = card.action
+		last_move = card
 	else:
 		await call("Spam", register_index)
 		last_move = "Spam"
@@ -140,6 +142,7 @@ func action_end():
 			discard.append(register[i])
 		register[i] = null
 		print("ACTION END", len(deck), len(discard), len(cards_in_hand))
+	last_move = null
 
 func can_move(x1, y1, x2, y2):
 	# check if wall is in the way
@@ -187,7 +190,10 @@ func Move(num_actions):
 		checking_checkpoint()
 
 func Again(num_actions):
-	await call(last_move, num_actions)
+	if last_move != null and last_move != "Spam":
+		await call(last_move.action, last_move.num_action)
+	else:
+		await call("Spam", num_actions)
 
 func Rotate(num_actions):
 	await get_tree().create_timer(0.5).timeout
@@ -333,8 +339,8 @@ func checking_checkpoint() -> void:
 			boardScript.checkpoints['check2'][1].play("hammerbot_check_2")
 			
 	else:
-		boardScript.checkpoints['check1'][1].play("idle_1")
-		boardScript.checkpoints['check2'][1].play("idle_2")
+		boardScript.checkpoints[0][1].play("idle_1")
+		boardScript.checkpoints[1][1].play("idle_2")
 		
 		
 

@@ -69,7 +69,9 @@ func _on_mouse_exited() -> void:
 func _on_confirm_pressed() -> void:
 	for card in card_container.get_children():
 		card.queue_free()
-	get_parent().decision_end()
+	var register_list = register.get_children()
+	register_list.pop_front()
+	get_parent().decision_end(register_list)
 
 # Clear button
 func _on_clear_pressed() -> void:
