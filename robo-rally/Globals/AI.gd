@@ -1,12 +1,11 @@
 extends Node
 
 func Optimal(position, goal, cards, direction):
-	
 	var stack = [["", position, direction, cards.duplicate(), []]]
 	var memory = {}
 	var min_distance = abs(position.x - goal.x) + abs(position.y - goal.y)
 	var best_register = []
-	
+
 	while len(stack) > 0:
 		var state = stack.pop_front()
 		var hand = state[3]

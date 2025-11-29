@@ -76,16 +76,15 @@ const SPRITE_SCALE = {"Twonky" : Vector2(1.0,1.0),
 
 @onready var pitfalls = []
 
-@onready var checkpoints = [[Vector2(-7.0,13.0), $"Checkpoint 1/AnimationPlayer"],
-							[Vector2(0.0,2.0), $"Checkpoint 2/AnimationPlayer"]]
-
+@onready var checkpoints = {Vector2(-7.0,13.0) : $"Checkpoint 1/AnimationPlayer",
+							Vector2(0.0,2.0) : $"Checkpoint 2/AnimationPlayer"}
 
 var robot1 : Sprite2D = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	checkpoints[0][1].play('idle_1')
-	checkpoints[1][1].play('idle_2')
+	for i in range(len(checkpoints.values())):
+		checkpoints.values()[i].play("idle_" + str(i + 1))
 	#robot.position = move_hammer(hammer_x, hammer_y)
 	#change_idle()
 #
@@ -94,9 +93,6 @@ func _ready() -> void:
 	#var A = "%s,%s" % [a.x, a.y]
 	#var B = "%s,%s" % [b.x, b.y]
 	#return A + "|" + B if A < B else B + "|" + A
-
-
-
 
 func _on_robot_spawned(robot):
 	robot1 = robot

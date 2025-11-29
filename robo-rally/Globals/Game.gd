@@ -66,8 +66,7 @@ func action_round():
 		# robot lasers
 		# battery
 		# check flags
-		for rob in player_order:
-			rob.checking_checkpoint()
+		checking_checkpoint()
 		
 		
 	for i in player_order:
@@ -100,16 +99,24 @@ func start_game(player_list, chosen_board):
 	for i in range(len(player_order)):
 		registers.append(null)
 	decision_round()
-	
-func draw_a_card(card_deck, card_discard):
-	if card_deck <= 0:
-		card_deck.append_array(card_discard)
-		card_discard.clear()
-		card_deck.shuffle()
-	return card_deck.pop_front()
+
+#func draw_a_card(card_deck, card_discard):
+	#if card_deck <= 0:
+		#card_deck.append_array(card_discard)
+		#card_discard.clear()
+		#card_deck.shuffle()
+	#return card_deck.pop_front()
 
 func wall_key(a: Vector2, b: Vector2) -> String:
 	# Convert to a format like "x1,y1|x2,y2" and sort so order doesn't matter
 	var A = "%s,%s" % [a.x, a.y]
 	var B = "%s,%s" % [b.x, b.y]
 	return A + "|" + B if a.x < b.x else B + "|" + A
+
+func checking_checkpoint():	
+	for robot in player_order:
+		var robot_pos = Vector2(robot.pos_x, robot.pos_y)
+		print(robot_pos)
+		if robot_pos == current_board.checkpoints.keys()[robot.checkpoints]:
+			robot.checkpoints += 1
+			current_board.checkpoints[robot_pos].play(robot.character.to_lower() + "_check_" + str(robot.checkpoints))

@@ -136,7 +136,8 @@ func handle_action(card: CardData, register_index):
 		last_move = card
 	else:
 		await call("Spam", register_index)
-		last_move = "Spam"
+		last_move = preload("res://Resources/Cards/Damage_Cards/spam.tres")
+	print("CHECKPOINTS: ", checkpoints)
 
 func action_end():
 	for i in range(len(register)):
@@ -190,10 +191,9 @@ func Move(num_actions):
 			anim_player.play(direction + "_idle")
 			pos_x = new_x
 			pos_y = new_y
-		checking_checkpoint()
 
 func Again(num_actions):
-	if last_move != null and last_move != "Spam":
+	if last_move != null:
 		await call(last_move.action, last_move.num_action)
 	else:
 		await call("Spam", num_actions)
@@ -326,41 +326,17 @@ func _ready() -> void:
 	# END TESTING
 
 func _process(delta: float) -> void:
-	if boardScript == null:
-		var board_node = get_parent().get_parent().get_node_or_null("Map")
-		print(board_node == null)
-		if board_node and board_node.get_child_count() > 0:
-			# The first child under Board is the active board scene
-			boardScript = board_node.get_child(0)
-			print("Board found")
+	pass
+	#if boardScript == null:
+		#var board_node = get_parent().get_parent().get_node_or_null("Map")
+		#print(board_node == null)
+		#if board_node and board_node.get_child_count() > 0:
+			## The first child under Board is the active board scene
+			#boardScript = board_node.get_child(0)
+			#print("Board found")
 
 
-func checking_checkpoint() -> void:
-	print("checking checkpoint now!!!!")
-	var robot_pos = Vector2(pos_x, pos_y)
-	print(robot_pos)
-	print(boardScript.checkpoints['check1'][0])
-	print(boardScript.checkpoints['check2'][0])
-	
-	if robot_pos == boardScript.checkpoints['check1'][0]:
-		if checkpoints == 0:
-			checkpoints += 1
-			print(character)
-			print("new checkpoint reached! This robot has reached " + str(checkpoints) + " checkpoint(s)")
-			boardScript.checkpoints['check1'][1].play(character.to_lower() + "_check_1")
-			
-	elif robot_pos == boardScript.checkpoints['check2'][0]:
-		if checkpoints == 1:
-			checkpoints += 1
-			print("new checkpoint reached! This robot has reached " + str(checkpoints) + " checkpoint(s)")
-			print(character)
-			boardScript.checkpoints['check2'][1].play(character.to_lower() + "_check_2")
-			
-	else:
-		boardScript.checkpoints[0][1].play("idle_1")
-		boardScript.checkpoints[1][1].play("idle_2")
-		
-		
+
 
 # TESTING
 #func change_idle() -> void:

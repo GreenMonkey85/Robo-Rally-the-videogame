@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://b0sor5vowojt5"]
+
+[ext_resource type="Script" uid="uid://dmlhld3u2rbe5" path="res://Globals/card_data.gd" id="1_vyyu7"]
+[ext_resource type="Texture2D" uid="uid://dd8daa2sar3f3" path="res://Graphics/CardSprites/damage_cards/damage_spam_card.png" id="2_iqqkm"]
+
+[resource]
+script = ExtResource("1_vyyu7")
+name = "spam"
+character = ""
+type = "Damage"
+action = "Spam"
+num_action = 1
+sprite = ExtResource("2_iqqkm")
+energy = 0
+metadata/_custom_type_script = "uid://dmlhld3u2rbe5"
