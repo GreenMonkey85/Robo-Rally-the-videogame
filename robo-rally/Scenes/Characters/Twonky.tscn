@@ -17,22 +17,6 @@ tracks/0/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_4f5w4"]
-resource_name = "bl_fire"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.625, 0.75, 0.875, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [16, 17, 16, 17, 16, 17, 18]
-}
-
 [sub_resource type="Animation" id="Animation_ou83l"]
 resource_name = "bl_idle"
 loop_mode = 1
@@ -47,6 +31,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_4f5w4"]
+resource_name = "bl_laser"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.625, 0.75, 0.875, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [16, 17, 16, 17, 16, 17, 18]
 }
 
 [sub_resource type="Animation" id="Animation_s1t2l"]
@@ -65,22 +65,6 @@ tracks/0/keys = {
 "values": [8, 1, 9, 1]
 }
 
-[sub_resource type="Animation" id="Animation_lxs48"]
-resource_name = "br_fire"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.625, 0.75, 0.875, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [19, 20, 19, 20, 19, 20, 21]
-}
-
 [sub_resource type="Animation" id="Animation_ag5p6"]
 resource_name = "br_idle"
 loop_mode = 1
@@ -95,6 +79,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_lxs48"]
+resource_name = "br_laser"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.625, 0.75, 0.875, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [19, 20, 19, 20, 19, 20, 21]
 }
 
 [sub_resource type="Animation" id="Animation_ko13d"]
@@ -113,22 +113,6 @@ tracks/0/keys = {
 "values": [11, 3, 10, 3]
 }
 
-[sub_resource type="Animation" id="Animation_yq00r"]
-resource_name = "tl_fire"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.625, 0.75, 0.875, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [25, 24, 25, 24, 25, 24, 6]
-}
-
 [sub_resource type="Animation" id="Animation_5m1jo"]
 resource_name = "tl_idle"
 loop_mode = 1
@@ -143,6 +127,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_yq00r"]
+resource_name = "tl_laser"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.625, 0.75, 0.875, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [25, 24, 25, 24, 25, 24, 6]
 }
 
 [sub_resource type="Animation" id="Animation_7d5tg"]
@@ -161,22 +161,6 @@ tracks/0/keys = {
 "values": [14, 7, 15, 7]
 }
 
-[sub_resource type="Animation" id="Animation_rxdkt"]
-resource_name = "tr_fire"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.625, 0.75, 0.875, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [23, 22, 23, 22, 23, 22, 4]
-}
-
 [sub_resource type="Animation" id="Animation_nt68q"]
 resource_name = "tr_idle"
 loop_mode = 1
@@ -191,6 +175,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_rxdkt"]
+resource_name = "tr_laser"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.625, 0.75, 0.875, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [23, 22, 23, 22, 23, 22, 4]
 }
 
 [sub_resource type="Animation" id="Animation_xp3de"]
@@ -212,17 +212,17 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lxs48"]
 _data = {
 &"RESET": SubResource("Animation_rpwaf"),
-&"bl_fire": SubResource("Animation_4f5w4"),
 &"bl_idle": SubResource("Animation_ou83l"),
+&"bl_laser": SubResource("Animation_4f5w4"),
 &"bl_walk": SubResource("Animation_s1t2l"),
-&"br_fire": SubResource("Animation_lxs48"),
 &"br_idle": SubResource("Animation_ag5p6"),
+&"br_laser": SubResource("Animation_lxs48"),
 &"br_walk": SubResource("Animation_ko13d"),
-&"tl_fire": SubResource("Animation_yq00r"),
 &"tl_idle": SubResource("Animation_5m1jo"),
+&"tl_laser": SubResource("Animation_yq00r"),
 &"tl_walk": SubResource("Animation_7d5tg"),
-&"tr_fire": SubResource("Animation_rxdkt"),
 &"tr_idle": SubResource("Animation_nt68q"),
+&"tr_laser": SubResource("Animation_rxdkt"),
 &"tr_walk": SubResource("Animation_xp3de")
 }
 

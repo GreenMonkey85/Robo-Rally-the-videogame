@@ -230,7 +230,8 @@ _data = {
 }
 
 [node name="Sprite2D" type="Sprite2D"]
-position = Vector2(10, -808)
+position = Vector2(0, -239)
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("1_465v4")
 hframes = 7
 vframes = 7
@@ -239,3 +240,4 @@ vframes = 7
 libraries = {
 &"": SubResource("AnimationLibrary_6ufvy")
 }
+autoplay = "bl_idle"

@@ -1,10 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://c8i2ohpoyhl5k"]
+[gd_scene load_steps=21 format=3 uid="uid://c8i2ohpoyhl5k"]
 
 [ext_resource type="Script" uid="uid://d2hkj8x160dl7" path="res://Scenes/Menu/character_menu/carousel_contianer.gd" id="1_mq0ai"]
 [ext_resource type="Texture2D" uid="uid://dqlllys04c55f" path="res://factorybackround.jpg" id="2_dhbjd"]
 [ext_resource type="PackedScene" uid="uid://dbd46rq7u3tct" path="res://Scenes/Characters/Twonky.tscn" id="3_hfscs"]
 [ext_resource type="PackedScene" uid="uid://dvxw10jolhqca" path="res://Scenes/Characters/HammerBot.tscn" id="4_ut2ur"]
-[ext_resource type="Texture2D" uid="uid://vwtv6nf3y3n7" path="res://Graphics/CharacterSprites/pixilart-sprite (5).png" id="4_uvkw6"]
+[ext_resource type="PackedScene" uid="uid://b7q8xr26dfex7" path="res://Scenes/Characters/SpinBot.tscn" id="6_qwas7"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p3ags"]
 texture = ExtResource("2_dhbjd")
@@ -14,6 +14,9 @@ bg_color = Color(0.271241, 0.604315, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p3ags"]
 bg_color = Color(0.872116, 0.490276, 3.85046e-07, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uvkw6"]
+bg_color = Color(0.321876, 0.693711, 0.38115, 1)
 
 [sub_resource type="SystemFont" id="SystemFont_mq0ai"]
 subpixel_positioning = 0
@@ -75,10 +78,8 @@ grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_d8yma")
 
 [node name="Twonky" parent="CarouselConatianer/Control/Twonky" instance=ExtResource("3_hfscs")]
-position = Vector2(199, 198)
-texture = ExtResource("4_uvkw6")
-hframes = 28
-vframes = 1
+position = Vector2(200, 200)
+scale = Vector2(0.2, 0.202)
 
 [node name="HammerBot" type="Panel" parent="CarouselConatianer/Control"]
 custom_minimum_size = Vector2(200, 200)
@@ -94,6 +95,19 @@ grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_p3ags")
 
 [node name="HammerBot" parent="CarouselConatianer/Control/HammerBot" instance=ExtResource("4_ut2ur")]
+position = Vector2(196, 194)
+scale = Vector2(0.2, 0.2)
+
+[node name="SpinBot" type="Panel" parent="CarouselConatianer/Control"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 0
+offset_left = -140.0
+offset_top = -265.0
+offset_right = 260.0
+offset_bottom = 135.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_uvkw6")
+
+[node name="SpinBot" parent="CarouselConatianer/Control/SpinBot" instance=ExtResource("6_qwas7")]
 position = Vector2(196, 194)
 scale = Vector2(0.2, 0.2)
 

@@ -116,7 +116,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_06t4h")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_7vrkn")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_jix8l")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_glbon")
-text = "Settings"
+text = "Settings & Info"
 
 [node name="quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -137,4 +137,5 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_qe12f")
 text = "Quit"
 
 [connection signal="pressed" from="VBoxContainer/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]

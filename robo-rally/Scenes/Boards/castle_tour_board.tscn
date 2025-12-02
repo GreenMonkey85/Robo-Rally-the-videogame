@@ -277,7 +277,6 @@ tile_map_data = PackedByteArray("AAD8/wgAAAAGAAIAAAD8/wcAAAAGAAIAAAD8/wYAAAAGAAI
 tile_set = SubResource("TileSet_87l0l")
 
 [node name="Walls" type="TileMapLayer" parent="Floor/LowerElements/HigherElements"]
-z_index = 1
 tile_map_data = PackedByteArray("AAABAAIAAQAFAAUAAAD8/wkAAQAGAAYAABD8/wIAAQAGAAYAABABAAkAAQAFAAUAAAD9/wAAAQAGAAUAAAD8////AQAGAAUAAAD8//7/AQAGAAUAAAD8//3/AQAGAAUAAAABAP3/AQAGAAYAAAABAP7/AQAGAAYAAAABAP//AQAGAAYAAAA=")
 tile_set = SubResource("TileSet_02vqm")
 

@@ -5,8 +5,11 @@ const PIXEL_X = (852 / 2)
 const PIXEL_Y = (426 / 2)
 const STARTING_POSITIONS = [Vector2(0,0), Vector2(1,1), Vector2(2,2), Vector2(3,3)]
 
-const SPRITE_SCALE = {"Twonky" : Vector2(1.0,1.0),
-					  "HammerBot" : Vector2(0.8,0.8)}
+const SPRITE_SCALE = {
+					  "Twonky" : Vector2(1.0,1.0),
+					  "HammerBot" : Vector2(0.8,0.8),
+					  # "SpinBot" : Vector2(0,0)
+					}
 
 @onready var robot : CharacterBody2D = $Robot
 @onready var p1cam : Camera2D = $Robot/P1Camera
@@ -33,7 +36,35 @@ const SPRITE_SCALE = {"Twonky" : Vector2(1.0,1.0),
 					  Game.wall_key(Vector2(-1,-1),Vector2(0,0)):true,Game.wall_key(Vector2(0,-2),Vector2(1,-1)):true,
 					  Game.wall_key(Vector2(1,-3),Vector2(2,-2)):true,Game.wall_key(Vector2(-1,1),Vector2(0,2)):true,
 					  Game.wall_key(Vector2(3,3),Vector2(4,4)):true,Game.wall_key(Vector2(4,2),Vector2(5,3)):true,
-					  Game.wall_key(Vector2(5,1),Vector2(6,2)):true}
+					  Game.wall_key(Vector2(5,1),Vector2(6,2)):true, Game.wall_key(Vector2(2,-2),Vector2(3,-3)):true,
+					  Game.wall_key(Vector2(3,-1),Vector2(4,-2)):true, Game.wall_key(Vector2(4,0),Vector2(5,-1)):true,
+					  Game.wall_key(Vector2(5,1),Vector2(6,0)):true, Game.wall_key(Vector2(6,2),Vector2(7,1)):true,
+					  Game.wall_key(Vector2(7,3),Vector2(8,2)):true, Game.wall_key(Vector2(8,4),Vector2(9,3)):true,
+					  Game.wall_key(Vector2(9,5),Vector2(10,4)):true, Game.wall_key(Vector2(1,-3),Vector2(2,-4)):true,
+					  Game.wall_key(Vector2(0,-4),Vector2(1,-5)):true, Game.wall_key(Vector2(-1,-5),Vector2(0,-6)):true,
+					  Game.wall_key(Vector2(-2,-6),Vector2(-1,-7)):true, Game.wall_key(Vector2(-2,-6),Vector2(-3,-7)):true,
+					  Game.wall_key(Vector2(-3,-5),Vector2(-4,-6)):true, Game.wall_key(Vector2(-4,-4),Vector2(-5,-5)):true,
+					  Game.wall_key(Vector2(-5,-3), Vector2(-6,-4)):true, Game.wall_key(Vector2(-6,-2),Vector2(-7,-3)):true,
+					  Game.wall_key(Vector2(-7,-1),Vector2(-8,-2)):true, Game.wall_key(Vector2(-8,0),Vector2(-9,-1)):true,
+					  Game.wall_key(Vector2(-9,1),Vector2(-10,0)):true, Game.wall_key(Vector2(-10,2),Vector2(-11,1)):true,
+					  Game.wall_key(Vector2(-11,3),Vector2(-12,2)):true, Game.wall_key(Vector2(-12,4),Vector2(-13,3)):true,
+					  Game.wall_key(Vector2(-13,5),Vector2(-14,4)):true, Game.wall_key(Vector2(-14,6),Vector2(-15,5)):true,
+					  Game.wall_key(Vector2(-15,7),Vector2(-16,6)):true, Game.wall_key(Vector2(-16,8),Vector2(-17,7)):true,
+					  Game.wall_key(Vector2(-16,8),Vector2(-17,9)):true, Game.wall_key(Vector2(-15,9),Vector2(-16,10)):true,
+					  Game.wall_key(Vector2(-14,10),Vector2(-15,11)):true, Game.wall_key(Vector2(-13,11),Vector2(-14,12)):true,
+					  Game.wall_key(Vector2(-12,12),Vector2(-13,13)):true, Game.wall_key(Vector2(-11,13),Vector2(-12,14)):true,
+					  Game.wall_key(Vector2(-10,14),Vector2(-11,15)):true, Game.wall_key(Vector2(-9,15),Vector2(-10,16)):true,
+					  Game.wall_key(Vector2(-8,16),Vector2(-9,17)):true, Game.wall_key(Vector2(-7,17),Vector2(-8,18)):true,
+					  Game.wall_key(Vector2(-6,18),Vector2(-7,19)):true, Game.wall_key(Vector2(-5,19),Vector2(-6,20)):true,
+					  Game.wall_key(Vector2(-5,19),Vector2(-4,20)):true, Game.wall_key(Vector2(-4,18),Vector2(-3,19)):true,
+					  Game.wall_key(Vector2(-3,17),Vector2(-2,18)):true, Game.wall_key(Vector2(-2,16),Vector2(-1,17)):true,
+					  Game.wall_key(Vector2(-1,15),Vector2(0,16)):true, Game.wall_key(Vector2(0,14),Vector2(1,15)):true,
+					  Game.wall_key(Vector2(1,13),Vector2(2,14)):true, Game.wall_key(Vector2(2,12),Vector2(3,13)):true,
+					  Game.wall_key(Vector2(3,11),Vector2(4,12)):true, Game.wall_key(Vector2(4,10),Vector2(5,11)):true,
+					  Game.wall_key(Vector2(5,9),Vector2(6,10)):true, Game.wall_key(Vector2(6,8),Vector2(7,9)):true,
+					  Game.wall_key(Vector2(7,7),Vector2(8,8)):true, Game.wall_key(Vector2(8,6),Vector2(9,7)):true,
+					  Game.wall_key(Vector2(9,5),Vector2(10,6)):true
+					}
 
 @onready var gears = {
 	'left': [],

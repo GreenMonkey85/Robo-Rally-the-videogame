@@ -4,6 +4,7 @@ const TITLE_MENU = preload("res://Scenes/Menu/title_menu/main_menu.tscn")
 const CHARACTER_MENU = preload("res://Scenes/Menu/character_menu/carousel_contianer.tscn")
 const BOARD_MENU = preload("res://Scenes/Menu/board_menu/board_container.tscn")
 const VICTORY = preload("res://Scenes/UI/victory.tscn")
+const SETTINGS_MENU = preload("res://Scenes/Menu/settings_menu/settings.tscn")
 
 const ALL_ROBOTS = ["Twonky", "HammerBot"]
 
@@ -59,12 +60,20 @@ func action_round():
 			print("HANDLE ", player_order[j].player, " ", registers, " ", i)
 			# current player moves
 			await player_order[j].handle_action(registers[j][i], i)
+			if get_tree().current_scene == VICTORY:
+				# stop all moves, somebody has won
+				return
 		# double conveyers
 		# single conveyer
 		# push panels
 		# rotate gears
 		# board lasers
 		# robot lasers
+		if get_tree().current_scene != VICTORY:
+			for rob in player_order:
+				print("Trying laser for " + str(rob))
+				rob.laser_attack()
+				await get_tree().create_timer(2).timeout
 		# battery
 		# check flags
 		checking_checkpoint()
@@ -80,7 +89,6 @@ func decision_round():
 		player.decision_start()
 		if player.player == "Player":
 			await player.player_decision_end
-
 
 func on_all_decided(player, register):
 	
