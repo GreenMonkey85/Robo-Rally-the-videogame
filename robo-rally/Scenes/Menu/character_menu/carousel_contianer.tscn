@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dqlllys04c55f" path="res://factorybackround.jpg" id="2_dhbjd"]
 [ext_resource type="PackedScene" uid="uid://dbd46rq7u3tct" path="res://Scenes/Characters/Twonky.tscn" id="3_hfscs"]
 [ext_resource type="PackedScene" uid="uid://dvxw10jolhqca" path="res://Scenes/Characters/HammerBot.tscn" id="4_ut2ur"]
-[ext_resource type="PackedScene" uid="uid://b7q8xr26dfex7" path="res://Scenes/Characters/SpinBot.tscn" id="6_qwas7"]
+[ext_resource type="PackedScene" path="res://Scenes/Characters/SpinBot.tscn" id="6_qwas7"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p3ags"]
 texture = ExtResource("2_dhbjd")
