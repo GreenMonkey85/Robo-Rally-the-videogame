@@ -71,7 +71,10 @@ func _on_confirm_pressed() -> void:
 		card.queue_free()
 	var register_list = register.get_children()
 	register_list.pop_front()
-	get_parent().decision_end(register_list)
+	var final_register = []
+	for i in register_list:
+		final_register.append(i.placed_card)
+	get_parent().decision_end(final_register)
 
 # Clear button
 func _on_clear_pressed() -> void:

@@ -56,6 +56,7 @@ func action_round():
 	for i in range(len(registers[0])):
 		# loop through each player with respect to order
 		for j in range(len(player_order)):
+			print("HANDLE ", player_order[j].player, " ", registers, " ", i)
 			# current player moves
 			await player_order[j].handle_action(registers[j][i], i)
 		# double conveyers
@@ -77,7 +78,8 @@ func action_round():
 func decision_round():
 	for player in player_order:
 		player.decision_start()
-		await player.player_decision_end
+		if player.player == "Player":
+			await player.player_decision_end
 
 
 func on_all_decided(player, register):

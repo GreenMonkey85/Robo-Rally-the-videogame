@@ -28,8 +28,8 @@ const SPRITE_SCALE = {"Twonky" : Vector2(1.0,1.0),
 	#'tr': [Vector2(-4,2), Vector2(0,8), Vector2(-2,12), Vector2(-7,13), Vector2(-11,9), Vector2(-9,5)],
 #}
 
-@onready var walls = {Game.wall_key(Vector2(-3,1),Vector2(-4,-2)):true,Game.wall_key(Vector2(1,7),Vector2(0,8)):true,
-					  Game.wall_key(Vector2(-1,11),Vector2(-2,12)):true,Game.wall_key(Vector2(-6,14),Vector2(-7,13)):true,
+@onready var walls = {Game.wall_key(Vector2(-3,1),Vector2(-4,2)):true,Game.wall_key(Vector2(1,7),Vector2(0,8)):true,
+					  Game.wall_key(Vector2(-1,11),Vector2(-2,12)):true,Game.wall_key(Vector2(-6,14),Vector2(-7,15)):true,
 					  Game.wall_key(Vector2(-1,-1),Vector2(0,0)):true,Game.wall_key(Vector2(0,-2),Vector2(1,-1)):true,
 					  Game.wall_key(Vector2(1,-3),Vector2(2,-2)):true,Game.wall_key(Vector2(-1,1),Vector2(0,2)):true,
 					  Game.wall_key(Vector2(3,3),Vector2(4,4)):true,Game.wall_key(Vector2(4,2),Vector2(5,3)):true,

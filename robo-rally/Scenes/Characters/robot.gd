@@ -101,8 +101,10 @@ func decision_start():
 		$UI/CanvasLayer.visible = true
 		$UI._confirming = false
 	else:
+		var AI_register = AI.call(player, Vector2(pos_x,pos_y), Game.current_board.checkpoints.keys()[checkpoints],
+			cards_in_hand, direction)
+		decision_end(AI_register)
 		
-		AI.call(player, Vector2(pos_x,pos_y), Vector2(0,0), cards_in_hand, direction)
 	
 	#print(deck, discard, cards_in_hand)
 
@@ -110,11 +112,10 @@ func decision_end(register_list):
 	$UI/CanvasLayer.visible = false
 	
 	for i in range(len(register_list)):
-		if register_list[i].placed_card != null:
-			register[i] = register_list[i].placed_card.cardData
+		if register_list[i] != null:
+			register[i] = register_list[i]
 			cards_in_hand.erase(register[i])
 		print("REGISTER LIST", len(deck), len(discard), len(cards_in_hand))
-		register_list[i].clear_register()
 	for i in range(cards_in_hand.size() - 1, -1, -1):
 		var card = cards_in_hand[i]
 		if card.type == "Movement":

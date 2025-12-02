@@ -75,11 +75,15 @@ func _on_select_pressed() -> void:
 	robot.set_character(panels.pop_at(current_index).name)
 	Game.player_order.append(robot)
 	
+	robot = preload("res://Scenes/Characters/robot.tscn").instantiate()
+	robot.set_character(panels[0].name)
+	robot.player = "Beam"
+	Game.player_order.append(robot)
 	
-	for i in range(3):
-		robot = preload("res://Scenes/Characters/robot.tscn").instantiate()
-		robot.set_character(panels[0].name)
-		Game.player_order.append(robot)
+	#for i in range(3):
+		#robot = preload("res://Scenes/Characters/robot.tscn").instantiate()
+		#robot.set_character(panels[0].name)
+		#Game.player_order.append(robot)
 	
 	
 	get_tree().change_scene_to_packed(Game.BOARD_MENU)
