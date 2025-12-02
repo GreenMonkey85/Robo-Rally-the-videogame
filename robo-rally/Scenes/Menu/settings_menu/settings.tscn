@@ -1,0 +1,84 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqs6p2o8g5s87"]
+
+[ext_resource type="Script" uid="uid://qgh4jlmtobup" path="res://Scenes/Menu/settings_menu/settings.gd" id="1_747tq"]
+[ext_resource type="Texture2D" uid="uid://u5n3bml6ta68" path="res://Graphics/MenuSprites/factorybackround.jpg" id="1_tfrhh"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_747tq"]
+texture = ExtResource("1_tfrhh")
+
+[node name="Settings" type="Node2D"]
+script = ExtResource("1_747tq")
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(28.9658, 16.5437)
+theme_override_styles/panel = SubResource("StyleBoxTexture_747tq")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Return" type="Button" parent="Node2D"]
+offset_left = 503.0
+offset_top = 595.0
+offset_right = 676.0
+offset_bottom = 626.0
+theme_override_colors/font_color = Color(1, 0.694118, 0.145098, 1)
+theme_override_colors/font_focus_color = Color(1, 0.694118, 0.145098, 1)
+text = "Return to Main Menu"
+
+[node name="Label" type="Label" parent="Node2D"]
+offset_left = 60.0
+offset_top = 176.0
+offset_right = 371.0
+offset_bottom = 199.0
+scale = Vector2(1.12012, 1.96437)
+text = "Select the Number of Players you'd like: "
+
+[node name="NumPlayers" type="OptionButton" parent="Node2D"]
+offset_left = 412.0
+offset_top = 173.0
+offset_right = 454.0
+offset_bottom = 204.0
+scale = Vector2(2.27591, 1.77666)
+selected = 0
+item_count = 4
+popup/item_0/text = "4"
+popup/item_0/id = 0
+popup/item_1/text = "3"
+popup/item_1/id = 1
+popup/item_2/text = "2"
+popup/item_2/id = 2
+popup/item_3/text = "1"
+popup/item_3/id = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Node2D"]
+offset_left = 555.0
+offset_top = 559.0
+offset_right = 595.0
+offset_bottom = 599.0
+scale = Vector2(13.8385, -9.97335)
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Node2D/ScrollContainer"]
+layout_mode = 2
+text = "Each round in a game of Robo Rally is divided into 2 parts:
+1. The Programming Phase
+2. The Activation Phase"
+fit_content = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(579, 331)
+rotation = -3.14159
+scale = Vector2(38.7287, 11.06)
+
+[node name="Settings" type="Label" parent="."]
+offset_left = 312.0
+offset_top = 11.0
+offset_right = 475.0
+offset_bottom = 34.0
+scale = Vector2(2.91472, 5.52861)
+theme_override_colors/font_color = Color(1, 0.694118, 0.145098, 1)
+text = "Settings & Game Info"
+
+[connection signal="pressed" from="Node2D/Return" to="." method="_on_return_pressed"]

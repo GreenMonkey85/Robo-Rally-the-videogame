@@ -277,22 +277,84 @@ func set_character(character):
 	anim_player = sprite.get_node("AnimationPlayer")
 	add_child(sprite)
 
+func check_next_for_laser(x, y):
+	if direction == 'bl':
+		x -= 1
+		y += 1
+	elif direction == 'br':
+		x += 1
+		y += 1
+	elif direction == 'tl':
+		x -= 1
+		y -= 1
+	else:
+		x += 1
+		y -= 1
+	
+	return Vector2(x, y)
+
 func laser_attack():
 	# start at current player space
+	var check = Vector2(pos_x, pos_y)
+	var check_x = pos_x
+	var check_y = pos_y
+	
 	# some kind of loop (for 20 spaces maybe, so that it wont check forever since edges of map arent walls yet)
+	for i in range(20):
 		# check if wall at current space
-		# if Game.current_board.walls.has(Game.wall_key(Vector2(x1,y1),Vector2(x2,y2))):
-		# if so then break loop, laser never fires
+		var check_next = check_next_for_laser(check_x, check_y)
+		
+		for wall in boardScript.walls:
+			#if wall.contains(str(check[0]) + ',' + str(check[1])) && wall.contains(str(check_next[0]) + ',' + str(check_next[1])):
+				# if so then break loop, laser never fires
+			if wall == Game.wall_key(check, check_next):
+				print("Wall detected, will not fire laser")
+				return
+		
 		# if not then count one space forward
+		check = check_next
+		check_x = check[0]
+		check_y = check[1]
+		#laser_path.append(Vector2(check_x, check_y))
+		
 		# now check if theres another player there
-		# if so then will fire laser
-			# trigger player animation for firing laser in that direction
-			# and create Line2D (or Sprite 2D) for the laser itself
-			# after firing, trigger damage card for hit player
+		for rob in Game.player_order:
+			# if so then will fire laser
+			if rob.pos_x == check_x && rob.pos_y == check_y:
+				# trigger player animation for firing laser in that direction
+				print("Target locked, firing laser!")
+				anim_player.play(direction + "_laser")
+				await get_tree().create_timer(2).timeout
+				# and create Line2D (or Sprite 2D) for the laser itself
+				var pixel_laser_nodes = []
+				pixel_laser_nodes.append(tile_to_pixel(pos_x, pos_y))
+				pixel_laser_nodes.append(tile_to_pixel(check_x, check_y))
+				
+				var laser = Line2D.new()
+				laser.width = 50
+				laser.default_color = Color.RED
+				
+				var board_node = get_parent().get_parent().get_node_or_null("Map")
+				board_node.add_child(laser)
+				for coord in pixel_laser_nodes:
+					laser.add_point(coord)
+				
+				await get_tree().create_timer(2).timeout
+				laser.queue_free()
+				board_node.remove_child(laser)
+				anim_player.play(direction + "_idle")
+				
+				# after firing, trigger damage card for hit player
+				return
 		# if not, then go to next iteration of the loop
-	pass
+	# if its checked everything in a row, then no robot found, so stop
+	print("No target found, stand down")
+
+func tile_to_pixel(tile_x, tile_y):
+	return Game.current_board.ORIGIN + Vector2(tile_x * Game.current_board.PIXEL_X, tile_y * Game.current_board.PIXEL_Y) + Vector2(Game.current_board.PIXEL_X / 2, Game.current_board.PIXEL_Y / 2)
 
 func _ready() -> void:
+	print(Game.current_board.ORIGIN)
 		
 	player_decision_end.connect(Callable(self, "_on_all_decided"))
 	
@@ -320,6 +382,8 @@ func _ready() -> void:
 	# END TESTING
 
 func _process(delta: float) -> void:
+	#z_index = int(global_position.y) #added this to test properly rendering the z of players vis a vis walls
+	
 	if boardScript == null:
 		var board_node = get_parent().get_parent().get_node_or_null("Map")
 		print(board_node == null)
@@ -356,7 +420,6 @@ func checking_checkpoint() -> void:
 	
 	
 	if checkpoints == len(boardScript.checkpoints):
-		#get_tree().change_scene_to_packed(Game.VICTORY)
 		print("reached all checkpoints")
 		print("emitting from robot: ", self, " at ", self.get_path())
 		emit_signal("robot_won", character)

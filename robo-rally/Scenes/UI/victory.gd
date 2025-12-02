@@ -16,7 +16,7 @@ func _ready() -> void:
 	
 	var char_instance = char_scene.instantiate()
 	show_winner.add_child(char_instance)
-	
+	char_instance.scale = Vector2(0.5,0.5)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
