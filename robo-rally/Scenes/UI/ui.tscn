@@ -34,6 +34,14 @@ offset_bottom = 51.0
 scale = Vector2(2.0969, 2.16005)
 text = "Confirm"
 
+[node name="Clear" type="Button" parent="CanvasLayer"]
+offset_left = 791.0
+offset_top = 20.0
+offset_right = 862.0
+offset_bottom = 51.0
+scale = Vector2(2.0969, 2.16005)
+text = "Clear"
+
 [node name="CardHolder" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0

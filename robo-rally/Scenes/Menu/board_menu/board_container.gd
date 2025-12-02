@@ -40,8 +40,10 @@ func _ready() -> void:
 			panels.append(child)
 
 	var spacing = panel_width + spacing_between
+	var left = -135
 	for i in range(panels.size()):
-		panels[i].position.x = i * spacing
+		panels[i].position.x = i * spacing + left
+
 
 	if left_button:
 		left_button.pressed.connect(_on_left_pressed)
