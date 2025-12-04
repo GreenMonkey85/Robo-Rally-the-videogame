@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://buji8l0s5am0m"
-path="res://.godot/imported/blue_power_up_card.png-02a6dccba8cfeae45d723075a567f75d.ctex"
+uid="uid://bvb5orht88888"
+path="res://.godot/imported/spinbot_move3_card.png-5ce23613a78effd13e1e3b2c4566597f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/CardSprites/blue_cards/blue_power_up_card.png"
-dest_files=["res://.godot/imported/blue_power_up_card.png-02a6dccba8cfeae45d723075a567f75d.ctex"]
+source_file="res://Graphics/CardSprites/spinbot_cards/spinbot_move3_card.png"
+dest_files=["res://.godot/imported/spinbot_move3_card.png-5ce23613a78effd13e1e3b2c4566597f.ctex"]
 
 [params]
 

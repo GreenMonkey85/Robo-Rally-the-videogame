@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crnjhv7r7cy1u"
-path="res://.godot/imported/blue_uturn_card.png-6af4496a68abc954dd0cac685689f0d2.ctex"
+uid="uid://bboh0ftf6f2w6"
+path="res://.godot/imported/spinbot_move_back_card.png-ee7acb70a4bdc38e2ec5e740f0690eec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/CardSprites/blue_cards/blue_uturn_card.png"
-dest_files=["res://.godot/imported/blue_uturn_card.png-6af4496a68abc954dd0cac685689f0d2.ctex"]
+source_file="res://Graphics/CardSprites/spinbot_cards/spinbot_move_back_card.png"
+dest_files=["res://.godot/imported/spinbot_move_back_card.png-ee7acb70a4bdc38e2ec5e740f0690eec.ctex"]
 
 [params]
 

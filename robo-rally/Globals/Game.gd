@@ -54,11 +54,13 @@ func get_all_robots():
 
 func action_round():
 	# loop through each register slot
-	for i in range(len(registers[0])):
+	for i in range(5):
 		# loop through each player with respect to order
 		for j in range(len(player_order)):
-			print("HANDLE ", player_order[j].player, " ", registers, " ", i)
+			#print("HANDLE ", player_order[j].player, " ", registers, " ", i)
 			# current player moves
+			#print("WHAT IS THIS ", player_order[j], " ", registers[j][i])
+			#print("REGISTERS ", registers)
 			await player_order[j].handle_action(registers[j][i], i)
 			if get_tree().current_scene == VICTORY:
 				# stop all moves, somebody has won
@@ -71,7 +73,7 @@ func action_round():
 		# robot lasers
 		if get_tree().current_scene != VICTORY:
 			for rob in player_order:
-				print("Trying laser for " + str(rob))
+				#print("Trying laser for " + str(rob))
 				rob.laser_attack()
 				await get_tree().create_timer(2).timeout
 		# battery
@@ -126,7 +128,7 @@ func wall_key(a: Vector2, b: Vector2) -> String:
 func checking_checkpoint():	
 	for robot in player_order:
 		var robot_pos = Vector2(robot.pos_x, robot.pos_y)
-		print(robot_pos)
+		#print(robot_pos)
 		if robot_pos == current_board.checkpoints.keys()[robot.checkpoints]:
 			robot.checkpoints += 1
 			current_board.checkpoints[robot_pos].play(robot.character.to_lower() + "_check_" + str(robot.checkpoints))

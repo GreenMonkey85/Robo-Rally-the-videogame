@@ -42,7 +42,8 @@ func _on_return_pressed() -> void:
 	#print("TREE EXISTS?: ", get_tree() != null)
 	
 	#get_tree().root.call_deferred("change_scene_to_packed", Game.TITLE_MENU)
-	#
+	print("RETURN")
+	print(get_tree())
 	get_tree().change_scene_to_packed(Game.TITLE_MENU)
 	#await get_tree().process_frame
 	#print("current after frame:", get_tree().current_scene)

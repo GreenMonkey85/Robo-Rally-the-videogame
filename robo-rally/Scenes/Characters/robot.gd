@@ -96,8 +96,9 @@ func decision_start():
 		cards_in_hand.append(new_card)
 		if player == "Player":
 			$UI.draw_animation(new_card)
-		print("DECISION START", len(deck), len(discard), len(cards_in_hand))
+		#print("DECISION START", len(deck), len(discard), len(cards_in_hand))
 	if player == "Player":
+		#print("PLAYER REGISTER ", register)
 		$UI/CanvasLayer.visible = true
 		$UI._confirming = false
 	else:
@@ -110,23 +111,28 @@ func decision_start():
 
 func decision_end(register_list):
 	$UI/CanvasLayer.visible = false
+	print("WAIT ", register)
 	
-	for i in range(len(register_list)):
+	for i in range(5):
 		if register_list[i] != null:
 			register[i] = register_list[i]
 			cards_in_hand.erase(register[i])
-		print("REGISTER LIST", len(deck), len(discard), len(cards_in_hand))
+		#print("REGISTER LIST", len(deck), len(discard), len(cards_in_hand))
+		#print("REGISTER LIST", deck, discard, cards_in_hand)
+		print("HUH? ", register)
 	for i in range(cards_in_hand.size() - 1, -1, -1):
 		var card = cards_in_hand[i]
 		if card.type == "Movement":
 			self.discard.append(card)
 			cards_in_hand.remove_at(i)
 		print("CARDS IN HAND", len(deck), len(discard), len(cards_in_hand))
-	
+	print("REGISTER ", register)
 	Game.on_all_decided(self, register)
 	player_decision_end.emit()
 
 func handle_action(card: CardData, register_index):
+	if card != null:
+		print("BEFORE ", card.name, " ", card.character, " ", card.type, " ", card.action)
 	# Show preview at top-left
 	$UI.show_card_preview(card)
 	if card != null:
@@ -138,7 +144,8 @@ func handle_action(card: CardData, register_index):
 	else:
 		await call("Spam", register_index)
 		last_move = preload("res://Resources/Cards/Damage_Cards/spam.tres")
-	print("CHECKPOINTS: ", checkpoints)
+	#print("CHECKPOINTS: ", checkpoints)
+	print("AFTER ", card.name, " ", card.character, " ", card.type, " ", card.action)
 
 func action_end():
 	for i in range(len(register)):
@@ -311,7 +318,7 @@ func laser_attack():
 		# check if wall at current space
 		var check_next = check_next_for_laser(check_x, check_y)
 		
-		for wall in boardScript.walls:
+		for wall in Game.current_board.walls:
 			#if wall.contains(str(check[0]) + ',' + str(check[1])) && wall.contains(str(check_next[0]) + ',' + str(check_next[1])):
 				# if so then break loop, laser never fires
 			if wall == Game.wall_key(check, check_next):
