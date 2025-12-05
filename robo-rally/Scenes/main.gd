@@ -20,13 +20,12 @@ func _ready():
 	
 	for i in range(len(Game.player_order)):
 		Game.registers.append(null)
-		
-	for robot in Game.player_order:
-		print("connecting robot: ", robot, " at ", robot.get_path())
-		#robot.connect("robot_won", Callable(self, "_on_robot_won"))
-		print("added signal to " + robot.character)
-		var result = robot.connect("robot_won", Callable(self, "_on_robot_won"))
-		print("Connect result =", result)
+	
+	Game.connect("robot_won", Callable(self, "_on_robot_won"))
+		##robot.connect("robot_won", Callable(self, "_on_robot_won"))
+		#print("added signal to " + robot.character)
+		#var result = robot.connect("robot_won", Callable(self, "_on_robot_won"))
+		#print("Connect result =", result)
 	Game.decision_round()
 	#Game.start_game(Game.player_order, Game.current_board)
 	

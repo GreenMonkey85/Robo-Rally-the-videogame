@@ -25,13 +25,14 @@ theme_override_colors/font_color = Color(0.972549, 0.552941, 0, 1)
 theme_override_colors/font_shadow_color = Color(0.464099, 0.247821, 0.0102433, 1)
 theme_override_font_sizes/font_size = 35
 text = "Congratulations! You won!"
+metadata/_edit_use_anchors_ = true
 
 [node name="main" type="Button" parent="Panel"]
 layout_mode = 0
 offset_left = 395.0
-offset_top = 476.0
+offset_top = 526.0
 offset_right = 763.0
-offset_bottom = 533.0
+offset_bottom = 583.0
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0.972549, 0.552941, 0, 1)
@@ -42,9 +43,9 @@ text = "Return to Main Menu"
 
 [node name="WinnerSprite" type="Panel" parent="Panel"]
 layout_mode = 0
-offset_left = 562.0
-offset_top = 282.0
-offset_right = 602.0
-offset_bottom = 322.0
+offset_left = 578.0
+offset_top = 354.0
+offset_right = 578.0
+offset_bottom = 354.0
 
 [connection signal="pressed" from="Panel/main" to="." method="_on_main_pressed"]

@@ -73,7 +73,15 @@ func _on_confirm_pressed() -> void:
 	register_list.pop_front()
 	var final_register = []
 	for i in register_list:
-		final_register.append(i.placed_card)
+		print("card container: " + str(i.placed_card))
+		if i.placed_card == null:
+			final_register.append(i.placed_card)
+		else:
+			final_register.append(i.placed_card.cardData)
+			print("card data: " + str(i.placed_card.cardData))
+	
+	for each in register_list:
+		each.clear_register()
 	get_parent().decision_end(final_register)
 
 # Clear button
@@ -84,8 +92,8 @@ func _on_clear_pressed() -> void:
 			if card.has_method("return_to_hand"):
 				card.return_to_hand()
 
-func show_card_preview(card_data: CardData):
-	if preview_slot == null:
+func show_card_preview(card_data: CardData): # CardData only when AI player
+	if preview_slot == null: 
 		push_warning("CardPreview node not found!")
 		return
 

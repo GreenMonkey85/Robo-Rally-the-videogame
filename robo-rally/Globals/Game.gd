@@ -25,6 +25,7 @@ var registers = []
 
 var timer = Timer.new()
 
+signal robot_won(name)
 var winner_name = ""
 
 var reset_request = false
@@ -38,6 +39,7 @@ func reset():
 	upgrade_cards.clear()
 	upgrade_discards.clear()
 	#current_board = null
+	winner_name = ""
 	
 	for robot in get_all_robots():
 		if robot != null:
@@ -59,26 +61,48 @@ func action_round():
 		for j in range(len(player_order)):
 			print("HANDLE ", player_order[j].player, " ", registers, " ", i)
 			# current player moves
-			await player_order[j].handle_action(registers[j][i], i)
+			#print(registers[j])
+			#print(registers[j][i])
+			await player_order[j].handle_action(registers[j][i], i) 
+			# registers[j][i] is different object type when AI (CardData) vs human (Container, possibly contains CardData?)
 			if get_tree().current_scene == VICTORY:
 				# stop all moves, somebody has won
 				return
 		# double conveyers
+		for robot in player_order:
+			await robot.check_conveyor(2)
 		# single conveyer
+		for robot in player_order:
+			await robot.check_conveyor(1)
 		# push panels
+		# WE HAVE NO PUSH PANELS
 		# rotate gears
+		for robot in player_order:
+			await robot.gears()
+		# pitfalls
+		for robot in player_order:
+			await robot.pitfalls()
 		# board lasers
+		# INCOMPLETE, MUST ADD DAMAGE FUNCTIONALITY 
 		# robot lasers
 		if get_tree().current_scene != VICTORY:
 			for rob in player_order:
 				print("Trying laser for " + str(rob))
-				rob.laser_attack()
+				await rob.laser_attack()
 				await get_tree().create_timer(2).timeout
 		# battery
+		# INCOMPLETE, MUST ADD DAMAGE FUNCTIONALITY
+		for robot in player_order:
+			robot.battery()
 		# check flags
 		checking_checkpoint()
 		
-		
+	# after all registers done, must restore any robot that fell into a pit
+	#for robot in player_order:
+		#robot.restore_from_pit()
+		# Not done yet, will un comment later
+	
+	# end round
 	for i in player_order:
 		i.action_end()
 	player_order.append(player_order.pop_front())
@@ -124,9 +148,25 @@ func wall_key(a: Vector2, b: Vector2) -> String:
 	return A + "|" + B if a.x < b.x else B + "|" + A
 
 func checking_checkpoint():	
+	if winner_name != "":
+		print("Someone's already won, no point in checking")
+		return
 	for robot in player_order:
+		print(robot.character + " has " + str(robot.checkpoints) + " checkpoint(s)")
 		var robot_pos = Vector2(robot.pos_x, robot.pos_y)
-		print(robot_pos)
-		if robot_pos == current_board.checkpoints.keys()[robot.checkpoints]:
+		print("Robot position: " + str(robot_pos))
+		
+		if robot_pos == current_board.checkpoints.keys()[robot.checkpoints] && current_board.checkpoints.keys().find(robot_pos) == robot.checkpoints:
 			robot.checkpoints += 1
 			current_board.checkpoints[robot_pos].play(robot.character.to_lower() + "_check_" + str(robot.checkpoints))
+			
+			print("Num Checkpoints on Board: " + str(len(current_board.checkpoints.keys())))
+			print("Num Checkpoints reached: " + str(robot.checkpoints))
+			print(robot.checkpoints == len(current_board.checkpoints.keys()))
+			# Check if we have a winner
+			if str(robot.checkpoints) == str(len(current_board.checkpoints.keys())):
+				emit_signal("robot_won", robot.character)
+				return
+			else:
+				await get_tree().create_timer(2).timeout
+				current_board.checkpoints[robot_pos].play("idle_" + str(robot.checkpoints))
