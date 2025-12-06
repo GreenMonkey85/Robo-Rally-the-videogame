@@ -3,7 +3,10 @@ extends Node
 func _ready():
 	var starting_positions = Game.current_board.STARTING_POSITIONS.duplicate()
 	starting_positions.shuffle()
-
+	Game.pause_menu = $UI/PauseMenu.get_children()[0]
+	Game.pause_menu.visible = false
+	Game.action_ui = $UI/ActionUI.get_children()[0]
+	Game.action_ui.visible = false
 	for robot: Node2D in Game.player_order:
 		$Players.add_child(robot)
 		var starting_position: Vector2 = starting_positions.pop_front()

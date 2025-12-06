@@ -1,4 +1,5 @@
 extends Container
+class_name Card
 
 @onready var anim: AnimationPlayer = $Anim
 var cardHighlighted = false
