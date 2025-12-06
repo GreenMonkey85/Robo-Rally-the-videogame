@@ -73,13 +73,23 @@ func _on_confirm_pressed() -> void:
 	register_list.pop_front()
 	var final_register = []
 	for i in register_list:
-		final_register.append(i.placed_card)
+		if i.placed_card != null:
+			print("CONFIRM CARD ", i.placed_card.cardData, " ", i, " ")
+			final_register.append(i.placed_card.cardData)
+		else:
+			final_register.append(null)
+		print("BEFORE ", i)
+		i.clear_register()
+		print("AFTER ", i)
 	get_parent().decision_end(final_register)
 
 # Clear button
 func _on_clear_pressed() -> void:
+	
 	for slot in register.get_children():
+		print("SLOT", slot)
 		if slot.get_child_count() > 0:
 			var card = slot.get_child(0)
+			print("CLEAR CARD", card)
 			if card.has_method("return_to_hand"):
 				card.return_to_hand()
