@@ -8,8 +8,13 @@ const SETTINGS_MENU = preload("res://Scenes/Menu/settings_menu/settings.tscn")
 
 const ALL_ROBOTS = ["Twonky", "HammerBot"]
 
-var current_board = null
 
+
+var ACTION_UI = null
+
+
+var current_board = null
+var action_ui = null
 var cardSelected
 var mouseOnPlacement = false
 var currentPlacement = null
@@ -29,6 +34,10 @@ var winner_name = ""
 
 var reset_request = false
 
+var pause_menu = null
+
+signal card_display(card)
+
 func reset():
 	player_order.clear()
 	registers.clear()
@@ -38,6 +47,7 @@ func reset():
 	upgrade_cards.clear()
 	upgrade_discards.clear()
 	#current_board = null
+	ACTION_UI = null
 	
 	for robot in get_all_robots():
 		if robot != null:
@@ -57,11 +67,17 @@ func action_round():
 	for i in range(5):
 		# loop through each player with respect to order
 		for j in range(len(player_order)):
-			#print("HANDLE ", player_order[j].player, " ", registers, " ", i)
+			print("HANDLE ", player_order[j].player, " ", registers, " ", i)
+			# Replace 'some_card_data_instance' with actual CardData object for the current card
+			var some_card_data_instance = null
+			#action_ui.show_card_preview(registers[j][i])
+			action_ui.visible = true
 			# current player moves
 			print("WHAT IS THIS ", player_order[j], " ", registers[j][i])
 			#print("REGISTERS ", registers)
+			emit_signal("card_display", registers[j][i])
 			await player_order[j].handle_action(registers[j][i], i)
+			action_ui.visible = false
 			if get_tree().current_scene == VICTORY:
 				# stop all moves, somebody has won
 				return
@@ -80,7 +96,6 @@ func action_round():
 		# check flags
 		checking_checkpoint()
 		
-		
 	for i in player_order:
 		i.action_end()
 	player_order.append(player_order.pop_front())
@@ -93,7 +108,6 @@ func decision_round():
 			await player.player_decision_end
 
 func on_all_decided(player, register):
-	
 	if player not in players_decided:
 		players_decided.append(player)
 		for i in range(len(player_order)):
@@ -107,7 +121,6 @@ func on_all_decided(player, register):
 
 func start_game(player_list, chosen_board):
 	player_order = player_list.shuffle()
-	
 	for i in range(len(player_order)):
 		registers.append(null)
 	decision_round()
@@ -132,3 +145,8 @@ func checking_checkpoint():
 		if robot_pos == current_board.checkpoints.keys()[robot.checkpoints]:
 			robot.checkpoints += 1
 			current_board.checkpoints[robot_pos].play(robot.character.to_lower() + "_check_" + str(robot.checkpoints))
+
+
+func _input(event):
+	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
+		pause_menu.visible = true
