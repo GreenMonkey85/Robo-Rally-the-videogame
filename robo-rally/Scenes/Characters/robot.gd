@@ -145,7 +145,7 @@ func handle_action(card: CardData, register_index):
 		await call("Spam", register_index)
 		last_move = preload("res://Resources/Cards/Damage_Cards/spam.tres")
 	#print("CHECKPOINTS: ", checkpoints)
-	print("AFTER ", card.name, " ", card.character, " ", card.type, " ", card.action)
+	#print("AFTER ", card.name, " ", card.character, " ", card.type, " ", card.action)
 
 func action_end():
 	for i in range(len(register)):
@@ -359,6 +359,7 @@ func laser_attack():
 				anim_player.play(direction + "_idle")
 				
 				# after firing, trigger damage card for hit player
+				rob.cards_in_hand.append(preload("res://Resources/Cards/Damage_Cards/spam.tres"))
 				return
 		# if not, then go to next iteration of the loop
 	# if its checked everything in a row, then no robot found, so stop

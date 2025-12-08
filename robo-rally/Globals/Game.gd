@@ -59,7 +59,7 @@ func action_round():
 		for j in range(len(player_order)):
 			#print("HANDLE ", player_order[j].player, " ", registers, " ", i)
 			# current player moves
-			#print("WHAT IS THIS ", player_order[j], " ", registers[j][i])
+			print("WHAT IS THIS ", player_order[j], " ", registers[j][i])
 			#print("REGISTERS ", registers)
 			await player_order[j].handle_action(registers[j][i], i)
 			if get_tree().current_scene == VICTORY:
