@@ -30,6 +30,16 @@ func _ready():
 		print("added signal to " + robot.character)
 		var result = robot.connect("robot_won", Callable(self, "_on_robot_won"))
 		print("Connect result =", result)
+	Game.connect("card_display", Callable($UI/ActionUI, "_on_card_display"))
+	var connections = Game.get_signal_connection_list("card_display")
+	print("Connections for 'card_display':")
+	for conn in connections:
+		print("SIGNAL" + str(conn['signal']))
+		print("CALLABLE" + str(conn['callable']))
+		
+	Game.ACTION_UI = $UI/ActionUI
+	print(Game.ACTION_UI, Game.ACTION_UI.get_script())
+
 	Game.decision_round()
 	#Game.start_game(Game.player_order, Game.current_board)
 	

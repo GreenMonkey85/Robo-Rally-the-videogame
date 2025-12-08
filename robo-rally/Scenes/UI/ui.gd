@@ -85,7 +85,6 @@ func _on_confirm_pressed() -> void:
 
 # Clear button
 func _on_clear_pressed() -> void:
-	
 	for slot in register.get_children():
 		print("SLOT", slot)
 		if slot.get_child_count() > 0:
@@ -93,3 +92,21 @@ func _on_clear_pressed() -> void:
 			print("CLEAR CARD", card)
 			if card.has_method("return_to_hand"):
 				card.return_to_hand()
+
+
+func _on_shut_down_pressed() -> void:
+	for slot in register.get_children():
+		if slot.get_child_count() > 0:
+			var card = slot.get_child(0)
+			if card != null and card.has_method("return_to_hand"):
+				card.return_to_hand()
+			elif card != null:
+				card.queue_free()
+				
+	var register_list = register.get_children()
+	register_list.pop_front()
+
+	var final_register = []
+	for slot in register_list:
+		final_register.append(null)
+	get_parent().decision_end(final_register)

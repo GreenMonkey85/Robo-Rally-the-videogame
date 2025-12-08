@@ -8,6 +8,11 @@ const SETTINGS_MENU = preload("res://Scenes/Menu/settings_menu/settings.tscn")
 
 const ALL_ROBOTS = ["Twonky", "HammerBot"]
 
+
+
+var ACTION_UI = null
+
+
 var current_board = null
 var action_ui = null
 var cardSelected
@@ -31,6 +36,8 @@ var reset_request = false
 
 var pause_menu = null
 
+signal card_display(card)
+
 func reset():
 	player_order.clear()
 	registers.clear()
@@ -40,6 +47,7 @@ func reset():
 	upgrade_cards.clear()
 	upgrade_discards.clear()
 	#current_board = null
+	ACTION_UI = null
 	
 	for robot in get_all_robots():
 		if robot != null:
@@ -67,6 +75,7 @@ func action_round():
 			# current player moves
 			#print("WHAT IS THIS ", player_order[j], " ", registers[j][i])
 			#print("REGISTERS ", registers)
+			emit_signal("card_display", registers[j][i])
 			await player_order[j].handle_action(registers[j][i], i)
 			action_ui.visible = false
 			if get_tree().current_scene == VICTORY:

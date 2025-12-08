@@ -44,7 +44,6 @@ var last_move = null
 @onready var boardScript = null
 
 
-
 signal robot_spawned(robot)
 
 # TESTING 
@@ -134,6 +133,7 @@ func handle_action(card: CardData, register_index):
 	if card != null:
 		print("BEFORE ", card.name, " ", card.character, " ", card.type, " ", card.action)
 	# Show preview at top-left
+	Game.ACTION_UI.card_display(card)
 	if card != null:
 		if card.type == "Movement":
 			await call(card.action, card.num_action)
@@ -144,7 +144,7 @@ func handle_action(card: CardData, register_index):
 		await call("Spam", register_index)
 		last_move = preload("res://Resources/Cards/Damage_Cards/spam.tres")
 	#print("CHECKPOINTS: ", checkpoints)
-	print("AFTER ", card.name, " ", card.character, " ", card.type, " ", card.action)
+	#print("AFTER ", card.name, " ", card.character, " ", card.type, " ", card.action)
 
 func action_end():
 	for i in range(len(register)):
