@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://hogcqvkh1uvs"]
+
+[ext_resource type="Script" uid="uid://dmlhld3u2rbe5" path="res://Globals/card_data.gd" id="1_fifq4"]
+[ext_resource type="Texture2D" uid="uid://bd1hfae3plqbh" path="res://Graphics/CardSprites/purple_cards/hammer_bot_move2_card.png" id="2_d6wqa"]
+
+[resource]
+script = ExtResource("1_fifq4")
+name = "Move2"
+color = "Purple"
+type = "Movement"
+action = "Move"
+num_action = 2
+sprite = ExtResource("2_d6wqa")
+energy = 0
+metadata/_custom_type_script = "uid://dmlhld3u2rbe5"

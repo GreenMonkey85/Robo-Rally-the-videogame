@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://bx6xiusl58j43"]
+
+[ext_resource type="Script" uid="uid://dmlhld3u2rbe5" path="res://Globals/card_data.gd" id="1_74jwy"]
+[ext_resource type="Texture2D" uid="uid://cxje6ocsbe643" path="res://Graphics/CardSprites/yellow_cards/yellow_move3_card.png" id="2_830np"]
+
+[resource]
+script = ExtResource("1_74jwy")
+name = "Move3"
+color = "Yellow"
+type = "Movement"
+action = "Move"
+num_action = 3
+sprite = ExtResource("2_830np")
+energy = 0
+metadata/_custom_type_script = "uid://dmlhld3u2rbe5"

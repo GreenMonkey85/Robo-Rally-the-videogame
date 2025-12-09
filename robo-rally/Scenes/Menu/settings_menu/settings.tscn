@@ -27,45 +27,100 @@ theme_override_colors/font_focus_color = Color(1, 0.694118, 0.145098, 1)
 text = "Return to Main Menu"
 
 [node name="Label" type="Label" parent="Node2D"]
-offset_left = 60.0
-offset_top = 176.0
-offset_right = 371.0
-offset_bottom = 199.0
-scale = Vector2(1.12012, 1.96437)
-text = "Select the Number of Players you'd like: "
+offset_left = 124.0
+offset_top = 171.0
+offset_right = 247.0
+offset_bottom = 194.0
+scale = Vector2(1.31855, 2.52591)
+text = "Total Players:"
+horizontal_alignment = 2
 
 [node name="NumPlayers" type="OptionButton" parent="Node2D"]
-offset_left = 412.0
-offset_top = 173.0
-offset_right = 454.0
-offset_bottom = 204.0
+offset_left = 302.0
+offset_top = 176.0
+offset_right = 344.0
+offset_bottom = 207.0
 scale = Vector2(2.27591, 1.77666)
 selected = 0
-item_count = 4
-popup/item_0/text = "4"
+item_count = 3
+popup/item_0/text = "2"
 popup/item_0/id = 0
 popup/item_1/text = "3"
 popup/item_1/id = 1
-popup/item_2/text = "2"
+popup/item_2/text = "4"
 popup/item_2/id = 2
-popup/item_3/text = "1"
-popup/item_3/id = 3
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Node2D"]
-offset_left = 555.0
-offset_top = 559.0
-offset_right = 595.0
-offset_bottom = 599.0
-scale = Vector2(13.8385, -9.97335)
+custom_minimum_size = Vector2(100, 40)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 715.0
+offset_top = 148.0
+offset_right = 869.0
+offset_bottom = 384.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.49558, 1.89618)
 horizontal_scroll_mode = 0
-vertical_scroll_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Node2D/ScrollContainer"]
+custom_minimum_size = Vector2(150, 215)
 layout_mode = 2
-text = "Each round in a game of Robo Rally is divided into 2 parts:
-1. The Programming Phase
-2. The Activation Phase"
-fit_content = true
+bbcode_enabled = true
+text = "In our version of the board game Robo Rally, you play as one of four robots trying to escape the inside of a factory. Wining requires you to navigate a complex factory floor, filled with traps and hazards, to reach a series of checkpoints. Whichever player can 
+
+Each round of the game can be divided into three types of phases:
+
+1. The Programming Phase sees each player draw nine programming cards, each card containing a possible move, such as moving forward by one or more spaces, turning left or right, or other options. From among these cards, players may choose up to five to place into the registers at the top of the screen, with each card being played in the order in which they are placed. After this, players may press the Confirm button to submit their cards. Any registers which are not filled when the Confirm button is pressed automatically default to random selection from the deck. If the player wants to remove a card from a register, they may place their prefered card in the same location to replace it. They may also use the Clear button to clear all registers. Finally, rather than playing any cards, the player may choose Shutdown, causing the robot to remain in place for that round. Once the next Programming Phase begins, the robot will reactivate with all damage healed.
+
+2. The Activation Phases see the players take turns activating the cards they selected for their registers. In the first activation phase, the players go in order playing the cards in their first register. If a robot moves into the space inhabited by another robot, it will push the other robot out of the way. Robots are incabable of moving through walls or off of the board, however. After this, each robot scans the spaces in front of it, checking for any enemy robots. If it detects a target before hitting a wall or the edge of the board, the robot will fire a laser, dealing damage to the enemy robot it has detected. 
+
+3. A new Board Elements Phase runs after every Activation Phase. At this time, all of the hazards on the board tiles will activate, interacting with the players in various ways. The board elements include
+a) lasers that deal damage
+b) conveyor belts that push and/or turn robots
+c) gears that turn robots
+d) pitfalls that robots may fall into (leading to them being inactive til the next Programming Phase)
+e) batteries that heal robots
+After all board elements have been activated, the next Activation Phase begins. If all registers have been played, then the next round begins with a new Programming Phase.
+
+Damage occurs when a robot is hit by a laser, either from another robot during the Activation phase or from the board lasers during the Board Element Phase. When a robot recieves damage, they are given a Damage Card as a permenant member of their hand of cards. For example, if in one round Twonky is hit by a laser from Hammer Bot and twice by lasers on the board, then that player will recieve three damage cards in their hand begining in the next Programming Phase, resulting in them only drawing six cards from their deck. These cards may be removed by playing them, or by healing the robot. Healing may occur completely, such as in Shutdown Mode (described above) or when on a battery during the Board Elements Phase."
+
+[node name="Label2" type="Label" parent="Node2D"]
+offset_left = 44.0
+offset_top = 241.0
+offset_right = 237.0
+offset_bottom = 264.0
+scale = Vector2(1.26254, 2.32569)
+text = "Number of CPU Players:"
+horizontal_alignment = 2
+
+[node name="NumAI" type="OptionButton" parent="Node2D"]
+offset_left = 299.0
+offset_top = 245.0
+offset_right = 343.0
+offset_bottom = 284.0
+scale = Vector2(2.35465, 1.39164)
+selected = 0
+item_count = 4
+popup/item_0/text = "0"
+popup/item_0/id = 0
+popup/item_1/text = "1"
+popup/item_1/id = 1
+popup/item_2/text = "2"
+popup/item_2/id = 2
+popup/item_3/text = "3"
+popup/item_3/id = 3
+
+[node name="Error" type="Label" parent="Node2D"]
+visible = false
+offset_left = 24.0
+offset_top = 308.0
+offset_right = 388.0
+offset_bottom = 342.0
+scale = Vector2(1.14679, 1.50195)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "Must have at least one human player per game"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(579, 331)
