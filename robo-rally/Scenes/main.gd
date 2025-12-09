@@ -3,7 +3,10 @@ extends Node
 func _ready():
 	var starting_positions = Game.current_board.STARTING_POSITIONS.duplicate()
 	starting_positions.shuffle()
-
+	Game.pause_menu = $UI/PauseMenu.get_children()[0]
+	Game.pause_menu.visible = false
+	Game.action_ui = $UI/ActionUI.get_children()[0]
+	Game.action_ui.visible = false
 	for robot: Node2D in Game.player_order:
 		$Players.add_child(robot)
 		var starting_position: Vector2 = starting_positions.pop_front()
@@ -21,11 +24,17 @@ func _ready():
 	for i in range(len(Game.player_order)):
 		Game.registers.append(null)
 	
-	Game.connect("robot_won", Callable(self, "_on_robot_won"))
-		##robot.connect("robot_won", Callable(self, "_on_robot_won"))
-		#print("added signal to " + robot.character)
-		#var result = robot.connect("robot_won", Callable(self, "_on_robot_won"))
-		#print("Connect result =", result)
+	Game.connect("robot_won", Callable(self, "_on_robot_won"))		
+	Game.connect("card_display", Callable($UI/ActionUI, "_on_card_display"))
+	var connections = Game.get_signal_connection_list("card_display")
+	print("Connections for 'card_display':")
+	for conn in connections:
+		print("SIGNAL" + str(conn['signal']))
+		print("CALLABLE" + str(conn['callable']))
+		
+	Game.ACTION_UI = $UI/ActionUI
+	print(Game.ACTION_UI, Game.ACTION_UI.get_script())
+
 	Game.decision_round()
 	#Game.start_game(Game.player_order, Game.current_board)
 	
@@ -38,13 +47,9 @@ func _on_robot_won(name):
 	for child in $Players.get_children():
 		#$Players.remove_child(child)
 		child.queue_free()
-	#Game.player_order.clear()
+	
 	for child in $Map.get_children():
-		#$Map.remove_child(child)
 		child.queue_free()
-	#Game.current_board = null
-	#
-	#Game.registers.clear()
 	
 	Game.reset_request = true
 	

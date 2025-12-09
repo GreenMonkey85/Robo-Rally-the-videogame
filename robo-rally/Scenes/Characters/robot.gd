@@ -88,7 +88,7 @@ func handle_action(card: CardData, register_index):
 	if card != null:
 		print("BEFORE ", card.name, " ", card.character, " ", card.type, " ", card.action)
 	# Show preview at top-left
-	$UI.show_card_preview(card)
+	Game.ACTION_UI.card_display(card)
 	if card != null:
 		if card.type == "Movement":
 			await call(card.action, card.num_action)

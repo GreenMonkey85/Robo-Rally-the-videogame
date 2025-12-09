@@ -98,7 +98,6 @@ func _on_confirm_pressed() -> void:
 
 # Clear button
 func _on_clear_pressed() -> void:
-	
 	for slot in register.get_children():
 		print("SLOT", slot)
 		if slot.get_child_count() > 0:
@@ -112,36 +111,19 @@ func show_card_preview(card_data: CardData): # CardData only when AI player
 		push_warning("CardPreview node not found!")
 		return
 
-	# Reuse existing preview card if it exists
-	var preview_card: Node
-	if preview_slot.get_child_count() > 0:
-		preview_card = preview_slot.get_child(0)
-	else:
-		preview_card = CARD_SCENE.instantiate()
-		preview_slot.add_child(preview_card)
-		preview_card.dragging = false  # disable drag
-		preview_card.holder = null
-		preview_card.position = Vector2.ZERO
+func _on_shut_down_pressed() -> void:
+	for slot in register.get_children():
+		if slot.get_child_count() > 0:
+			var card = slot.get_child(0)
+			if card != null and card.has_method("return_to_hand"):
+				card.return_to_hand()
+			elif card != null:
+				card.queue_free()
+				
+	var register_list = register.get_children()
+	register_list.pop_front()
 
-	# Set card data and sprite
-	preview_card.cardData = card_data
-	preview_card.set_sprite()
-
-	# Scale to fill the preview slot
-	if preview_card is Control or preview_card is Container:
-		var slot_size = preview_slot.size
-		var card_size = preview_card.size
-		if card_size.x != 0 and card_size.y != 0:
-			var scale_x = slot_size.x / card_size.x
-			var scale_y = slot_size.y / card_size.y
-			preview_card.scale = Vector2(scale_x, scale_y)
-			preview_card.position = Vector2.ZERO
-	if _confirming:
-		return
-	_confirming = true
-		
-	if not card_container:
-		return
-	for card in card_container.get_children():
-		card.queue_free()
-	await get_parent().decision_end()
+	var final_register = []
+	for slot in register_list:
+		final_register.append(null)
+	get_parent().decision_end(final_register)
