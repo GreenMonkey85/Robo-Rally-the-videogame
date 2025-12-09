@@ -149,13 +149,6 @@ func start_game(player_list, chosen_board):
 		registers.append(null)
 	decision_round()
 
-#func draw_a_card(card_deck, card_discard):
-	#if card_deck <= 0:
-		#card_deck.append_array(card_discard)
-		#card_discard.clear()
-		#card_deck.shuffle()
-	#return card_deck.pop_front()
-
 func wall_key(a: Vector2, b: Vector2) -> String:
 	# Convert to a format like "x1,y1|x2,y2" and sort so order doesn't matter
 	var A = "%s,%s" % [a.x, a.y]
