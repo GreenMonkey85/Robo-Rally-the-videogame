@@ -44,8 +44,8 @@ text = "Return to Main Menu"
 [node name="WinnerSprite" type="Panel" parent="Panel"]
 layout_mode = 0
 offset_left = 578.0
-offset_top = 354.0
+offset_top = 406.0
 offset_right = 578.0
-offset_bottom = 354.0
+offset_bottom = 406.0
 
 [connection signal="pressed" from="Panel/main" to="." method="_on_main_pressed"]

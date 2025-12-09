@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://dt0cvfq5c3mny"]
+
+[ext_resource type="Script" uid="uid://dmlhld3u2rbe5" path="res://Globals/card_data.gd" id="1_xw825"]
+[ext_resource type="Texture2D" uid="uid://b6c3rduxyq3t3" path="res://Graphics/CardSprites/purple_cards/hammer_bot_again_card.png" id="2_tw2r4"]
+
+[resource]
+script = ExtResource("1_xw825")
+name = "Again"
+color = "Purple"
+type = "Movement"
+action = "Again"
+num_action = 1
+sprite = ExtResource("2_tw2r4")
+energy = 0
+metadata/_custom_type_script = "uid://dmlhld3u2rbe5"

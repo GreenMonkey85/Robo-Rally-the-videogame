@@ -10,7 +10,7 @@ var anim_player: AnimationPlayer
 var pos_x = 0
 var pos_y = 0
 
-var direction = "bl"
+var direction = 'bl'
 var x_dir_mult = -1
 var y_dir_mult = 1
 
@@ -53,8 +53,9 @@ func decision_start():
 		cards_in_hand.append(new_card)
 		if player == "Player":
 			$UI.draw_animation(new_card)
-		print("DECISION START", len(deck), len(discard), len(cards_in_hand))
+		#print("DECISION START", len(deck), len(discard), len(cards_in_hand))
 	if player == "Player":
+		#print("PLAYER REGISTER ", register)
 		$UI/CanvasLayer.visible = true
 		$UI._confirming = false
 	else:
@@ -64,23 +65,28 @@ func decision_start():
 
 func decision_end(register_list):
 	$UI/CanvasLayer.visible = false
+	print("WAIT ", register)
 	
-	for i in range(len(register_list)):
+	for i in range(5):
 		if register_list[i] != null:
 			register[i] = register_list[i]
 			cards_in_hand.erase(register[i])
-		print("REGISTER LIST", len(deck), len(discard), len(cards_in_hand))
+		#print("REGISTER LIST", len(deck), len(discard), len(cards_in_hand))
+		#print("REGISTER LIST", deck, discard, cards_in_hand)
+		print("HUH? ", register)
 	for i in range(cards_in_hand.size() - 1, -1, -1):
 		var card = cards_in_hand[i]
 		if card.type == "Movement":
 			self.discard.append(card)
 			cards_in_hand.remove_at(i)
 		print("CARDS IN HAND", len(deck), len(discard), len(cards_in_hand))
-	
+	print("REGISTER ", register)
 	Game.on_all_decided(self, register)
 	player_decision_end.emit()
 
-func handle_action(card: CardData, register_index): # CardData only when AI player
+func handle_action(card: CardData, register_index):
+	if card != null:
+		print("BEFORE ", card.name, " ", card.character, " ", card.type, " ", card.action)
 	# Show preview at top-left
 	$UI.show_card_preview(card)
 	if card != null:
@@ -89,10 +95,12 @@ func handle_action(card: CardData, register_index): # CardData only when AI play
 		elif card.type == "Damage":
 			await call(card.action, register_index)
 		last_move = card
+		print("AFTER ", card.name, " ", card.character, " ", card.type, " ", card.action)
 	else:
 		await call("Spam", register_index)
 		last_move = preload("res://Resources/Cards/Damage_Cards/spam.tres")
-	print("CHECKPOINTS: ", checkpoints)
+		print("AFTER ", last_move, " ", character, " Spam")
+	#print("CHECKPOINTS: ", checkpoints)
 
 func action_end():
 	for i in range(len(register)):
@@ -162,6 +170,7 @@ func Move(num_actions):
 			pos_y = new_y
 
 func Rotate(num_actions):
+	print("rotating")
 	await get_tree().create_timer(0.5).timeout
 	if num_actions == 0:
 		match direction:
@@ -305,15 +314,53 @@ func pitfalls():
 		# what if multiple robots accidentally land in the same place?
 		for rob in Game.player_order:
 			while rob != self && rob.pos_x == pos_x && rob.pos_y:
+				print("landed in same place while loop")
 				pos_x = randi() + 30
 				pos_y = randi() + 30
 
 func restore_from_pit():
+	print("restoring from pit")
 	if visible == false:
 		# must find where to restore them to
+		#find locations of other robots
+		var all_other_locs = []
+		for rob in Game.player_order:
+			if rob != self:
+				all_other_locs.append(Vector2(rob.pos_x, rob.pos_y))
 		# if reached a checkpoint already, then return to most recent checkpoint reached
+		var restore_to
+		if checkpoints > 0:
+			restore_to = Game.current_board.checkpoints.keys()[checkpoints - 1]
 		# else, return to starting position
-		pass
+		else:
+			restore_to = Game.current_board.STARTING_POSITIONS[Game.player_order.find(self)]
+		
+		# what if a robot is already there?
+		var own_index = Game.player_order.find(self)
+		while restore_to in all_other_locs:
+			print("must go to starting location")
+			restore_to = Game.current_board.STARTING_POSITIONS[own_index]
+			if restore_to in all_other_locs:
+				if own_index == 3:
+					own_index = 0
+				else:
+					own_index += 1
+				print("Cant go here, check next starting position")
+		
+		while true:
+			print("rotating while loop")
+			await Rotate(1)
+			print(direction)
+			if direction == 'bl':
+				break
+			
+		visible = true
+		var new_pos = create_tween()
+		new_pos.tween_property(self, "position", Vector2(restore_to[0] * Game.current_board.PIXEL_X, restore_to[1] * Game.current_board.PIXEL_Y) + Game.current_board.ORIGIN, 1)
+		await new_pos.finished
+		pos_x = restore_to[0]
+		pos_y = restore_to[1]
+		print("Robot has returned to " + str(pos_x) + ", " + str(pos_y))
 
 
 # FOR PLAYER ATTACKS -------------------------------------------------
@@ -346,6 +393,8 @@ func laser_attack():
 		var check_next = check_next_for_laser(check_x, check_y)
 		
 		for wall in Game.current_board.walls:
+			#if wall.contains(str(check[0]) + ',' + str(check[1])) && wall.contains(str(check_next[0]) + ',' + str(check_next[1])):
+				# if so then break loop, laser never fires
 			if wall == Game.wall_key(check, check_next):
 				print("Wall detected, will not fire laser")
 				return

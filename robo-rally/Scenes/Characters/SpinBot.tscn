@@ -167,6 +167,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_frjm8"]
 resource_name = "tr_idle"
 length = 0.45
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -241,3 +242,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_6ufvy")
 }
 autoplay = "bl_idle"
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6ufvy")
+}

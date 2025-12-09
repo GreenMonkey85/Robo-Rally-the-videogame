@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://d0mi7xavxespu"]
+
+[ext_resource type="Script" uid="uid://dmlhld3u2rbe5" path="res://Globals/card_data.gd" id="1_vlv2w"]
+[ext_resource type="Texture2D" uid="uid://bsjg0oxjb1xw" path="res://Graphics/CardSprites/yellow_cards/yellow_rotate_left_card.png" id="2_dnqmw"]
+
+[resource]
+script = ExtResource("1_vlv2w")
+name = "RotateLeft"
+color = "Yellow"
+type = "Movement"
+action = "RotateLeft"
+num_action = 1
+sprite = ExtResource("2_dnqmw")
+energy = 0
+metadata/_custom_type_script = "uid://dmlhld3u2rbe5"

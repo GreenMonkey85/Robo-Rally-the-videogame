@@ -6,7 +6,7 @@ const BOARD_MENU = preload("res://Scenes/Menu/board_menu/board_container.tscn")
 const VICTORY = preload("res://Scenes/UI/victory.tscn")
 const SETTINGS_MENU = preload("res://Scenes/Menu/settings_menu/settings.tscn")
 
-const ALL_ROBOTS = ["Twonky", "HammerBot"]
+const ALL_ROBOTS = ["Twonky", "HammerBot", "SpinBot"]
 
 var current_board = null
 
@@ -19,6 +19,9 @@ var damage_cards = []
 var damage_discards = []
 var upgrade_cards = []
 var upgrade_discards = []
+
+var num_players = 3
+var num_AI = 0
 
 var players_decided = []
 var registers = []
@@ -56,10 +59,10 @@ func get_all_robots():
 
 func action_round():
 	# loop through each register slot
-	for i in range(len(registers[0])):
+	for i in range(5):
 		# loop through each player with respect to order
 		for j in range(len(player_order)):
-			print("HANDLE ", player_order[j].player, " ", registers, " ", i)
+			#print("HANDLE ", player_order[j].player, " ", registers, " ", i)
 			# current player moves
 			#print(registers[j])
 			#print(registers[j][i])
@@ -93,14 +96,13 @@ func action_round():
 		# battery
 		# INCOMPLETE, MUST ADD DAMAGE FUNCTIONALITY
 		for robot in player_order:
-			robot.battery()
+			await robot.battery()
 		# check flags
-		checking_checkpoint()
+		await checking_checkpoint()
 		
 	# after all registers done, must restore any robot that fell into a pit
-	#for robot in player_order:
-		#robot.restore_from_pit()
-		# Not done yet, will un comment later
+	for robot in player_order:
+		await robot.restore_from_pit()
 	
 	# end round
 	for i in player_order:

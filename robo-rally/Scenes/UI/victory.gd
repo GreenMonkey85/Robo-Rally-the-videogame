@@ -35,7 +35,7 @@ func _ready() -> void:
 	
 	var char_instance = char_scene.instantiate()
 	show_winner.add_child(char_instance)
-	char_instance.scale = Vector2(0.5,0.5)
+	char_instance.scale = Vector2(0.15,0.15)
 	# show_winner.pos = Vector2(0,75)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

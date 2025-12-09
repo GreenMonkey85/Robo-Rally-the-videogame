@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cmu8poddwf7is"]
+[gd_scene load_steps=18 format=3 uid="uid://cmu8poddwf7is"]
 
 [ext_resource type="Script" uid="uid://ochlxeulupaf" path="res://Scenes/Menu/board_menu/board_container.gd" id="1_uhclm"]
 [ext_resource type="Texture2D" uid="uid://dqlllys04c55f" path="res://factorybackround.jpg" id="2_ydcld"]
@@ -99,21 +99,6 @@ func _on_select_pressed() -> void:
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ydcld"]
 texture = ExtResource("3_ve5ct")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dhbjd"]
-bg_color = Color(0.89316, 0, 0.175868, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p3ags"]
-bg_color = Color(0.872116, 0.490276, 3.85046e-07, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kw21e"]
-bg_color = Color(0.328774, 0.704515, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d8yma"]
-bg_color = Color(0.271241, 0.604315, 1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_joojo"]
-bg_color = Color(0.802682, 0.361821, 1, 1)
-
 [sub_resource type="SystemFont" id="SystemFont_mq0ai"]
 subpixel_positioning = 0
 
@@ -149,6 +134,19 @@ offset_right = 1195.0
 offset_bottom = 660.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_ve5ct")
 
+[node name="Quit" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 241.0
+offset_top = 71.0
+offset_right = 341.0
+offset_bottom = 102.0
+scale = Vector2(1.50039, 1.66526)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 0.694118, 0.145098, 1)
+theme_override_colors/font_focus_color = Color(1, 0.694118, 0.145098, 1)
+text = "Quit to Title"
+
 [node name="CarouselConatianer" type="Node2D" parent="."]
 position = Vector2(515, 312)
 script = SubResource("GDScript_ydcld")
@@ -181,86 +179,6 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(20, 20)
 theme_override_styles/panel = SubResource("StyleBoxTexture_ydcld")
-
-[node name="red" type="Panel" parent="CarouselConatianer/Control"]
-custom_minimum_size = Vector2(200, 200)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -267.0
-offset_top = -401.0
-offset_right = 133.0
-offset_bottom = -1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_dhbjd")
-
-[node name="orange" type="Panel" parent="CarouselConatianer/Control"]
-custom_minimum_size = Vector2(200, 200)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -267.0
-offset_top = -401.0
-offset_right = 133.0
-offset_bottom = -1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_p3ags")
-
-[node name="green" type="Panel" parent="CarouselConatianer/Control"]
-custom_minimum_size = Vector2(200, 200)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -267.0
-offset_top = -401.0
-offset_right = 133.0
-offset_bottom = -1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_kw21e")
-
-[node name="blue" type="Panel" parent="CarouselConatianer/Control"]
-custom_minimum_size = Vector2(200, 200)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -267.0
-offset_top = -401.0
-offset_right = 133.0
-offset_bottom = -1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_d8yma")
-
-[node name="Purple" type="Panel" parent="CarouselConatianer/Control"]
-custom_minimum_size = Vector2(200, 200)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -267.0
-offset_top = -401.0
-offset_right = 133.0
-offset_bottom = -1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_joojo")
 
 [node name="right" type="Button" parent="CarouselConatianer"]
 anchors_preset = 3
@@ -339,6 +257,7 @@ text = "Select"
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(577, 325)
 
+[connection signal="pressed" from="Panel/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="CarouselConatianer/right" to="." method="_on_right_pressed"]
 [connection signal="pressed" from="CarouselConatianer/left" to="." method="_on_left_pressed"]
 [connection signal="pressed" from="CarouselConatianer/select" to="." method="_on_select_pressed"]
