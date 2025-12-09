@@ -81,6 +81,7 @@ func action_round():
 			if get_tree().current_scene == VICTORY:
 				# stop all moves, somebody has won
 				return
+			
 		# double conveyers
 		# single conveyer
 		# push panels
@@ -145,7 +146,6 @@ func checking_checkpoint():
 		if robot_pos == current_board.checkpoints.keys()[robot.checkpoints]:
 			robot.checkpoints += 1
 			current_board.checkpoints[robot_pos].play(robot.character.to_lower() + "_check_" + str(robot.checkpoints))
-
 
 func _input(event):
 	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
