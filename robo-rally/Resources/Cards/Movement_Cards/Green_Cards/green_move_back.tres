@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://cwb08xgtylu31"]
+
+[ext_resource type="Script" uid="uid://dmlhld3u2rbe5" path="res://Globals/card_data.gd" id="1_veher"]
+[ext_resource type="Texture2D" uid="uid://gt6t1wqeqlb2" path="res://Graphics/CardSprites/green_cards/green_move_back_card.png" id="2_rsmhu"]
+
+[resource]
+script = ExtResource("1_veher")
+name = "MoveBack"
+color = "Green"
+type = "Movement"
+action = "MoveBack"
+num_action = 1
+sprite = ExtResource("2_rsmhu")
+energy = 0
+metadata/_custom_type_script = "uid://dmlhld3u2rbe5"

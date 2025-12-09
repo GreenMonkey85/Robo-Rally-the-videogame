@@ -23,13 +23,8 @@ func _ready():
 	
 	for i in range(len(Game.player_order)):
 		Game.registers.append(null)
-		
-	for robot in Game.player_order:
-		print("connecting robot: ", robot, " at ", robot.get_path())
-		#robot.connect("robot_won", Callable(self, "_on_robot_won"))
-		print("added signal to " + robot.character)
-		var result = robot.connect("robot_won", Callable(self, "_on_robot_won"))
-		print("Connect result =", result)
+	
+	Game.connect("robot_won", Callable(self, "_on_robot_won"))		
 	Game.connect("card_display", Callable($UI/ActionUI, "_on_card_display"))
 	Game.connect("checkpoints_reached", Callable($UI/ActionUI, "_on_checkpoints_reached"))
 	var connections = Game.get_signal_connection_list("card_display")
@@ -53,13 +48,9 @@ func _on_robot_won(name):
 	for child in $Players.get_children():
 		#$Players.remove_child(child)
 		child.queue_free()
-	#Game.player_order.clear()
+	
 	for child in $Map.get_children():
-		#$Map.remove_child(child)
 		child.queue_free()
-	#Game.current_board = null
-	#
-	#Game.registers.clear()
 	
 	Game.reset_request = true
 	

@@ -79,3 +79,8 @@ func _on_select_pressed() -> void:
 		#print("Selected panel:", current_index, "->", panels[current_index].name)
 	Game.current_board = preload("res://Scenes/Boards/castle_tour_board.tscn").instantiate()
 	get_tree().change_scene_to_file("res://Scenes/main.tscn")
+
+func _on_quit_pressed() -> void:
+	print("quit to title")
+	Game.reset_request = true
+	get_tree().change_scene_to_file("res://Scenes/Menu/title_menu/main_menu.tscn")

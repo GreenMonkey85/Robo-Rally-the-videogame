@@ -15,7 +15,27 @@ var left_button: Button
 var right_button: Button
 var select_button: Button
 
+var num_players
+var num_AI
+var num_humans
+
+var names_not_selected = []
+@onready var error = $Panel/Error
+
+#@onready var settingsMessage = $Panel/SettingsMessage
+
 func _ready() -> void:
+	num_players = Game.num_players
+	num_AI = Game.num_AI
+	num_humans = num_players - num_AI
+	
+	#settingsMessage.text = "
+		#Can change the player count in Setting & Game Info
+		#Total players: " + str(num_players) + "
+		#Human: " + str(num_humans) + "
+		#AI: " + str(num_AI) + "
+	#"
+	
 	carousel = get_node_or_null("CarouselConatianer")
 	if not carousel:
 		push_error("CarouselConatianer node not found under root")
@@ -38,6 +58,9 @@ func _ready() -> void:
 	var left = -135
 	for i in range(panels.size()):
 		panels[i].position.x = i * spacing + left
+	
+	for i in panels:
+		names_not_selected.append(i.name)
 
 	if left_button:
 		left_button.pressed.connect(_on_left_pressed)
@@ -71,19 +94,39 @@ func _on_select_pressed() -> void:
 		#print("Selected panel:", current_index, "->", panels[current_index].name)
 	var characters = panels.duplicate()
 	
-	var robot = preload("res://Scenes/Characters/robot.tscn").instantiate()
-	robot.set_character(panels.pop_at(current_index).name)
-	Game.player_order.append(robot)
+	print(names_not_selected)
+	print(panels[current_index])
+	print(panels[current_index].name)
+	print(panels[0].name == names_not_selected[0])
 	
-	robot = preload("res://Scenes/Characters/robot.tscn").instantiate()
-	robot.set_character(panels[0].name)
-	robot.player = "Beam"
-	Game.player_order.append(robot)
-	
-	#for i in range(3):
-		#robot = preload("res://Scenes/Characters/robot.tscn").instantiate()
-		#robot.set_character(panels[0].name)
-		#Game.player_order.append(robot)
-	
-	
-	get_tree().change_scene_to_packed(Game.BOARD_MENU)
+	if panels[current_index].name in names_not_selected:
+		names_not_selected.erase(panels[current_index].name)
+		
+		var robot = preload("res://Scenes/Characters/robot.tscn").instantiate()
+		# robot.set_character(panels.pop_at(current_index).name)
+		robot.set_character(panels[current_index].name)
+		Game.player_order.append(robot)
+		
+		num_humans -= 1
+		if num_humans == 0:
+			for i in range(num_AI):
+				robot = preload("res://Scenes/Characters/robot.tscn").instantiate()
+				# robot.set_character(panels[0].name)
+				robot.set_character(names_not_selected[0])
+				names_not_selected.remove_at(0)
+				robot.player = "Beam"
+				Game.player_order.append(robot)
+		
+		#for i in range(3):
+			#robot = preload("res://Scenes/Characters/robot.tscn").instantiate()
+			#robot.set_character(panels[0].name)
+			#Game.player_order.append(robot)
+			get_tree().change_scene_to_packed(Game.BOARD_MENU)
+	else:
+		error.visible = true
+
+
+func _on_quit_pressed() -> void:
+	print("quit to title")
+	Game.reset_request = true
+	get_tree().change_scene_to_file("res://Scenes/Menu/title_menu/main_menu.tscn")

@@ -10,13 +10,9 @@ var anim_player: AnimationPlayer
 var pos_x = 0
 var pos_y = 0
 
-var direction = "bl"
+var direction = 'bl'
 var x_dir_mult = -1
 var y_dir_mult = 1
-
-signal player_decision_end
-
-signal robot_won(name)
 
 var energy = 3
 var checkpoints = 0
@@ -41,49 +37,16 @@ var register = [null,null,null,null,null]
 
 var last_move = null
 
+@onready var UI = $UI
+
 @onready var boardScript = null
 
 
 signal robot_spawned(robot)
-
-# TESTING 
-#@onready var robot_x = 0
-#@onready var robot_y = 0
-#@onready var robot_direction = "bl"
-#@onready var robot_shutdown = false
-#
-#@onready var robot_animationPlayer : AnimationPlayer = $Sprite2D/AnimationPlayer
-
-#@onready var robot : CharacterBody2D = $"." Use self.___() or ___()
-#@onready var p1cam : Camera2D = $P1Camera
+signal player_decision_end
 
 
-
-# moves the robot on the board, uses the arrow keys
-#func move_robot(x, y) -> Vector2:
-	#robot_x = x
-	#var robot_pixel_x = x * (852 / 2)
-	#robot_y = y 
-	#var robot_pixel_y = y * (426 / 2)
-	#return Vector2(robot_pixel_x, robot_pixel_y)
-#
-#func handle_card(dir):
-	#if dir == 'tl' && Vector2(robot_x, robot_y) not in get_parent().walls['tl']:
-		#var robot_tween = create_tween()
-		#robot_tween.tween_property(self, "position", move_robot(robot_x - 1, robot_y - 1), 1)
-	#elif dir == 'br' && Vector2(robot_x, robot_y) not in get_parent().walls['br']:
-		#var robot_tween = create_tween()
-		#robot_tween.tween_property(self, "position", move_robot(robot_x + 1, robot_y + 1), 1)
-	#elif dir == 'tr' && Vector2(robot_x, robot_y) not in get_parent().walls['tr']:
-		#var robot_tween = create_tween()
-		#robot_tween.tween_property(self, "position", move_robot(robot_x + 1, robot_y - 1), 1)
-	#elif dir == 'bl' && Vector2(robot_x, robot_y) not in get_parent().walls['bl']:
-		#var robot_tween = create_tween()
-		#robot_tween.tween_property(self, "position", move_robot(robot_x - 1, robot_y + 1), 1)
-	
-# END TESTING
-
-
+# FOR DECISIONS -------------------------------------
 
 func decision_start():
 	while cards_in_hand.size() < 9:
@@ -104,9 +67,6 @@ func decision_start():
 		var AI_register = AI.call(player, Vector2(pos_x,pos_y), Game.current_board.checkpoints.keys()[checkpoints],
 			cards_in_hand, direction)
 		decision_end(AI_register)
-		
-	
-	#print(deck, discard, cards_in_hand)
 
 func decision_end(register_list):
 	$UI/CanvasLayer.visible = false
@@ -140,11 +100,12 @@ func handle_action(card: CardData, register_index):
 		elif card.type == "Damage":
 			await call(card.action, register_index)
 		last_move = card
+		print("AFTER ", card.name, " ", card.character, " ", card.type, " ", card.action)
 	else:
 		await call("Spam", register_index)
 		last_move = preload("res://Resources/Cards/Damage_Cards/spam.tres")
+		print("AFTER ", last_move, " ", character, " Spam")
 	#print("CHECKPOINTS: ", checkpoints)
-	#print("AFTER ", card.name, " ", card.character, " ", card.type, " ", card.action)
 
 func action_end():
 	for i in range(len(register)):
@@ -153,6 +114,21 @@ func action_end():
 		register[i] = null
 		print("ACTION END", len(deck), len(discard), len(cards_in_hand))
 	last_move = null
+
+func Spam(register_index):
+	if len(deck) <= 0:
+		deck = discard.duplicate()
+		discard.clear()
+		deck.shuffle()
+	var card = deck.pop_front()
+	if register[register_index] != null:
+		Game.damage_discards.append(register[register_index])
+	register[register_index] = card
+	await call(card.action, card.num_action)
+
+
+
+# FOR PLAYER MOVEMENT / TURNING -----------------------------------
 
 func can_move(x1, y1, x2, y2):
 	# check if wall is in the way
@@ -173,7 +149,6 @@ func can_move(x1, y1, x2, y2):
 														 new_y * Game.current_board.PIXEL_Y)
 														 + Game.current_board.ORIGIN, 1)
 	return true
-
 
 func Move(num_actions):
 	print(character)
@@ -199,13 +174,8 @@ func Move(num_actions):
 			pos_x = new_x
 			pos_y = new_y
 
-func Again(num_actions):
-	if last_move != null:
-		await call(last_move.action, last_move.num_action)
-	else:
-		await call("Spam", num_actions)
-
 func Rotate(num_actions):
+	print("rotating")
 	await get_tree().create_timer(0.5).timeout
 	if num_actions == 0:
 		match direction:
@@ -251,20 +221,6 @@ func Rotate(num_actions):
 	anim_player.play(direction + "_idle")
 	await get_tree().create_timer(0.5).timeout
 
-func PowerUp(num_actions):
-	energy += num_actions
-
-func Spam(register_index):
-	if len(deck) <= 0:
-		deck = discard.duplicate()
-		discard.clear()
-		deck.shuffle()
-	var card = deck.pop_front()
-	if register[register_index] != null:
-		Game.damage_discards.append(register[register_index])
-	register[register_index] = card
-	await call(card.action, card.num_action)
-
 func change_xy_dir():
 	match direction:
 		"bl":
@@ -280,15 +236,139 @@ func change_xy_dir():
 			x_dir_mult = 1
 			y_dir_mult = -1
 
-func set_character(character):
-	self.character = character
-	for card: CardData in deck:
-		card.character = character
-		card.sprite = load("res://Graphics/CardSprites/%s_cards/%s_%s_card.png"
-							 % [character.to_lower(), character.to_lower(), card.name])
-	var sprite = load("res://Scenes/Characters/%s.tscn" % [character]).instantiate()
-	anim_player = sprite.get_node("AnimationPlayer")
-	add_child(sprite)
+
+
+# FOR BOARD ELEMENTS ------------------------------------------------------
+
+func check_conveyor(range):
+	var location = Vector2(pos_x, pos_y)
+	# need to find out whether this is for single or double conveyor belts
+	var conveyor_kind
+	
+	if range == 1:
+		conveyor_kind = Game.current_board.single_conveyors
+	elif range == 2:
+		conveyor_kind = Game.current_board.double_conveyors
+	
+	for i in range(range):
+		for dir in conveyor_kind:
+			if location in conveyor_kind[dir]:
+				
+				# find the new position
+				var new_x
+				var new_y
+				match dir:
+					'bl', 'turn_br-bl', 'turn_tl-bl':
+						new_x = pos_x - 1
+						new_y = pos_y + 1
+					'br', 'turn_tr-br', 'turn_bl-br':
+						new_x = pos_x + 1
+						new_y = pos_y + 1
+					'tr', 'turn_tl-tr', 'turn_br-tr':
+						new_x = pos_x + 1
+						new_y = pos_y - 1
+					'tl', 'turn_tr-tl', 'turn_bl-tl':
+						new_x = pos_x - 1
+						new_y = pos_y - 1
+					_:
+						print('NOT REAL CONVEYOR')
+				
+				# Now move in this direction
+				if can_move(pos_x, pos_y, new_x, new_y):
+					var new_pos = create_tween()
+					new_pos.tween_property(self, "position", Vector2(new_x * Game.current_board.PIXEL_X,
+																	 new_y * Game.current_board.PIXEL_Y)
+																	 + Game.current_board.ORIGIN, 1)
+					await new_pos.finished
+					pos_x = new_x
+					pos_y = new_y
+				
+					# Check if on turning conveyor belt
+					location = Vector2(pos_x, pos_y)
+					for newdir in conveyor_kind:
+						if location in conveyor_kind[newdir]:
+							if newdir == 'turn_tl-bl' || newdir == 'turn_bl-br' || newdir == 'turn_br-tr' || newdir == 'turn_tr-tl' :
+								Rotate(-1)
+							elif newdir == 'turn_tl-tr' || newdir == 'turn_tr-br' || newdir == 'turn_br-bl' || newdir == 'turn_bl-tl' :
+								Rotate(1)
+				# Now that the movement has happened, break to stop the dir loop, since we don't need to check anymore.
+				break
+
+func gears():
+	var location = Vector2(pos_x, pos_y)
+	# the Rotate() function can be reused, thankfully. Yippie!
+	if location in Game.current_board.gears['left']:
+		Rotate(-1)
+	elif location in Game.current_board.gears['right']:
+		Rotate(1)
+
+func battery():
+	# NOTHING ADDED YET, DONT HAVE DAMAGE CARD FUNCTIONALIY YET
+	pass
+
+func pitfalls():
+	var location = Vector2(pos_x, pos_y)
+	# check location for pitfalls
+	if location in Game.current_board.pitfalls:
+		# set to invisible
+		visible = false
+		# remove from board so that it doesn't interact with other players
+		pos_x = randi() + 30
+		pos_y = randi() + 30
+		
+		# what if multiple robots accidentally land in the same place?
+		for rob in Game.player_order:
+			while rob != self && rob.pos_x == pos_x && rob.pos_y:
+				print("landed in same place while loop")
+				pos_x = randi() + 30
+				pos_y = randi() + 30
+
+func restore_from_pit():
+	print("restoring from pit")
+	if visible == false:
+		# must find where to restore them to
+		#find locations of other robots
+		var all_other_locs = []
+		for rob in Game.player_order:
+			if rob != self:
+				all_other_locs.append(Vector2(rob.pos_x, rob.pos_y))
+		# if reached a checkpoint already, then return to most recent checkpoint reached
+		var restore_to
+		if checkpoints > 0:
+			restore_to = Game.current_board.checkpoints.keys()[checkpoints - 1]
+		# else, return to starting position
+		else:
+			restore_to = Game.current_board.STARTING_POSITIONS[Game.player_order.find(self)]
+		
+		# what if a robot is already there?
+		var own_index = Game.player_order.find(self)
+		while restore_to in all_other_locs:
+			print("must go to starting location")
+			restore_to = Game.current_board.STARTING_POSITIONS[own_index]
+			if restore_to in all_other_locs:
+				if own_index == 3:
+					own_index = 0
+				else:
+					own_index += 1
+				print("Cant go here, check next starting position")
+		
+		while true:
+			print("rotating while loop")
+			await Rotate(1)
+			print(direction)
+			if direction == 'bl':
+				break
+			
+		visible = true
+		var new_pos = create_tween()
+		new_pos.tween_property(self, "position", Vector2(restore_to[0] * Game.current_board.PIXEL_X, restore_to[1] * Game.current_board.PIXEL_Y) + Game.current_board.ORIGIN, 1)
+		await new_pos.finished
+		pos_x = restore_to[0]
+		pos_y = restore_to[1]
+		print("Robot has returned to " + str(pos_x) + ", " + str(pos_y))
+
+
+# FOR PLAYER ATTACKS -------------------------------------------------
 
 func check_next_for_laser(x, y):
 	if direction == 'bl':
@@ -333,11 +413,12 @@ func laser_attack():
 		# now check if theres another player there
 		for rob in Game.player_order:
 			# if so then will fire laser
-			if rob.pos_x == check_x && rob.pos_y == check_y:
+			if rob.visible == true && rob.pos_x == check_x && rob.pos_y == check_y:
 				# trigger player animation for firing laser in that direction
 				print("Target locked, firing laser!")
 				anim_player.play(direction + "_laser")
 				await get_tree().create_timer(2).timeout
+				
 				# and create Line2D (or Sprite 2D) for the laser itself
 				var pixel_laser_nodes = []
 				pixel_laser_nodes.append(tile_to_pixel(pos_x, pos_y))
@@ -358,26 +439,47 @@ func laser_attack():
 				anim_player.play(direction + "_idle")
 				
 				# after firing, trigger damage card for hit player
+				var damage_card = preload("res://Resources/Cards/Damage_Cards/spam.tres")
+				rob.cards_in_hand.append(damage_card)
+				rob.UI.draw_animation(damage_card)
 				return
 		# if not, then go to next iteration of the loop
 	# if its checked everything in a row, then no robot found, so stop
 	print("No target found, stand down")
 
+
+
+# FOR UTILITY / MULTI-USE --------------------------------------------------
+
+func Again(num_actions):
+	if last_move != null:
+		await call(last_move.action, last_move.num_action)
+	else:
+		await call("Spam", num_actions)
+
 func tile_to_pixel(tile_x, tile_y):
 	return Game.current_board.ORIGIN + Vector2(tile_x * Game.current_board.PIXEL_X, tile_y * Game.current_board.PIXEL_Y) + Vector2(Game.current_board.PIXEL_X / 2, Game.current_board.PIXEL_Y / 2)
+
+func set_character(character):
+	self.character = character
+	for card: CardData in deck:
+		card.character = character
+		card.sprite = load("res://Graphics/CardSprites/%s_cards/%s_%s_card.png"
+							 % [character.to_lower(), character.to_lower(), card.name])
+	var sprite = load("res://Scenes/Characters/%s.tscn" % [character]).instantiate()
+	anim_player = sprite.get_node("AnimationPlayer")
+	add_child(sprite)
+
+func PowerUp(num_actions):
+	energy += num_actions
+
+
+# AUTOMATIC STUFF -------------------------------------------------
 
 func _ready() -> void:
 	print(Game.current_board.ORIGIN)
 		
 	player_decision_end.connect(Callable(self, "_on_all_decided"))
-	
-	#pos_x = pos_x * PIXEL_X # Pixel Pos
-	#pos_y = pos_y * PIXEL_Y # Pixel Pos
-	# This is why the location is the way it is, the 
-	# board tiles that I used for the elements are based
-	# on my tile numbering, not the one used here.
-	#Dont know which one I should change.
-	
 	
 	# Create deck of cards for specific characterand set correct sprite for each
 	for card in deck:
@@ -388,24 +490,53 @@ func _ready() -> void:
 
 	# Shuffle cards
 	deck.shuffle()
-	
-	# TESTING
-	#position = move_robot(robot_x, robot_y)
-	#change_idle()
-	# END TESTING
 
 func _process(delta: float) -> void:
 	pass
-	#if boardScript == null:
-		#var board_node = get_parent().get_parent().get_node_or_null("Map")
-		#print(board_node == null)
-		#if board_node and board_node.get_child_count() > 0:
-			## The first child under Board is the active board scene
-			#boardScript = board_node.get_child(0)
-			#print("Board found")
 
 
 
+# OLD STUFF ---------------------------------------------
+
+# @onready var boardScript = null
+
+
+# TESTING 
+#@onready var robot_x = 0
+#@onready var robot_y = 0
+#@onready var robot_direction = "bl"
+#@onready var robot_shutdown = false
+#
+#@onready var robot_animationPlayer : AnimationPlayer = $Sprite2D/AnimationPlayer
+
+#@onready var robot : CharacterBody2D = $"." Use self.___() or ___()
+#@onready var p1cam : Camera2D = $P1Camera
+
+
+
+# moves the robot on the board, uses the arrow keys
+#func move_robot(x, y) -> Vector2:
+	#robot_x = x
+	#var robot_pixel_x = x * (852 / 2)
+	#robot_y = y 
+	#var robot_pixel_y = y * (426 / 2)
+	#return Vector2(robot_pixel_x, robot_pixel_y)
+#
+#func handle_card(dir):
+	#if dir == 'tl' && Vector2(robot_x, robot_y) not in get_parent().walls['tl']:
+		#var robot_tween = create_tween()
+		#robot_tween.tween_property(self, "position", move_robot(robot_x - 1, robot_y - 1), 1)
+	#elif dir == 'br' && Vector2(robot_x, robot_y) not in get_parent().walls['br']:
+		#var robot_tween = create_tween()
+		#robot_tween.tween_property(self, "position", move_robot(robot_x + 1, robot_y + 1), 1)
+	#elif dir == 'tr' && Vector2(robot_x, robot_y) not in get_parent().walls['tr']:
+		#var robot_tween = create_tween()
+		#robot_tween.tween_property(self, "position", move_robot(robot_x + 1, robot_y - 1), 1)
+	#elif dir == 'bl' && Vector2(robot_x, robot_y) not in get_parent().walls['bl']:
+		#var robot_tween = create_tween()
+		#robot_tween.tween_property(self, "position", move_robot(robot_x - 1, robot_y + 1), 1)
+	
+# END TESTING
 
 # TESTING
 #func change_idle() -> void:

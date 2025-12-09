@@ -29,7 +29,8 @@ func Beam(position, goal, cards, direction):
 		candidates.sort_custom(func(a, b):
 			return a[-1] < b[-1]
 		)
-		
+		print("CANDIDATES: ", candidates)
+		print("CHECKPOINT: ", goal)
 		beam = candidates.slice(0, beam_width)
 	return beam[0][0]
 
@@ -102,6 +103,9 @@ func Again(register, position, direction, card):
 		return call(register[-1].action, register, position, direction, card)
 	else:
 		return [position, direction]
+		
+func Spam(register, position, direction, card):
+	return [position, direction]
 
 func Rotate(register, position, direction, card):
 	if card.num_action == 0:

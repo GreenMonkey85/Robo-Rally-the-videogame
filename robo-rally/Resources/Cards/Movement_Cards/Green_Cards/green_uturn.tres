@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://645gco4l65ng"]
+
+[ext_resource type="Script" uid="uid://dmlhld3u2rbe5" path="res://Globals/card_data.gd" id="1_ao2pe"]
+[ext_resource type="Texture2D" uid="uid://bo0nbhkaq6luf" path="res://Graphics/CardSprites/green_cards/green_uturn_card.png" id="2_6jby8"]
+
+[resource]
+script = ExtResource("1_ao2pe")
+name = "Uturn"
+color = "Green"
+type = "Movement"
+action = "Uturn"
+num_action = 1
+sprite = ExtResource("2_6jby8")
+energy = 0
+metadata/_custom_type_script = "uid://dmlhld3u2rbe5"

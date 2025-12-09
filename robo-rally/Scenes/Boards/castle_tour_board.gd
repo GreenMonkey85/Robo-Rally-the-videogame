@@ -32,7 +32,7 @@ const SPRITE_SCALE = {
 #}
 
 @onready var walls = {Game.wall_key(Vector2(-3,1),Vector2(-4,2)):true,Game.wall_key(Vector2(1,7),Vector2(0,8)):true,
-					  Game.wall_key(Vector2(-1,11),Vector2(-2,12)):true,Game.wall_key(Vector2(-6,14),Vector2(-7,15)):true,
+					  Game.wall_key(Vector2(-10,8),Vector2(-11,9)):true,Game.wall_key(Vector2(-6,14),Vector2(-7,15)):true,
 					  Game.wall_key(Vector2(-1,-1),Vector2(0,0)):true,Game.wall_key(Vector2(0,-2),Vector2(1,-1)):true,
 					  Game.wall_key(Vector2(1,-3),Vector2(2,-2)):true,Game.wall_key(Vector2(-1,1),Vector2(0,2)):true,
 					  Game.wall_key(Vector2(3,3),Vector2(4,4)):true,Game.wall_key(Vector2(4,2),Vector2(5,3)):true,
@@ -67,45 +67,48 @@ const SPRITE_SCALE = {
 					}
 
 @onready var gears = {
-	'left': [],
-	'right': [],
+	'left': [Vector2(-2,8), Vector2(-8,8)],
+	'right': [Vector2(-5,5), Vector2(-5,11)],
 }
 
-@onready var batteries = []
+@onready var batteries = [Vector2(2,8), Vector2(-5,15), Vector2(-12,8), Vector2(-5,1)]
 
-@onready var conveyors = {
-	'bl': [],
-	'turn_bl-br': [],
-	'turn_bl-tl': [],
-	'br': [],
-	'turn_br-bl': [],
-	'turn_br-tr': [],
-	'tr': [],
-	'turn_tr-tl': [],
-	'turn_tr-br': [],
-	'tl': [],
-	'turn_tl-tr': [],
-	'turn_tl-bl': [],
+@onready var single_conveyors = {
+	'bl': [Vector2(-6,0), Vector2(-7,1), Vector2(-8,2), Vector2(-11,5), Vector2(-12,6), Vector2(-13,7)],
+	'turn_bl-br': [Vector2(-14,8)],
+	'turn_bl-tl': [Vector2(-9,3)],
+	'br': [Vector2(-11,3), Vector2(-13,9), Vector2(-12,10), Vector2(-11,11), Vector2(-10,12), Vector2(-9,13), Vector2(-8,14), Vector2(-7,15), Vector2(-6,16), Vector2(0,14)],
+	'turn_br-bl': [Vector2(-10,4)],
+	'turn_br-tr': [Vector2(-5,17)],
+	'tr': [Vector2(-4,16), Vector2(-3,15), Vector2(-2,14), Vector2(1,11), Vector2(2,10), Vector2(3,9)],
+	'turn_tr-tl': [Vector2(4,8)],
+	'turn_tr-br': [Vector2(-1,13)],
+	'tl': [Vector2(-4,0), Vector2(-3,1), Vector2(-2,2), Vector2(-1,3), Vector2(0,4), Vector2(1,5), Vector2(2,6), Vector2(3,7), Vector2(-10,2), Vector2(1,13)],
+	'turn_tl-tr': [Vector2(0,12)],
+	'turn_tl-bl': [Vector2(-5,-1)],
 }
 
 @onready var double_conveyors = {
-	'bl': [],
+	'bl': [Vector2(-1,9), Vector2(-2,10), Vector2(-3,11), Vector2(-4,12)],
 	'turn_bl-br': [],
-	'turn_bl-tl': [],
-	'br': [],
-	'turn_br-bl': [],
+	'turn_bl-tl': [Vector2(-5,13)],
+	'br': [Vector2(-4,4), Vector2(-3,5), Vector2(-2,6), Vector2(-1,7)],
+	'turn_br-bl': [Vector2(0,8)],
 	'turn_br-tr': [],
-	'tr': [],
+	'tr': [Vector2(-9,7), Vector2(-8,6), Vector2(-7,5), Vector2(-6,4)],
 	'turn_tr-tl': [],
-	'turn_tr-br': [],
-	'tl': [],
-	'turn_tl-tr': [],
+	'turn_tr-br': [Vector2(-5,3)],
+	'tl': [Vector2(-6,12), Vector2(-7,11), Vector2(-8,10), Vector2(-9,9)],
+	'turn_tl-tr': [Vector2(-10,8)],
 	'turn_tl-bl': [],
 }
 
-@onready var lasers = []
+@onready var lasers = [
+	Vector2(0,8), Vector2(-1,9), Vector2(-2,10), Vector2(-3,11), Vector2(-4,12), Vector2(-5,13), Vector2(-6,14),
+	Vector2(-4,2), Vector2(-5,3), Vector2(-6,4), Vector2(-7,5), Vector2(-8,6), Vector2(-9,7), Vector2(-10,8)
+]
 
-@onready var pitfalls = []
+@onready var pitfalls = [Vector2(-3,7), Vector2(-1,15), Vector2(-9,1), Vector2(-7,9)]
 
 @onready var checkpoints = {Vector2(-7.0,13.0) : $"Checkpoint 1/AnimationPlayer",
 							Vector2(0.0,2.0) : $"Checkpoint 2/AnimationPlayer"}

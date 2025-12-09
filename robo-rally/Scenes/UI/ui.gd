@@ -73,6 +73,19 @@ func _on_confirm_pressed() -> void:
 	register_list.pop_front()
 	var final_register = []
 	for i in register_list:
+
+	
+		#print("card container: " + str(i.placed_card))
+		#if i.placed_card == null:
+			#final_register.append(i.placed_card)
+		#else:
+			#final_register.append(i.placed_card.cardData)
+			#print("card data: " + str(i.placed_card.cardData))
+	#
+	#for each in register_list:
+		#each.clear_register()
+
+		
 		if i.placed_card != null:
 			print("CONFIRM CARD ", i.placed_card.cardData, " ", i, " ")
 			final_register.append(i.placed_card.cardData)
@@ -93,6 +106,10 @@ func _on_clear_pressed() -> void:
 			if card.has_method("return_to_hand"):
 				card.return_to_hand()
 
+func show_card_preview(card_data: CardData): # CardData only when AI player
+	if preview_slot == null: 
+		push_warning("CardPreview node not found!")
+		return
 
 func _on_shut_down_pressed() -> void:
 	for slot in register.get_children():
