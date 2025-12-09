@@ -37,6 +37,7 @@ var reset_request = false
 var pause_menu = null
 
 signal card_display(card)
+signal checkpoints_reached(numCheckpoints)
 
 func reset():
 	player_order.clear()
@@ -76,6 +77,7 @@ func action_round():
 			#print("WHAT IS THIS ", player_order[j], " ", registers[j][i])
 			#print("REGISTERS ", registers)
 			emit_signal("card_display", registers[j][i])
+			emit_signal("checkpoints_reached", player_order[j].checkpoints)
 			await player_order[j].handle_action(registers[j][i], i)
 			action_ui.visible = false
 			if get_tree().current_scene == VICTORY:

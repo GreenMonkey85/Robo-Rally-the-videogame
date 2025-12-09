@@ -23,3 +23,18 @@ offset_right = 168.0
 offset_bottom = 228.0
 scale = Vector2(1.13014, 1.1256)
 script = ExtResource("3_xqhfx")
+
+[node name="CheckpointsContainer" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 707.0
+offset_top = 18.0
+offset_right = 1013.0
+offset_bottom = 87.0
+scale = Vector2(1.42164, 1.23019)
+
+[node name="Checkpoints" type="Label" parent="CanvasLayer/CheckpointsContainer"]
+offset_left = 906.0
+offset_top = 6.0
+offset_right = 1139.0
+offset_bottom = 66.0
