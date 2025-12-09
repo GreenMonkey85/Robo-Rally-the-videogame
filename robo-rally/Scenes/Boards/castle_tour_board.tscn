@@ -277,8 +277,10 @@ tile_map_data = PackedByteArray("AAD8/wgAAAAGAAIAAAD8/wcAAAAGAAIAAAD8/wYAAAAGAAI
 tile_set = SubResource("TileSet_87l0l")
 
 [node name="Walls" type="TileMapLayer" parent="Floor/LowerElements/HigherElements"]
+y_sort_enabled = true
 tile_map_data = PackedByteArray("AAABAAIAAQAFAAUAAAD8/wkAAQAGAAYAABD8/wIAAQAGAAYAABABAAkAAQAFAAUAAAD9/wAAAQAGAAUAAAD8////AQAGAAUAAAD8//7/AQAGAAUAAAD8//3/AQAGAAUAAAABAP3/AQAGAAYAAAABAP7/AQAGAAYAAAABAP//AQAGAAYAAAA=")
 tile_set = SubResource("TileSet_02vqm")
+y_sort_origin = 426
 
 [node name="Checkpoint 1" parent="." instance=ExtResource("4_sphnk")]
 position = Vector2(-1764, 1003)

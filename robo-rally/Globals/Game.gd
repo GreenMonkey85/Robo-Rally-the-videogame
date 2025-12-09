@@ -78,7 +78,7 @@ func action_round():
 			#action_ui.show_card_preview(registers[j][i])
 			action_ui.visible = true
 			# current player moves
-			#print("WHAT IS THIS ", player_order[j], " ", registers[j][i])
+			print("WHAT IS THIS ", player_order[j], " ", registers[j][i])
 			#print("REGISTERS ", registers)
 			emit_signal("card_display", registers[j][i])
 			await player_order[j].handle_action(registers[j][i], i)
@@ -86,6 +86,7 @@ func action_round():
 			if get_tree().current_scene == VICTORY:
 				# stop all moves, somebody has won
 				return
+			
 		# double conveyers
 		for robot in player_order:
 			await robot.check_conveyor(2)
@@ -178,7 +179,6 @@ func checking_checkpoint():
 			else:
 				await get_tree().create_timer(2).timeout
 				current_board.checkpoints[robot_pos].play("idle_" + str(robot.checkpoints))
-
 
 func _input(event):
 	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE and current_board != null:

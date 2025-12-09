@@ -37,6 +37,11 @@ var register = [null,null,null,null,null]
 
 var last_move = null
 
+@onready var UI = $UI
+
+@onready var boardScript = null
+
+
 signal robot_spawned(robot)
 signal player_decision_end
 
@@ -434,6 +439,9 @@ func laser_attack():
 				anim_player.play(direction + "_idle")
 				
 				# after firing, trigger damage card for hit player
+				var damage_card = preload("res://Resources/Cards/Damage_Cards/spam.tres")
+				rob.cards_in_hand.append(damage_card)
+				rob.UI.draw_animation(damage_card)
 				return
 		# if not, then go to next iteration of the loop
 	# if its checked everything in a row, then no robot found, so stop
