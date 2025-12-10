@@ -14,7 +14,7 @@ func card_display(card):
 	for child in preview_slot.get_children():
 		child.queue_free()
 
-	if card == null:
+	if card == null or card is String:
 		return
 
 	var preview_card: Card = CARD_SCENE.instantiate()

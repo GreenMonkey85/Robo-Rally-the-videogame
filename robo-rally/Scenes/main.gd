@@ -7,6 +7,8 @@ func _ready():
 	Game.pause_menu.visible = false
 	Game.action_ui = $UI/ActionUI.get_children()[0]
 	Game.action_ui.visible = false
+	$Map.add_child(Game.current_board)
+	
 	for robot: Node2D in Game.player_order:
 		$Players.add_child(robot)
 		var starting_position: Vector2 = starting_positions.pop_front()
@@ -17,7 +19,6 @@ func _ready():
 		print(robot.pos_x, robot.pos_y)
 		#robot.scale = Vector2(1.3,1.3)
 		
-	$Map.add_child(Game.current_board)
 	
 	Game.player_order.shuffle()
 	

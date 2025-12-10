@@ -14,6 +14,7 @@ var ACTION_UI = null
 
 
 var current_board = null
+var player_nodes = null
 var action_ui = null
 var cardSelected
 var mouseOnPlacement = false
@@ -72,6 +73,9 @@ func action_round():
 	for i in range(5):
 		# loop through each player with respect to order
 		for j in range(len(player_order)):
+			print(player_order[j].is_shutdown)
+			if player_order[j].is_shutdown:
+				continue
 			print("HANDLE ", player_order[j].player, " ", registers, " ", i)
 			# Replace 'some_card_data_instance' with actual CardData object for the current card
 			var some_card_data_instance = null

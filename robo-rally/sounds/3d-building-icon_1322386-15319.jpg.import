@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cf7tgj3q63ugn"
-path="res://.godot/imported/hammer_bot_move_back_card.png-779c1e6c4803ad5e7eba87fa94a21b62.ctex"
+uid="uid://dwt84ebkpyf2m"
+path="res://.godot/imported/3d-building-icon_1322386-15319.jpg-51f7eb31db764cef9aa08e4e1d2db1e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/CardSprites/purple_cards/hammer_bot_move_back_card.png"
-dest_files=["res://.godot/imported/hammer_bot_move_back_card.png-779c1e6c4803ad5e7eba87fa94a21b62.ctex"]
+source_file="res://sounds/3d-building-icon_1322386-15319.jpg"
+dest_files=["res://.godot/imported/3d-building-icon_1322386-15319.jpg-51f7eb31db764cef9aa08e4e1d2db1e5.ctex"]
 
 [params]
 
