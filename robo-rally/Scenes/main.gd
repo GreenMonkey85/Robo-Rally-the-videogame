@@ -27,6 +27,7 @@ func _ready():
 	
 	Game.connect("robot_won", Callable(self, "_on_robot_won"))		
 	Game.connect("card_display", Callable($UI/ActionUI, "_on_card_display"))
+	Game.connect("checkpoints_reached", Callable($UI/ActionUI, "_on_checkpoints_reached"))
 	var connections = Game.get_signal_connection_list("card_display")
 	print("Connections for 'card_display':")
 	for conn in connections:
