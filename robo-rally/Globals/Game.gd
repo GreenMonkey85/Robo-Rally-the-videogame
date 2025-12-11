@@ -102,7 +102,8 @@ func action_round():
 		for robot in player_order:
 			await robot.pitfalls()
 		# board lasers
-		# INCOMPLETE, MUST ADD DAMAGE FUNCTIONALITY 
+		for robot in player_order:
+			await robot.board_lasers()
 		# robot lasers
 		if get_tree().current_scene != VICTORY:
 			for rob in player_order:
