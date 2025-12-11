@@ -1,7 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://cl1vpwnqpmbr4"]
+[gd_scene load_steps=10 format=3 uid="uid://cl1vpwnqpmbr4"]
 
 [ext_resource type="Script" uid="uid://bshxq2bxnfxr8" path="res://Scenes/Characters/robot.gd" id="1_t8ybn"]
 [ext_resource type="PackedScene" uid="uid://db43epk154m7p" path="res://Scenes/UI/ui.tscn" id="2_67qda"]
+[ext_resource type="AudioStream" uid="uid://spn8qfnenl23" path="res://Audio/mixkit-sci-fi-battle-laser-shots-2783.wav" id="3_2diu6"]
+[ext_resource type="AudioStream" uid="uid://djfcwhda2gfep" path="res://Audio/gear-spinning-loop-6981.ogg" id="4_m0bu8"]
+[ext_resource type="AudioStream" uid="uid://my4f6hexsekh" path="res://Audio/ticking-clock-412042.ogg" id="4_xtkbb"]
+[ext_resource type="AudioStream" uid="uid://c2hrtk18sxupo" path="res://Audio/power-down-7103.ogg" id="5_43a32"]
+[ext_resource type="AudioStream" uid="uid://de4y6cliktrjt" path="res://Audio/mixkit-electric-fence-buzzing-2967.wav" id="5_xtkbb"]
+[ext_resource type="AudioStream" uid="uid://c1ispx5bornxr" path="res://Audio/falling-whistle-cartoon-180579.ogg" id="6_twmy0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w6gft"]
 size = Vector2(1142.86, 568.993)
@@ -15,3 +21,22 @@ scale = Vector2(0.3, 0.3)
 shape = SubResource("RectangleShape2D_w6gft")
 
 [node name="UI" parent="." instance=ExtResource("2_67qda")]
+
+[node name="Laser" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_2diu6")
+
+[node name="Conveyor" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_m0bu8")
+volume_db = 24.0
+
+[node name="Shutdown" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_43a32")
+
+[node name="Pitfall" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_twmy0")
+
+[node name="Rotate" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_xtkbb")
+
+[node name="Damage" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_xtkbb")

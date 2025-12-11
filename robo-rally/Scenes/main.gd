@@ -8,9 +8,10 @@ func _ready():
 	Game.action_ui = $UI/ActionUI.get_children()[0]
 	Game.action_ui.visible = false
 	$Map.add_child(Game.current_board)
+	add_child(Game.conveyor_sound)
 	
 	for robot: Node2D in Game.player_order:
-		$Players.add_child(robot)
+		Game.current_board.get_node("YSort").add_child(robot)
 		var starting_position: Vector2 = starting_positions.pop_front()
 		robot.pos_x = starting_position.x
 		robot.pos_y = starting_position.y
@@ -39,6 +40,8 @@ func _ready():
 
 	Game.decision_round()
 	#Game.start_game(Game.player_order, Game.current_board)
+	
+	print_tree_pretty()
 	
 	
 

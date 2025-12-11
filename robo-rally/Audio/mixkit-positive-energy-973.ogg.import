@@ -7,8 +7,8 @@ path="res://.godot/imported/mixkit-positive-energy-973.ogg-aa90b90d553d701acb28d
 
 [deps]
 
-source_file="res://sounds/mixkit-positive-energy-973.ogg"
-dest_files=["res://.godot/imported/mixkit-positive-energy-973.ogg-aa90b90d553d701acb28d4f22292c3bf.oggvorbisstr"]
+source_file="res://Audio/mixkit-positive-energy-973.ogg"
+dest_files=["res://.godot/imported/mixkit-positive-energy-973.ogg-a49536b235d48fc255a36d34b309951c.oggvorbisstr"]
 
 [params]
 

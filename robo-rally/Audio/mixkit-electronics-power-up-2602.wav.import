@@ -7,8 +7,8 @@ path="res://.godot/imported/mixkit-electronics-power-up-2602.wav-0833313c476dad8
 
 [deps]
 
-source_file="res://sounds/mixkit-electronics-power-up-2602.wav"
-dest_files=["res://.godot/imported/mixkit-electronics-power-up-2602.wav-0833313c476dad884de34c75b409b98b.sample"]
+source_file="res://Audio/mixkit-electronics-power-up-2602.wav"
+dest_files=["res://.godot/imported/mixkit-electronics-power-up-2602.wav-3aa922851bc2144846c157c361833479.sample"]
 
 [params]
 

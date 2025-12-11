@@ -7,8 +7,8 @@ path="res://.godot/imported/mixkit-robot-step-1417.wav-7895934634098280f6ee43616
 
 [deps]
 
-source_file="res://sounds/mixkit-robot-step-1417.wav"
-dest_files=["res://.godot/imported/mixkit-robot-step-1417.wav-7895934634098280f6ee436169d5eb9d.sample"]
+source_file="res://Audio/mixkit-robot-step-1417.wav"
+dest_files=["res://.godot/imported/mixkit-robot-step-1417.wav-d341fe8b28482fa2ec0797aabd6e1c57.sample"]
 
 [params]
 

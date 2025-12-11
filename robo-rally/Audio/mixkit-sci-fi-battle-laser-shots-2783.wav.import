@@ -7,8 +7,8 @@ path="res://.godot/imported/mixkit-sci-fi-battle-laser-shots-2783.wav-9582a027a3
 
 [deps]
 
-source_file="res://sounds/mixkit-sci-fi-battle-laser-shots-2783.wav"
-dest_files=["res://.godot/imported/mixkit-sci-fi-battle-laser-shots-2783.wav-9582a027a33283b81ee9a53aa06d420e.sample"]
+source_file="res://Audio/mixkit-sci-fi-battle-laser-shots-2783.wav"
+dest_files=["res://.godot/imported/mixkit-sci-fi-battle-laser-shots-2783.wav-6f0cf5e00d27c80bc5ffcab9d82d59d4.sample"]
 
 [params]
 

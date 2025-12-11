@@ -7,8 +7,8 @@ path="res://.godot/imported/mixkit-infected-mushroom-vibes-136.ogg-be1abafb0f922
 
 [deps]
 
-source_file="res://sounds/mixkit-infected-mushroom-vibes-136.ogg"
-dest_files=["res://.godot/imported/mixkit-infected-mushroom-vibes-136.ogg-be1abafb0f9226c988b7c54406971c96.oggvorbisstr"]
+source_file="res://Audio/mixkit-infected-mushroom-vibes-136.ogg"
+dest_files=["res://.godot/imported/mixkit-infected-mushroom-vibes-136.ogg-162371bdea4aa68661cd185e58d5f927.oggvorbisstr"]
 
 [params]
 

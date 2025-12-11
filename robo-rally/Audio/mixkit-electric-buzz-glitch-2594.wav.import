@@ -7,8 +7,8 @@ path="res://.godot/imported/mixkit-electric-buzz-glitch-2594.wav-2c6e0fc68136a5d
 
 [deps]
 
-source_file="res://sounds/mixkit-electric-buzz-glitch-2594.wav"
-dest_files=["res://.godot/imported/mixkit-electric-buzz-glitch-2594.wav-2c6e0fc68136a5d137f1dcde8dbebab5.sample"]
+source_file="res://Audio/mixkit-electric-buzz-glitch-2594.wav"
+dest_files=["res://.godot/imported/mixkit-electric-buzz-glitch-2594.wav-71b1d592444fe0e733dc9c1b2edcb499.sample"]
 
 [params]
 

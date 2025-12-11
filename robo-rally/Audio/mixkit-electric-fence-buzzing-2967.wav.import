@@ -7,8 +7,8 @@ path="res://.godot/imported/mixkit-electric-fence-buzzing-2967.wav-793d4b20d5188
 
 [deps]
 
-source_file="res://sounds/mixkit-electric-fence-buzzing-2967.wav"
-dest_files=["res://.godot/imported/mixkit-electric-fence-buzzing-2967.wav-793d4b20d5188191a162a8e6d3f29bd9.sample"]
+source_file="res://Audio/mixkit-electric-fence-buzzing-2967.wav"
+dest_files=["res://.godot/imported/mixkit-electric-fence-buzzing-2967.wav-a80062d9e73b2404487bd2ff3b65d0bc.sample"]
 
 [params]
 

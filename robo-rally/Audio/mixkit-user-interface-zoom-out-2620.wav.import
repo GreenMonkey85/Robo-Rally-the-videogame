@@ -7,8 +7,8 @@ path="res://.godot/imported/mixkit-user-interface-zoom-out-2620.wav-a760326bc9af
 
 [deps]
 
-source_file="res://sounds/mixkit-user-interface-zoom-out-2620.wav"
-dest_files=["res://.godot/imported/mixkit-user-interface-zoom-out-2620.wav-a760326bc9af3d9135aa6ea7b4aba307.sample"]
+source_file="res://Audio/mixkit-user-interface-zoom-out-2620.wav"
+dest_files=["res://.godot/imported/mixkit-user-interface-zoom-out-2620.wav-75da52b1128e7e8bcb4bf15edb0a6fba.sample"]
 
 [params]
 

@@ -7,8 +7,8 @@ path="res://.godot/imported/mixkit-modern-technology-select-3124.wav-329f41dc56d
 
 [deps]
 
-source_file="res://sounds/mixkit-modern-technology-select-3124.wav"
-dest_files=["res://.godot/imported/mixkit-modern-technology-select-3124.wav-329f41dc56d2b999aabd663be4361f6f.sample"]
+source_file="res://Audio/mixkit-modern-technology-select-3124.wav"
+dest_files=["res://.godot/imported/mixkit-modern-technology-select-3124.wav-c1c4ddd08f48960f082a8296d4e02049.sample"]
 
 [params]
 
