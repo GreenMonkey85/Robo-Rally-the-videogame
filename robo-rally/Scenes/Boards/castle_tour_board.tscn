@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://djou3dmb0ej0x" path="res://Scenes/Boards/castle_tour_board.gd" id="1_sphnk"]
 [ext_resource type="Texture2D" uid="uid://1qu5n72tiix7" path="res://Graphics/BoardSprites/TilesetBoardElementsIsometric_Try8.png" id="2_tfynt"]
 [ext_resource type="PackedScene" uid="uid://crq1jkrf27su0" path="res://Checkpoint.tscn" id="4_sphnk"]
-[ext_resource type="AudioStream" uid="uid://wmn7sd2onhma" path="res://Audio/mixkit-techno-fest-vibes-124.ogg" id="5_cy5jx"]
+[ext_resource type="AudioStream" uid="uid://du7t8yl4sn6dl" path="res://Audio/mixkit-techno-fest-vibes-124.ogg" id="5_cy5jx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sphnk"]
 texture = ExtResource("2_tfynt")

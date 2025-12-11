@@ -19,6 +19,7 @@ func _process(delta: float) -> void:
 
 
 func _on_return_pressed() -> void:
+	
 	if num_players.get_item_text(num_players.selected) <= num_AI.get_item_text(num_AI.selected):
 		print("must have at least one human player")
 		error.visible = true

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dqlllys04c55f" path="res://factorybackround.jpg" id="2_dhbjd"]
 [ext_resource type="PackedScene" uid="uid://dbd46rq7u3tct" path="res://Scenes/Characters/Twonky.tscn" id="3_hfscs"]
 [ext_resource type="PackedScene" uid="uid://dvxw10jolhqca" path="res://Scenes/Characters/HammerBot.tscn" id="4_ut2ur"]
-[ext_resource type="PackedScene" path="res://Scenes/Characters/Robby.tscn" id="6_6w8c0"]
+[ext_resource type="PackedScene" uid="uid://dwpo1ogwvq3bw" path="res://Scenes/Characters/Robby.tscn" id="6_6w8c0"]
 [ext_resource type="PackedScene" uid="uid://b7q8xr26dfex7" path="res://Scenes/Characters/SpinBot.tscn" id="6_qwas7"]
 [ext_resource type="AudioStream" uid="uid://bcj2tmjr2ye3f" path="res://Audio/beep-313342.ogg" id="7_6w8c0"]
 [ext_resource type="AudioStream" uid="uid://73igagm0j38d" path="res://Audio/digital-click-357350.ogg" id="7_p4ifa"]
