@@ -6,7 +6,11 @@ const BOARD_MENU = preload("res://Scenes/Menu/board_menu/board_container.tscn")
 const VICTORY = preload("res://Scenes/UI/victory.tscn")
 const SETTINGS_MENU = preload("res://Scenes/Menu/settings_menu/settings.tscn")
 
-const ALL_ROBOTS = ["Twonky", "HammerBot"]
+const ALL_ROBOTS = ["Twonky", "HammerBot", "SpinBot"]
+
+var conveyor_sound = AudioStreamPlayer.new()
+var gear_sound = AudioStreamPlayer.new()
+var pitfall_sound = AudioStreamPlayer.new()
 
 
 
@@ -14,6 +18,7 @@ var ACTION_UI = null
 
 
 var current_board = null
+var player_nodes = null
 var action_ui = null
 var cardSelected
 var mouseOnPlacement = false
@@ -25,11 +30,15 @@ var damage_discards = []
 var upgrade_cards = []
 var upgrade_discards = []
 
+var num_players = 3
+var num_AI = 0
+
 var players_decided = []
 var registers = []
 
 var timer = Timer.new()
 
+signal robot_won(name)
 var winner_name = ""
 
 var reset_request = false
@@ -38,6 +47,10 @@ var pause_menu = null
 
 signal card_display(card)
 signal checkpoints_reached(numCheckpoints)
+
+func _ready() -> void:
+	conveyor_sound.stream = preload("res://Audio/gear-spinning-loop-6981.ogg")
+	
 
 func reset():
 	player_order.clear()
@@ -48,6 +61,7 @@ func reset():
 	upgrade_cards.clear()
 	upgrade_discards.clear()
 	#current_board = null
+	winner_name = ""
 	ACTION_UI = null
 	
 	for robot in get_all_robots():
@@ -68,13 +82,16 @@ func action_round():
 	for i in range(5):
 		# loop through each player with respect to order
 		for j in range(len(player_order)):
+			print(player_order[j].is_shutdown)
+			if player_order[j].is_shutdown:
+				continue
 			print("HANDLE ", player_order[j].player, " ", registers, " ", i)
 			# Replace 'some_card_data_instance' with actual CardData object for the current card
 			var some_card_data_instance = null
 			#action_ui.show_card_preview(registers[j][i])
 			action_ui.visible = true
 			# current player moves
-			#print("WHAT IS THIS ", player_order[j], " ", registers[j][i])
+			print("WHAT IS THIS ", player_order[j], " ", registers[j][i])
 			#print("REGISTERS ", registers)
 			emit_signal("card_display", registers[j][i])
 			emit_signal("checkpoints_reached", player_order[j].checkpoints)
@@ -83,21 +100,46 @@ func action_round():
 			if get_tree().current_scene == VICTORY:
 				# stop all moves, somebody has won
 				return
+			
 		# double conveyers
+		conveyor_sound.play()
+		for robot in player_order:
+			await robot.check_conveyor(2)
+		conveyor_sound.stop()
 		# single conveyer
+		conveyor_sound.play()
+		for robot in player_order:
+			await robot.check_conveyor(1)
+		conveyor_sound.stop()
 		# push panels
+		# WE HAVE NO PUSH PANELS
 		# rotate gears
+		for robot in player_order:
+			await robot.gears()
+		# pitfalls
+		for robot in player_order:
+			await robot.pitfalls()
 		# board lasers
+		for robot in player_order:
+			await robot.board_lasers()
 		# robot lasers
 		if get_tree().current_scene != VICTORY:
 			for rob in player_order:
-				#print("Trying laser for " + str(rob))
-				rob.laser_attack()
+				print("Trying laser for " + str(rob))
+				await rob.laser_attack()
 				await get_tree().create_timer(2).timeout
 		# battery
+		# INCOMPLETE, MUST ADD DAMAGE FUNCTIONALITY
+		for robot in player_order:
+			await robot.battery()
 		# check flags
-		checking_checkpoint()
+		await checking_checkpoint()
 		
+	# after all registers done, must restore any robot that fell into a pit
+	for robot in player_order:
+		await robot.restore_from_pit()
+	
+	# end round
 	for i in player_order:
 		i.action_end()
 	player_order.append(player_order.pop_front())
@@ -127,13 +169,6 @@ func start_game(player_list, chosen_board):
 		registers.append(null)
 	decision_round()
 
-#func draw_a_card(card_deck, card_discard):
-	#if card_deck <= 0:
-		#card_deck.append_array(card_discard)
-		#card_discard.clear()
-		#card_deck.shuffle()
-	#return card_deck.pop_front()
-
 func wall_key(a: Vector2, b: Vector2) -> String:
 	# Convert to a format like "x1,y1|x2,y2" and sort so order doesn't matter
 	var A = "%s,%s" % [a.x, a.y]
@@ -141,14 +176,29 @@ func wall_key(a: Vector2, b: Vector2) -> String:
 	return A + "|" + B if a.x < b.x else B + "|" + A
 
 func checking_checkpoint():	
+	if winner_name != "":
+		print("Someone's already won, no point in checking")
+		return
 	for robot in player_order:
+		print(robot.character + " has " + str(robot.checkpoints) + " checkpoint(s)")
 		var robot_pos = Vector2(robot.pos_x, robot.pos_y)
-		#print(robot_pos)
-		if robot_pos == current_board.checkpoints.keys()[robot.checkpoints]:
+		print("Robot position: " + str(robot_pos))
+		
+		if robot_pos == current_board.checkpoints.keys()[robot.checkpoints] && current_board.checkpoints.keys().find(robot_pos) == robot.checkpoints:
 			robot.checkpoints += 1
 			current_board.checkpoints[robot_pos].play(robot.character.to_lower() + "_check_" + str(robot.checkpoints))
-
+			
+			print("Num Checkpoints on Board: " + str(len(current_board.checkpoints.keys())))
+			print("Num Checkpoints reached: " + str(robot.checkpoints))
+			print(robot.checkpoints == len(current_board.checkpoints.keys()))
+			# Check if we have a winner
+			if str(robot.checkpoints) == str(len(current_board.checkpoints.keys())):
+				emit_signal("robot_won", robot.character)
+				return
+			else:
+				await get_tree().create_timer(2).timeout
+				current_board.checkpoints[robot_pos].play("idle_" + str(robot.checkpoints))
 
 func _input(event):
-	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
+	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE and current_board != null:
 		pause_menu.visible = true

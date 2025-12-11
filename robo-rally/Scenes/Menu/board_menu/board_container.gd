@@ -5,6 +5,9 @@ class_name CarouselContainer
 @export var spacing_between: float = 100.0
 @export var transition_speed: float = 8.0
 
+@onready var select_sound: AudioStreamPlayer = $Select
+@onready var scroll_sound: AudioStreamPlayer = $Scroll
+
 var current_index: int = 0
 var panels: Array[Control] = []
 var target_offset: float = 0.0
@@ -17,6 +20,7 @@ var right_button: Button
 var select_button: Button
 
 func _ready() -> void:
+	
 	carousel = get_node_or_null("CarouselConatianer")
 	if not carousel:
 		push_error("CarouselConatianer node not found under root")
@@ -55,6 +59,8 @@ func _ready() -> void:
 		push_warning("Select button not found! Make sure the node path is correct.")
 
 	_update_target()
+	
+	print_tree_pretty()
 
 func _process(delta: float) -> void:
 	if control:
@@ -63,11 +69,13 @@ func _process(delta: float) -> void:
 
 func _on_left_pressed() -> void:
 	if current_index > 0:
+		$Scroll.play()
 		current_index -= 1
 		_update_target()
 
 func _on_right_pressed() -> void:
 	if current_index < panels.size() - 1:
+		$Scroll.play()
 		current_index += 1
 		_update_target()
 
@@ -77,5 +85,12 @@ func _update_target() -> void:
 func _on_select_pressed() -> void:
 	#if panels.size() > 0:
 		#print("Selected panel:", current_index, "->", panels[current_index].name)
+	$Select.play()
+	await $Select.finished
 	Game.current_board = preload("res://Scenes/Boards/castle_tour_board.tscn").instantiate()
 	get_tree().change_scene_to_file("res://Scenes/main.tscn")
+
+func _on_quit_pressed() -> void:
+	print("quit to title")
+	Game.reset_request = true
+	get_tree().change_scene_to_file("res://Scenes/Menu/title_menu/main_menu.tscn")

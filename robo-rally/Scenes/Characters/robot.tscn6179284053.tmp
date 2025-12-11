@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cl1vpwnqpmbr4"]
+
+[ext_resource type="Script" uid="uid://bshxq2bxnfxr8" path="res://Scenes/Characters/robot.gd" id="1_t8ybn"]
+[ext_resource type="PackedScene" uid="uid://db43epk154m7p" path="res://Scenes/UI/ui.tscn" id="2_67qda"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w6gft"]
+size = Vector2(1142.86, 568.993)
+
+[node name="Robot" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_t8ybn")
+
+[node name="RobotCollision" type="CollisionShape2D" parent="."]
+scale = Vector2(0.3, 0.3)
+shape = SubResource("RectangleShape2D_w6gft")
+
+[node name="UI" parent="." instance=ExtResource("2_67qda")]

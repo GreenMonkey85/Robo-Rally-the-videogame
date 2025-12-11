@@ -1,10 +1,14 @@
-[gd_scene load_steps=21 format=3 uid="uid://c8i2ohpoyhl5k"]
+[gd_scene load_steps=26 format=3 uid="uid://c8i2ohpoyhl5k"]
 
 [ext_resource type="Script" uid="uid://d2hkj8x160dl7" path="res://Scenes/Menu/character_menu/carousel_contianer.gd" id="1_mq0ai"]
 [ext_resource type="Texture2D" uid="uid://dqlllys04c55f" path="res://factorybackround.jpg" id="2_dhbjd"]
 [ext_resource type="PackedScene" uid="uid://dbd46rq7u3tct" path="res://Scenes/Characters/Twonky.tscn" id="3_hfscs"]
 [ext_resource type="PackedScene" uid="uid://dvxw10jolhqca" path="res://Scenes/Characters/HammerBot.tscn" id="4_ut2ur"]
+[ext_resource type="PackedScene" path="res://Scenes/Characters/Robby.tscn" id="6_6w8c0"]
 [ext_resource type="PackedScene" uid="uid://b7q8xr26dfex7" path="res://Scenes/Characters/SpinBot.tscn" id="6_qwas7"]
+[ext_resource type="AudioStream" uid="uid://bcj2tmjr2ye3f" path="res://Audio/beep-313342.ogg" id="7_6w8c0"]
+[ext_resource type="AudioStream" uid="uid://73igagm0j38d" path="res://Audio/digital-click-357350.ogg" id="7_p4ifa"]
+[ext_resource type="AudioStream" uid="uid://dp68x7emhvjl4" path="res://Audio/mixkit-trance-party-166.ogg" id="9_vio7w"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p3ags"]
 texture = ExtResource("2_dhbjd")
@@ -17,6 +21,9 @@ bg_color = Color(0.872116, 0.490276, 3.85046e-07, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uvkw6"]
 bg_color = Color(0.321876, 0.693711, 0.38115, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwas7"]
+bg_color = Color(1, 0.968627, 0, 1)
 
 [sub_resource type="SystemFont" id="SystemFont_mq0ai"]
 subpixel_positioning = 0
@@ -43,7 +50,7 @@ bg_color = Color(1, 0.694118, 0.145098, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d8yma"]
 
-[node name="CarouselConatianer" type="Node2D"]
+[node name="CarouselConatianer2" type="Node2D"]
 script = ExtResource("1_mq0ai")
 
 [node name="Panel" type="Panel" parent="."]
@@ -51,6 +58,41 @@ offset_left = -1.0
 offset_right = 1152.0
 offset_bottom = 650.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_p3ags")
+
+[node name="Error" type="Label" parent="Panel"]
+visible = false
+layout_mode = 0
+offset_left = 352.0
+offset_top = 450.0
+offset_right = 668.0
+offset_bottom = 473.0
+scale = Vector2(1.28717, 2.11359)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "Human players must be different robots."
+
+[node name="Quit" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 202.0
+offset_top = 57.0
+offset_right = 302.0
+offset_bottom = 88.0
+scale = Vector2(1.41525, 1.57932)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 0.694118, 0.145098, 1)
+theme_override_colors/font_focus_color = Color(1, 0.694118, 0.145098, 1)
+text = "Quit to Title"
+
+[node name="SettingsMessage" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 204.0
+offset_top = 113.0
+offset_right = 343.0
+offset_bottom = 318.0
+text = "Can check and change the total player count and the number of CPU players in Setting & Game Info."
+autowrap_mode = 3
 
 [node name="CarouselConatianer" type="Node2D" parent="."]
 position = Vector2(515, 312)
@@ -110,6 +152,23 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_uvkw6")
 [node name="SpinBot" parent="CarouselConatianer/Control/SpinBot" instance=ExtResource("6_qwas7")]
 position = Vector2(196, 194)
 scale = Vector2(0.2, 0.2)
+
+[node name="Robby" type="Panel" parent="CarouselConatianer/Control"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -340.0
+offset_top = -265.0
+offset_right = 60.0
+offset_bottom = 135.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qwas7")
+
+[node name="Robby" parent="CarouselConatianer/Control/Robby" instance=ExtResource("6_6w8c0")]
+position = Vector2(196, 194)
+scale = Vector2(5, 5)
 
 [node name="right" type="Button" parent="CarouselConatianer"]
 anchors_preset = 3
@@ -182,6 +241,18 @@ theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_kw21e")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_d8yma")
 text = "Select"
 
+[node name="Select_Character" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_p4ifa")
+
+[node name="Scroll" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_6w8c0")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_vio7w")
+autoplay = true
+parameters/looping = true
+
+[connection signal="pressed" from="Panel/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="CarouselConatianer/right" to="." method="_on_right_pressed"]
 [connection signal="pressed" from="CarouselConatianer/left" to="." method="_on_left_pressed"]
 [connection signal="pressed" from="CarouselConatianer/select" to="." method="_on_select_pressed"]

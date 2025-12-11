@@ -12,7 +12,9 @@ func card_display(card):
 	for child in preview_slot.get_children():
 		child.queue_free()
 
-	# Load empty preview card (spam) or actual card
+	if card == null or card is String:
+		return
+
 	var preview_card: Card = CARD_SCENE.instantiate()
 
 	if card == null:
@@ -43,7 +45,7 @@ func _scale_preview_card(preview_card):
 
 func _on_checkpoints_reached(numCheckpoints):
 	print("Checkpoints reached: " + str(numCheckpoints))
-
+	
 	checkpoints.text = "Last Checkpoint Reached: " + str(numCheckpoints)
 	checkpoints.modulate = Color8(248, 141, 0)
 
