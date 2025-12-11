@@ -45,7 +45,7 @@ func _scale_preview_card(preview_card):
 
 func _on_checkpoints_reached(numCheckpoints):
 	print("Checkpoints reached: " + str(numCheckpoints))
-
+	
 	checkpoints.text = "Last Checkpoint Reached: " + str(numCheckpoints)
 	checkpoints.modulate = Color8(248, 141, 0)
 

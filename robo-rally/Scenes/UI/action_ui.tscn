@@ -34,6 +34,7 @@ offset_bottom = 87.0
 scale = Vector2(1.42164, 1.23019)
 
 [node name="Checkpoints" type="Label" parent="CanvasLayer/CheckpointsContainer"]
+layout_mode = 0
 offset_left = 906.0
 offset_top = 6.0
 offset_right = 1139.0

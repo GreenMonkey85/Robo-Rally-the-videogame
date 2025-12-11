@@ -317,15 +317,11 @@ func gears():
 
 func battery():
 	var location = Vector2(pos_x, pos_y)
-	
 	if location in Game.current_board.batteries:
-		for i in len(cards_in_hand):
-			#delete first damage card in cards_in_hand
-			if cards_in_hand[i] in Game.damage_cards:
-				# if card found then delete it
-				cards_in_hand.remove_at(i)
-				print("Healed " + character + " of damage")
-				break
+		# can reuse PowerUp here. Yippee!!!!!
+		PowerUp(1)
+		print("Healed " + character + " of damage")
+		
 
 func pitfalls():
 	var location = Vector2(pos_x, pos_y)
@@ -393,7 +389,7 @@ func board_lasers():
 	#check if standing on laser
 	if location in Game.current_board.lasers:
 		# deals damage to the robot
-		var damage_card = preload("res://Resources/Cards/Damage_Cards/spam.tres")
+		var damage_card = preload("res://Resources/Cards/Damage_Cards/spam.tres").duplicate()
 		cards_in_hand.append(damage_card)
 		UI.draw_animation(damage_card)
 
@@ -469,7 +465,7 @@ func laser_attack():
 				anim_player.play(direction + "_idle")
 				
 				# after firing, trigger damage card for hit player
-				var damage_card = preload("res://Resources/Cards/Damage_Cards/spam.tres")
+				var damage_card = preload("res://Resources/Cards/Damage_Cards/spam.tres").duplicate()
 				rob.cards_in_hand.append(damage_card)
 				rob.UI.draw_animation(damage_card)
 				return
@@ -500,12 +496,16 @@ func set_character(character):
 	anim_player = sprite.get_node("AnimationPlayer")
 	add_child(sprite)
 
+#func PowerUp(num_actions):
+	#for i in cards_in_hand:
+		#if i.type == "Damage":
+			#cards_in_hand.erase(i)
+			#return
 func PowerUp(num_actions):
-	for i in cards_in_hand:
-		if i.type == "Damage":
-			cards_in_hand.erase(i)
+	for i in range(cards_in_hand.size()):
+		if cards_in_hand[i].type == "Damage":
+			cards_in_hand.remove_at(i)
 			return
-			
 
 func Shutdown():
 	is_shutdown = true

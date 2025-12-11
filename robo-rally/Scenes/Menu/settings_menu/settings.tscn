@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqs6p2o8g5s87"]
+[gd_scene load_steps=5 format=3 uid="uid://bqs6p2o8g5s87"]
 
 [ext_resource type="Script" uid="uid://qgh4jlmtobup" path="res://Scenes/Menu/settings_menu/settings.gd" id="1_747tq"]
 [ext_resource type="Texture2D" uid="uid://u5n3bml6ta68" path="res://Graphics/MenuSprites/factorybackround.jpg" id="1_tfrhh"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_747tq"]
 texture = ExtResource("1_tfrhh")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_747tq"]
+bg_color = Color(0, 0, 0, 1)
 
 [node name="Settings" type="Node2D"]
 script = ExtResource("1_747tq")
@@ -50,14 +53,22 @@ popup/item_1/id = 1
 popup/item_2/text = "4"
 popup/item_2/id = 2
 
+[node name="InfoBG" type="Panel" parent="Node2D"]
+offset_left = 459.0
+offset_top = 139.0
+offset_right = 499.0
+offset_bottom = 179.0
+scale = Vector2(14.7593, 10.9248)
+theme_override_styles/panel = SubResource("StyleBoxFlat_747tq")
+
 [node name="ScrollContainer" type="ScrollContainer" parent="Node2D"]
 custom_minimum_size = Vector2(100, 40)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 715.0
+offset_left = 477.0
 offset_top = 148.0
-offset_right = 869.0
+offset_right = 726.0
 offset_bottom = 384.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -65,7 +76,7 @@ scale = Vector2(2.49558, 1.89618)
 horizontal_scroll_mode = 0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Node2D/ScrollContainer"]
-custom_minimum_size = Vector2(150, 215)
+custom_minimum_size = Vector2(225, 215)
 layout_mode = 2
 bbcode_enabled = true
 text = "In our version of the board game Robo Rally, you play as one of four robots trying to escape the inside of a factory. Wining requires you to navigate a complex factory floor, filled with traps and hazards, to reach a series of checkpoints. Whichever player can 
