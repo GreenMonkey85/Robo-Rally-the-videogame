@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=4 uid="uid://tusxfgxdb0vf"]
+[gd_scene load_steps=14 format=4 uid="uid://tusxfgxdb0vf"]
 
 [ext_resource type="Texture2D" uid="uid://86rwcugu5fj" path="res://Graphics/BoardSprites/TilesetBoardElementsIsometric_Try7.png" id="1_1q67b"]
 [ext_resource type="Script" uid="uid://djou3dmb0ej0x" path="res://Scenes/Boards/castle_tour_board.gd" id="1_sphnk"]
 [ext_resource type="Texture2D" uid="uid://1qu5n72tiix7" path="res://Graphics/BoardSprites/TilesetBoardElementsIsometric_Try8.png" id="2_tfynt"]
 [ext_resource type="PackedScene" uid="uid://crq1jkrf27su0" path="res://Checkpoint.tscn" id="4_sphnk"]
+[ext_resource type="AudioStream" uid="uid://wmn7sd2onhma" path="res://Audio/mixkit-techno-fest-vibes-124.ogg" id="5_cy5jx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sphnk"]
 texture = ExtResource("2_tfynt")
@@ -238,9 +239,9 @@ texture_region_size = Vector2i(852, 426)
 2:5/0 = 0
 2:5/0/texture_origin = Vector2i(0, 180)
 5:5/0 = 0
-5:5/0/y_sort_origin = 426
+5:5/0/y_sort_origin = 126
 6:5/0 = 0
-6:5/0/y_sort_origin = 426
+6:5/0/y_sort_origin = 126
 0:6/0 = 0
 1:6/0 = 0
 2:6/0 = 0
@@ -280,14 +281,22 @@ position = Vector2(1647, -1121)
 tile_map_data = PackedByteArray("AAD8/wgAAAAGAAIAAAD8/wcAAAAGAAIAAAD8/wYAAAAGAAIAAAD8/wUAAAAGAAIAAAD8/wQAAAAGAAIAAAD8/wMAAAAGAAIAAAABAAMAAAAGAAIAAAD8/wIAAAAFAAIAADABAAQAAAAGAAIAAAABAAUAAAAGAAIAAAABAAYAAAAGAAIAAAABAAcAAAAGAAIAAAABAAgAAAAGAAIAAAABAAkAAAAFAAIAAAA=")
 tile_set = SubResource("TileSet_87l0l")
 
-[node name="Walls" type="TileMapLayer" parent="."]
+[node name="Checkpoint 1" parent="." instance=ExtResource("4_sphnk")]
+position = Vector2(-1764, 1003)
+
+[node name="Checkpoint 2" parent="." instance=ExtResource("4_sphnk")]
+position = Vector2(1218, -1325)
+
+[node name="YSort" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Walls" type="TileMapLayer" parent="YSort"]
 y_sort_enabled = true
 position = Vector2(1647, -1121)
 tile_map_data = PackedByteArray("AAABAAIAAQAFAAUAAAD8/wkAAQAGAAYAABABAAkAAQAFAAUAAAD9/wAAAQAGAAUAAAD8////AQAGAAUAAAD8//7/AQAGAAUAAAD8//3/AQAGAAUAAAABAP3/AQAGAAYAAAABAP7/AQAGAAYAAAABAP//AQAGAAYAAAD8/wIAAQAGAAYAABA=")
 tile_set = SubResource("TileSet_02vqm")
 
-[node name="Checkpoint 1" parent="Walls" instance=ExtResource("4_sphnk")]
-position = Vector2(-3411, 2124)
-
-[node name="Checkpoint 2" parent="Walls" instance=ExtResource("4_sphnk")]
-position = Vector2(-429, -204)
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_cy5jx")
+autoplay = true
+parameters/looping = true

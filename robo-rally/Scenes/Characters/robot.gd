@@ -194,6 +194,7 @@ func Move(num_actions):
 
 func Rotate(num_actions):
 	print("rotating")
+	$Rotate.play()
 	await get_tree().create_timer(0.5).timeout
 	if num_actions == 0:
 		match direction:
@@ -238,6 +239,8 @@ func Rotate(num_actions):
 	change_xy_dir()
 	anim_player.play(direction + "_idle")
 	await get_tree().create_timer(0.5).timeout
+	$Rotate.stop()
+
 
 func change_xy_dir():
 	match direction:
@@ -435,28 +438,29 @@ func laser_attack():
 				# trigger player animation for firing laser in that direction
 				print("Target locked, firing laser!")
 				anim_player.play(direction + "_laser")
-				await get_tree().create_timer(2).timeout
+				await get_tree().create_timer(1).timeout
 				
 				# and create Line2D (or Sprite 2D) for the laser itself
-				var pixel_laser_nodes = []
-				pixel_laser_nodes.append(tile_to_pixel(pos_x, pos_y))
-				pixel_laser_nodes.append(tile_to_pixel(check_x, check_y))
+				#var pixel_laser_nodes = []
+				#pixel_laser_nodes.append(tile_to_pixel(pos_x, pos_y))
+				#pixel_laser_nodes.append(tile_to_pixel(check_x, check_y))
 				
 				var laser = Line2D.new()
+				#laser.set_as_top_level(true)
 				laser.width = 50
 				laser.default_color = Color.RED
-				laser.z_index = 9999
+				#laser.z_index = 0
 
 				# Add to the root viewport, so it bypasses the Map’s canvas transform.
+
+				laser.add_point(self.global_position)
+				laser.add_point(rob.global_position)
+
+				#laser.position = start_global
+				#laser.add_point(Vector2.ZERO)
+				#laser.add_point(end_global - start_global)
 				get_tree().root.add_child(laser)
-
-				var start_global = tile_to_pixel(pos_x, pos_y)
-				var end_global = tile_to_pixel(check_x, check_y)
-
-				laser.position = start_global
-				laser.add_point(Vector2.ZERO)
-				laser.add_point(end_global - start_global)
-
+				$Laser.play()
 				
 				await get_tree().create_timer(2).timeout
 				laser.queue_free()
@@ -466,6 +470,7 @@ func laser_attack():
 				# after firing, trigger damage card for hit player
 				var damage_card = preload("res://Resources/Cards/Damage_Cards/spam.tres")
 				rob.cards_in_hand.append(damage_card)
+				rob.get_node("Damage").play()
 				return
 		# if not, then go to next iteration of the loop
 	# if its checked everything in a row, then no robot found, so stop
@@ -506,6 +511,7 @@ func Shutdown():
 	cards_in_hand.clear()
 	await get_tree().create_timer(0.5).timeout
 	anim_player.play(direction + "_shutdown")
+	$Shutdown.play()
 	await get_tree().create_timer(0.5).timeout
 	print("DOES iT END?")
 

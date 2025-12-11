@@ -1,8 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://cmu8poddwf7is"]
+[gd_scene load_steps=21 format=3 uid="uid://cmu8poddwf7is"]
 
 [ext_resource type="Script" uid="uid://ochlxeulupaf" path="res://Scenes/Menu/board_menu/board_container.gd" id="1_uhclm"]
 [ext_resource type="Texture2D" uid="uid://dqlllys04c55f" path="res://factorybackround.jpg" id="2_ydcld"]
 [ext_resource type="Texture2D" uid="uid://dsida6oytyeth" path="res://Screenshot 2025-10-09 172329.png" id="3_ve5ct"]
+[ext_resource type="AudioStream" uid="uid://bcj2tmjr2ye3f" path="res://Audio/beep-313342.ogg" id="4_7rd5x"]
+[ext_resource type="AudioStream" uid="uid://73igagm0j38d" path="res://Audio/digital-click-357350.ogg" id="5_ansrb"]
+[ext_resource type="AudioStream" uid="uid://dp68x7emhvjl4" path="res://Audio/mixkit-trance-party-166.ogg" id="6_ansrb"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ve5ct"]
 texture = ExtResource("2_ydcld")
@@ -259,6 +262,17 @@ text = "Select"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(577, 325)
+
+[node name="Scroll" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_7rd5x")
+
+[node name="Select" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ansrb")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ansrb")
+autoplay = true
+parameters/looping = true
 
 [connection signal="pressed" from="Panel/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="CarouselConatianer/right" to="." method="_on_right_pressed"]

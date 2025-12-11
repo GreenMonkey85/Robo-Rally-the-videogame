@@ -8,6 +8,10 @@ const SETTINGS_MENU = preload("res://Scenes/Menu/settings_menu/settings.tscn")
 
 const ALL_ROBOTS = ["Twonky", "HammerBot", "SpinBot"]
 
+var conveyor_sound = AudioStreamPlayer.new()
+var gear_sound = AudioStreamPlayer.new()
+var pitfall_sound = AudioStreamPlayer.new()
+
 
 
 var ACTION_UI = null
@@ -43,6 +47,10 @@ var pause_menu = null
 
 signal card_display(card)
 signal checkpoints_reached(numCheckpoints)
+
+func _ready() -> void:
+	conveyor_sound.stream = preload("res://Audio/gear-spinning-loop-6981.ogg")
+	
 
 func reset():
 	player_order.clear()
@@ -94,11 +102,15 @@ func action_round():
 				return
 			
 		# double conveyers
+		conveyor_sound.play()
 		for robot in player_order:
 			await robot.check_conveyor(2)
+		conveyor_sound.stop()
 		# single conveyer
+		conveyor_sound.play()
 		for robot in player_order:
 			await robot.check_conveyor(1)
+		conveyor_sound.stop()
 		# push panels
 		# WE HAVE NO PUSH PANELS
 		# rotate gears

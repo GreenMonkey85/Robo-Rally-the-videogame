@@ -78,11 +78,13 @@ func _process(delta: float) -> void:
 
 func _on_left_pressed() -> void:
 	if current_index > 0:
+		$Scroll.play()
 		current_index -= 1
 		_update_target()
 
 func _on_right_pressed() -> void:
 	if current_index < panels.size() - 1:
+		$Scroll.play()
 		current_index += 1
 		_update_target()
 
@@ -92,6 +94,8 @@ func _update_target() -> void:
 func _on_select_pressed() -> void:
 	#if panels.size() > 0:
 		#print("Selected panel:", current_index, "->", panels[current_index].name)
+	$Select_Character.play() 
+	
 	var characters = panels.duplicate()
 	
 	print(names_not_selected)
@@ -127,6 +131,8 @@ func _on_select_pressed() -> void:
 
 
 func _on_quit_pressed() -> void:
+	$Select_Character.play()
+	await $Select_Character.finished
 	print("quit to title")
 	Game.reset_request = true
 	get_tree().change_scene_to_file("res://Scenes/Menu/title_menu/main_menu.tscn")

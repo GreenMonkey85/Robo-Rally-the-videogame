@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c8i2ohpoyhl5k"]
+[gd_scene load_steps=26 format=3 uid="uid://c8i2ohpoyhl5k"]
 
 [ext_resource type="Script" uid="uid://d2hkj8x160dl7" path="res://Scenes/Menu/character_menu/carousel_contianer.gd" id="1_mq0ai"]
 [ext_resource type="Texture2D" uid="uid://dqlllys04c55f" path="res://factorybackround.jpg" id="2_dhbjd"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://dvxw10jolhqca" path="res://Scenes/Characters/HammerBot.tscn" id="4_ut2ur"]
 [ext_resource type="PackedScene" uid="uid://dwpo1ogwvq3bw" path="res://Scenes/Characters/Robby.tscn" id="6_6w8c0"]
 [ext_resource type="PackedScene" uid="uid://b7q8xr26dfex7" path="res://Scenes/Characters/SpinBot.tscn" id="6_qwas7"]
+[ext_resource type="AudioStream" uid="uid://bcj2tmjr2ye3f" path="res://Audio/beep-313342.ogg" id="7_6w8c0"]
+[ext_resource type="AudioStream" uid="uid://73igagm0j38d" path="res://Audio/digital-click-357350.ogg" id="7_p4ifa"]
+[ext_resource type="AudioStream" uid="uid://dp68x7emhvjl4" path="res://Audio/mixkit-trance-party-166.ogg" id="9_vio7w"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p3ags"]
 texture = ExtResource("2_dhbjd")
@@ -237,6 +240,17 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_dhbjd")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_kw21e")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_d8yma")
 text = "Select"
+
+[node name="Select_Character" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_p4ifa")
+
+[node name="Scroll" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_6w8c0")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_vio7w")
+autoplay = true
+parameters/looping = true
 
 [connection signal="pressed" from="Panel/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="CarouselConatianer/right" to="." method="_on_right_pressed"]

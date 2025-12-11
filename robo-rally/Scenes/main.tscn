@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://vaieaiqbl7qk" path="res://Scenes/UI/pause_menu.tscn" id="3_8gbba"]
 
 [node name="Main" type="Node2D"]
-y_sort_enabled = true
 script = ExtResource("1_8gbba")
 
 [node name="P1Camera" type="Camera2D" parent="."]
