@@ -268,8 +268,8 @@ sources/1 = SubResource("TileSetAtlasSource_6tjmi")
 script = ExtResource("1_sphnk")
 
 [node name="3d-building-icon1322386-15319" type="Sprite2D" parent="."]
-position = Vector2(252.5, -119)
-scale = Vector2(21.0751, 11.0703)
+position = Vector2(252.5, -171.498)
+scale = Vector2(21.0751, 11.238)
 texture = ExtResource("2_6tjmi")
 
 [node name="Floor" type="TileMapLayer" parent="."]
