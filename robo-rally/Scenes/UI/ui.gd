@@ -112,18 +112,8 @@ func show_card_preview(card_data: CardData): # CardData only when AI player
 		return
 
 func _on_shut_down_pressed() -> void:
-	for slot in register.get_children():
-		if slot.get_child_count() > 0:
-			var card = slot.get_child(0)
-			if card != null and card.has_method("return_to_hand"):
-				card.return_to_hand()
-			elif card != null:
-				card.queue_free()
-				
-	var register_list = register.get_children()
-	register_list.pop_front()
-
-	var final_register = []
-	for slot in register_list:
-		final_register.append(null)
-	get_parent().decision_end(final_register)
+	
+	for card in card_container.get_children():
+		card.queue_free()
+		
+	get_parent().decision_end(["Shutdown"])

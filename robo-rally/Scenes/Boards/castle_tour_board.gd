@@ -94,8 +94,8 @@ const SPRITE_SCALE = {
 
 @onready var pitfalls = [Vector2(-3,7), Vector2(-1,15), Vector2(-9,1), Vector2(-7,9)]
 
-@onready var checkpoints = {Vector2(-7.0,13.0) : $"Checkpoint 1/AnimationPlayer",
-							Vector2(0.0,2.0) : $"Checkpoint 2/AnimationPlayer"}
+@onready var checkpoints = {Vector2(-7.0,13.0) : $"Walls/Checkpoint 1/AnimationPlayer",
+							Vector2(0.0,2.0) : $"Walls/Checkpoint 2/AnimationPlayer"}
 
 var robot1 : Sprite2D = null
 

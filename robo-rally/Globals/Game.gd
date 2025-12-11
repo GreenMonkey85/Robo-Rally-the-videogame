@@ -14,6 +14,7 @@ var ACTION_UI = null
 
 
 var current_board = null
+var player_nodes = null
 var action_ui = null
 var cardSelected
 var mouseOnPlacement = false
@@ -41,6 +42,7 @@ var reset_request = false
 var pause_menu = null
 
 signal card_display(card)
+signal checkpoints_reached(numCheckpoints)
 
 func reset():
 	player_order.clear()
@@ -72,6 +74,9 @@ func action_round():
 	for i in range(5):
 		# loop through each player with respect to order
 		for j in range(len(player_order)):
+			print(player_order[j].is_shutdown)
+			if player_order[j].is_shutdown:
+				continue
 			print("HANDLE ", player_order[j].player, " ", registers, " ", i)
 			# Replace 'some_card_data_instance' with actual CardData object for the current card
 			var some_card_data_instance = null
@@ -81,6 +86,7 @@ func action_round():
 			print("WHAT IS THIS ", player_order[j], " ", registers[j][i])
 			#print("REGISTERS ", registers)
 			emit_signal("card_display", registers[j][i])
+			emit_signal("checkpoints_reached", player_order[j].checkpoints)
 			await player_order[j].handle_action(registers[j][i], i)
 			action_ui.visible = false
 			if get_tree().current_scene == VICTORY:

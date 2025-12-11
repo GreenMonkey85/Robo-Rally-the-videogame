@@ -14,6 +14,8 @@ var direction = 'bl'
 var x_dir_mult = -1
 var y_dir_mult = 1
 
+var is_shutdown = false
+
 var energy = 3
 var checkpoints = 0
 
@@ -55,6 +57,9 @@ func decision_start():
 			discard.clear()
 			deck.shuffle()
 		var new_card = deck.pop_front()
+		print(deck)
+		print("PLEASE DON'T BE A STRING: ", new_card)
+		
 		cards_in_hand.append(new_card)
 		if player == "Player":
 			$UI.draw_animation(new_card)
@@ -71,27 +76,34 @@ func decision_start():
 func decision_end(register_list):
 	$UI/CanvasLayer.visible = false
 	print("WAIT ", register)
-	
-	for i in range(5):
-		if register_list[i] != null:
-			register[i] = register_list[i]
-			cards_in_hand.erase(register[i])
-		#print("REGISTER LIST", len(deck), len(discard), len(cards_in_hand))
-		#print("REGISTER LIST", deck, discard, cards_in_hand)
-		print("HUH? ", register)
+	if register_list[0] is not String:
+		for i in range(5):
+			if register_list[i] != null:
+				register[i] = register_list[i]
+				cards_in_hand.erase(register[i])
+			#print("REGISTER LIST", len(deck), len(discard), len(cards_in_hand))
+			#print("REGISTER LIST", deck, discard, cards_in_hand)
+			print("HUH? ", register)
+	else:
+		register[0] = register_list[0]
 	for i in range(cards_in_hand.size() - 1, -1, -1):
 		var card = cards_in_hand[i]
 		if card.type == "Movement":
 			self.discard.append(card)
 			cards_in_hand.remove_at(i)
 		print("CARDS IN HAND", len(deck), len(discard), len(cards_in_hand))
+	
 	print("REGISTER ", register)
+	print(is_shutdown)
 	Game.on_all_decided(self, register)
 	player_decision_end.emit()
 
-func handle_action(card: CardData, register_index):
-	if card != null:
-		print("BEFORE ", card.name, " ", card.character, " ", card.type, " ", card.action)
+func handle_action(card, register_index):
+	#if card != null or card != "Shutdown":
+		#print("BEFORE ", card.name, " ", card.character, " ", card.type, " ", card.action)
+	if card is String:
+		await Shutdown()
+		return
 	# Show preview at top-left
 	Game.ACTION_UI.card_display(card)
 	if card != null:
@@ -108,8 +120,11 @@ func handle_action(card: CardData, register_index):
 	#print("CHECKPOINTS: ", checkpoints)
 
 func action_end():
+	if is_shutdown:
+		is_shutdown = false
+		anim_player.play(direction + "_idle")
 	for i in range(len(register)):
-		if register[i] != null:
+		if register[i] != null and register[i] is not String:
 			discard.append(register[i])
 		register[i] = null
 		print("ACTION END", len(deck), len(discard), len(cards_in_hand))
@@ -121,12 +136,10 @@ func Spam(register_index):
 		discard.clear()
 		deck.shuffle()
 	var card = deck.pop_front()
-	if register[register_index] != null:
-		Game.damage_discards.append(register[register_index])
+	#if register[register_index] != null:
+		#Game.damage_discards.append(register[register_index])
 	register[register_index] = card
 	await call(card.action, card.num_action)
-
-
 
 # FOR PLAYER MOVEMENT / TURNING -----------------------------------
 
@@ -488,8 +501,19 @@ func set_character(character):
 	add_child(sprite)
 
 func PowerUp(num_actions):
-	energy += num_actions
+	for i in cards_in_hand:
+		if i.type == "Damage":
+			cards_in_hand.erase(i)
+			return
+			
 
+func Shutdown():
+	is_shutdown = true
+	cards_in_hand.clear()
+	await get_tree().create_timer(0.5).timeout
+	anim_player.play(direction + "_shutdown")
+	await get_tree().create_timer(0.5).timeout
+	print("DOES iT END?")
 
 # AUTOMATIC STUFF -------------------------------------------------
 
@@ -510,7 +534,6 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	pass
-
 
 
 # OLD STUFF ---------------------------------------------
