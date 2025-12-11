@@ -87,9 +87,9 @@ const SPRITE_SCALE = {
 	'turn_tl-bl': [],
 }
 
-@onready var lasers = [
-	Vector2(0,8), Vector2(-1,9), Vector2(-2,10), Vector2(-3,11), Vector2(-4,12), Vector2(-5,13), Vector2(-6,14),
-	Vector2(-4,2), Vector2(-5,3), Vector2(-6,4), Vector2(-7,5), Vector2(-8,6), Vector2(-9,7), Vector2(-10,8)
+@onready var lasers = [ # each sublist contains all laser spaces in one "beam", they are all listed in a row from one end to the other
+	[Vector2(0,8), Vector2(-1,9), Vector2(-2,10), Vector2(-3,11), Vector2(-4,12), Vector2(-5,13), Vector2(-6,14)],
+	[Vector2(-4,2), Vector2(-5,3), Vector2(-6,4), Vector2(-7,5), Vector2(-8,6), Vector2(-9,7), Vector2(-10,8)]
 ]
 
 @onready var pitfalls = [Vector2(-3,7), Vector2(-1,15), Vector2(-9,1), Vector2(-7,9)]

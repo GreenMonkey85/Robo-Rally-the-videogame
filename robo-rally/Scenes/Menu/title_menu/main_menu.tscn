@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b4fic4p5jbrao" path="res://Scenes/Menu/title_menu/main_menu.gd" id="1_7vrkn"]
 [ext_resource type="Texture2D" uid="uid://b1ocw1i6g7v8d" path="res://roborallyboxart.jpg" id="2_e4soa"]
 [ext_resource type="AudioStream" uid="uid://73igagm0j38d" path="res://Audio/digital-click-357350.ogg" id="3_64ajk"]
-[ext_resource type="AudioStream" uid="uid://dbrkxwh3cpatg" path="res://Audio/mixkit-positive-energy-973.ogg" id="4_q4bvm"]
+[ext_resource type="AudioStream" uid="uid://bt8hha6jfx06y" path="res://Audio/mixkit-positive-energy-973.ogg" id="4_q4bvm"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7vrkn"]
 texture = ExtResource("2_e4soa")

@@ -395,11 +395,29 @@ func restore_from_pit():
 func board_lasers():
 	var location = Vector2(pos_x, pos_y)
 	#check if standing on laser
-	if location in Game.current_board.lasers:
-		# deals damage to the robot
-		var damage_card = preload("res://Resources/Cards/Damage_Cards/spam.tres").duplicate()
-		cards_in_hand.append(damage_card)
-		UI.draw_animation(damage_card)
+	for beam in Game.current_board.lasers:
+		if location in beam:
+			await get_tree().create_timer(1).timeout
+			
+			# and create Line2D (or Sprite 2D) for the laser itself
+			var laser = Line2D.new()
+			laser.width = 50
+			laser.default_color = Color.RED
+			# Add to the root viewport, so it bypasses the Map’s canvas transform.
+			
+			var laser_start = Vector2(beam[0][0] * PIXEL_X, beam[0][1] * PIXEL_Y)
+			var laser_end = Vector2(beam[-1][0] * PIXEL_X, beam[-1][1] * PIXEL_Y)
+			laser.add_point(laser_start)
+			laser.add_point(laser_end)
+			get_tree().root.add_child(laser)
+			$Laser.play()
+			
+			await get_tree().create_timer(2).timeout
+			laser.queue_free()
+			# deals damage to the robot
+			var damage_card = preload("res://Resources/Cards/Damage_Cards/spam.tres").duplicate()
+			cards_in_hand.append(damage_card)
+			UI.draw_animation(damage_card)
 
 
 # FOR PLAYER ATTACKS -------------------------------------------------
@@ -512,11 +530,6 @@ func set_character(character):
 	anim_player = sprite.get_node("AnimationPlayer")
 	add_child(sprite)
 
-#func PowerUp(num_actions):
-	#for i in cards_in_hand:
-		#if i.type == "Damage":
-			#cards_in_hand.erase(i)
-			#return
 func PowerUp(num_actions):
 	for i in range(cards_in_hand.size()):
 		if cards_in_hand[i].type == "Damage":
@@ -545,9 +558,6 @@ func _ready() -> void:
 		card.character = character
 		card.sprite = load("res://Graphics/CardSprites/%s_cards/%s_%s_card.png"
 							 % [character.to_lower(), character.to_lower(), card.name])
-
-	
-
 	
 	# Shuffle cards
 	deck.shuffle()

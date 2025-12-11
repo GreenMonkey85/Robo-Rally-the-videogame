@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=3 uid="uid://dbd46rq7u3tct"]
 
 [ext_resource type="Texture2D" uid="uid://b23psdcv0ocer" path="res://Graphics/CharacterSprites/attempt3twonkyspritesheet.png" id="1_rxdkt"]
-[ext_resource type="AudioStream" uid="uid://dq32wfjadj5xo" path="res://Audio/mixkit-mechanical-crate-pick-up-3154.wav" id="2_ou83l"]
+[ext_resource type="AudioStream" uid="uid://cdg5gwxnqu4hl" path="res://Audio/mixkit-mechanical-crate-pick-up-3154.wav" id="2_ou83l"]
 
 [sub_resource type="Animation" id="Animation_rpwaf"]
 length = 0.001

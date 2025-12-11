@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dsekgt7krlys8"]
+[gd_scene load_steps=5 format=3 uid="uid://dsekgt7krlys8"]
 
 [ext_resource type="Script" uid="uid://bpu3kyjmpaceg" path="res://Scenes/UI/victory.gd" id="1_5a3c2"]
 [ext_resource type="Texture2D" uid="uid://8e3poq3yuoy8" path="res://Resources/VictoryBackground.jpg" id="1_dur2o"]
+[ext_resource type="AudioStream" uid="uid://00hycv80kpsr" path="res://Audio/mixkit-party-robot-1254.ogg" id="3_jd8qn"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dur2o"]
 texture = ExtResource("1_dur2o")
@@ -47,5 +48,8 @@ offset_left = 578.0
 offset_top = 406.0
 offset_right = 578.0
 offset_bottom = 406.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_jd8qn")
 
 [connection signal="pressed" from="Panel/main" to="." method="_on_main_pressed"]
