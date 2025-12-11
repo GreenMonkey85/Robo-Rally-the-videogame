@@ -40,6 +40,8 @@ func _ready():
 	Game.decision_round()
 	#Game.start_game(Game.player_order, Game.current_board)
 	
+	print_tree_pretty()
+	
 	
 
 func _on_robot_won(name):

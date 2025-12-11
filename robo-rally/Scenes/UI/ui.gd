@@ -103,6 +103,7 @@ func _on_clear_pressed() -> void:
 		if slot.get_child_count() > 0:
 			var card = slot.get_child(0)
 			print("CLEAR CARD", card)
+			slot.placed_card = null
 			if card.has_method("return_to_hand"):
 				card.return_to_hand()
 

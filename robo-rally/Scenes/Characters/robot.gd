@@ -51,7 +51,11 @@ signal player_decision_end
 # FOR DECISIONS -------------------------------------
 
 func decision_start():
+	for i in cards_in_hand:
+		if player == "Player":
+			$UI.draw_animation(i)
 	while cards_in_hand.size() < 9:
+		print("CARDS IN HAND SIZE: ", cards_in_hand.size())
 		if deck.size() <= 0:
 			deck = discard.duplicate()
 			discard.clear()
@@ -124,8 +128,9 @@ func action_end():
 		is_shutdown = false
 		anim_player.play(direction + "_idle")
 	for i in range(len(register)):
-		if register[i] != null and register[i] is not String:
-			discard.append(register[i])
+		if register[i] != null:
+			if register[i] is CardData:
+				discard.append(register[i])
 		register[i] = null
 		print("ACTION END", len(deck), len(discard), len(cards_in_hand))
 	last_move = null
@@ -440,21 +445,27 @@ func laser_attack():
 				var laser = Line2D.new()
 				laser.width = 50
 				laser.default_color = Color.RED
-				
-				var board_node = get_parent().get_parent().get_node_or_null("Map")
-				board_node.add_child(laser)
-				for coord in pixel_laser_nodes:
-					laser.add_point(coord)
+				laser.z_index = 9999
+
+				# Add to the root viewport, so it bypasses the Map’s canvas transform.
+				get_tree().root.add_child(laser)
+
+				var start_global = tile_to_pixel(pos_x, pos_y)
+				var end_global = tile_to_pixel(check_x, check_y)
+
+				laser.position = start_global
+				laser.add_point(Vector2.ZERO)
+				laser.add_point(end_global - start_global)
+
 				
 				await get_tree().create_timer(2).timeout
 				laser.queue_free()
-				board_node.remove_child(laser)
+				#board_node.remove_child(laser)
 				anim_player.play(direction + "_idle")
 				
 				# after firing, trigger damage card for hit player
 				var damage_card = preload("res://Resources/Cards/Damage_Cards/spam.tres")
 				rob.cards_in_hand.append(damage_card)
-				rob.UI.draw_animation(damage_card)
 				return
 		# if not, then go to next iteration of the loop
 	# if its checked everything in a row, then no robot found, so stop
@@ -512,11 +523,22 @@ func _ready() -> void:
 		card.sprite = load("res://Graphics/CardSprites/%s_cards/%s_%s_card.png"
 							 % [character.to_lower(), character.to_lower(), card.name])
 
+	
+
+	
 	# Shuffle cards
 	deck.shuffle()
 
 func _process(delta: float) -> void:
+	#print("Map is inside CanvasLayer? -> ", get_parent().get_parent().is_class("CanvasLayer"))
+	#print("Map canvas transform:", get_viewport().get_canvas_transform())
+	#print("Map global pos:", get_parent().get_parent().global_position)
+	#print("Castle global pos:", Game.current_board.global_position)
+
 	pass
+	#print("Global tile pos:", tile_to_pixel(pos_x, pos_y))
+	#print("Castle global:", Game.current_board.to_global(Vector2.ZERO))
+	#print("Map global:", Game.current_board.get_parent().to_global(Vector2.ZERO))
 
 
 # OLD STUFF ---------------------------------------------
