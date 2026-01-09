@@ -79,9 +79,7 @@ horizontal_scroll_mode = 0
 custom_minimum_size = Vector2(225, 215)
 layout_mode = 2
 bbcode_enabled = true
-text = "        Game Info & Rules
-
-    In our version of the board game Robo Rally, you play as one of four robots trying to escape the inside of a factory. Winning requires you to navigate a complex factory floor filled with traps and hazards in order to reach a series of checkpoints. Whichever player can reach all checkpoints in the correct order first wins the game!
+text = "    In our version of the board game Robo Rally, you play as one of four robots trying to escape the inside of a factory. Winning requires you to navigate a complex factory floor filled with traps and hazards in order to reach a series of checkpoints. Whichever player can reach all checkpoints in the correct order first wins the game!
 
     Each round of the game can be divided into three types of phases:
 
