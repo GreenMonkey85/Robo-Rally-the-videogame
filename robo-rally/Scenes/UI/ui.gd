@@ -67,6 +67,7 @@ func _on_mouse_exited() -> void:
 
 # Confirm button
 func _on_confirm_pressed() -> void:
+	$"Digital-click-357350".play()
 	for card in card_container.get_children():
 		card.queue_free()
 	var register_list = register.get_children()
@@ -98,6 +99,7 @@ func _on_confirm_pressed() -> void:
 
 # Clear button
 func _on_clear_pressed() -> void:
+	$"Digital-click-357350".play()
 	for slot in register.get_children():
 		print("SLOT", slot)
 		if slot.get_child_count() > 0:
@@ -112,8 +114,8 @@ func show_card_preview(card_data: CardData): # CardData only when AI player
 		push_warning("CardPreview node not found!")
 		return
 
-func _on_shut_down_pressed() -> void:
-	
+func _on_shut_down_pressed(): 
+	$"Digital-click-357350".play()
 	for card in card_container.get_children():
 		card.queue_free()
 		

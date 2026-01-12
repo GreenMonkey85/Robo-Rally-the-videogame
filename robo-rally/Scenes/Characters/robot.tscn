@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://bshxq2bxnfxr8" path="res://Scenes/Characters/robot.gd" id="1_t8ybn"]
 [ext_resource type="PackedScene" uid="uid://db43epk154m7p" path="res://Scenes/UI/ui.tscn" id="2_67qda"]
-[ext_resource type="AudioStream" uid="uid://spn8qfnenl23" path="res://Audio/mixkit-sci-fi-battle-laser-shots-2783.wav" id="3_2diu6"]
+[ext_resource type="AudioStream" uid="uid://bmxrnacn8en83" path="res://Audio/mixkit-sci-fi-battle-laser-shots-2783.wav" id="3_2diu6"]
 [ext_resource type="AudioStream" uid="uid://djfcwhda2gfep" path="res://Audio/gear-spinning-loop-6981.ogg" id="4_m0bu8"]
 [ext_resource type="AudioStream" uid="uid://my4f6hexsekh" path="res://Audio/ticking-clock-412042.ogg" id="4_xtkbb"]
 [ext_resource type="AudioStream" uid="uid://c2hrtk18sxupo" path="res://Audio/power-down-7103.ogg" id="5_43a32"]
-[ext_resource type="AudioStream" uid="uid://de4y6cliktrjt" path="res://Audio/mixkit-electric-fence-buzzing-2967.wav" id="5_xtkbb"]
+[ext_resource type="AudioStream" uid="uid://oiji5qgpq0bd" path="res://Audio/mixkit-electric-fence-buzzing-2967.wav" id="5_xtkbb"]
 [ext_resource type="AudioStream" uid="uid://c1ispx5bornxr" path="res://Audio/falling-whistle-cartoon-180579.ogg" id="6_twmy0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w6gft"]

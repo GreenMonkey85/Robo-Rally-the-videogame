@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=3 uid="uid://dwpo1ogwvq3bw"]
 
 [ext_resource type="Texture2D" uid="uid://r3trj0nvkgyt" path="res://Graphics/CharacterSprites/robby_sprite_sheet.png" id="1_csufm"]
-[ext_resource type="AudioStream" uid="uid://dq32wfjadj5xo" path="res://Audio/mixkit-mechanical-crate-pick-up-3154.wav" id="2_6ntvd"]
+[ext_resource type="AudioStream" uid="uid://cdg5gwxnqu4hl" path="res://Audio/mixkit-mechanical-crate-pick-up-3154.wav" id="2_6ntvd"]
 
 [sub_resource type="Animation" id="Animation_csufm"]
 length = 0.001

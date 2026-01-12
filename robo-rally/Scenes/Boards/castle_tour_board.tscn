@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=4 uid="uid://tusxfgxdb0vf"]
+[gd_scene load_steps=15 format=4 uid="uid://tusxfgxdb0vf"]
 
 [ext_resource type="Texture2D" uid="uid://86rwcugu5fj" path="res://Graphics/BoardSprites/TilesetBoardElementsIsometric_Try7.png" id="1_1q67b"]
 [ext_resource type="Script" uid="uid://djou3dmb0ej0x" path="res://Scenes/Boards/castle_tour_board.gd" id="1_sphnk"]
+[ext_resource type="Texture2D" uid="uid://bu5l1pd7tk2n5" path="res://3d-building-icon_1322386-15319.jpg" id="2_6tjmi"]
 [ext_resource type="Texture2D" uid="uid://1qu5n72tiix7" path="res://Graphics/BoardSprites/TilesetBoardElementsIsometric_Try8.png" id="2_tfynt"]
 [ext_resource type="PackedScene" uid="uid://crq1jkrf27su0" path="res://Checkpoint.tscn" id="4_sphnk"]
 [ext_resource type="AudioStream" uid="uid://du7t8yl4sn6dl" path="res://Audio/mixkit-techno-fest-vibes-124.ogg" id="5_cy5jx"]
@@ -265,6 +266,11 @@ sources/1 = SubResource("TileSetAtlasSource_6tjmi")
 
 [node name="CastleTourBoard" type="Node2D"]
 script = ExtResource("1_sphnk")
+
+[node name="3d-building-icon1322386-15319" type="Sprite2D" parent="."]
+position = Vector2(252.5, -171.498)
+scale = Vector2(21.0751, 11.238)
+texture = ExtResource("2_6tjmi")
 
 [node name="Floor" type="TileMapLayer" parent="."]
 position = Vector2(1647, -1121)
